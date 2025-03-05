@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IN4U - 회원가입</title>
+    
+    <!-- Axios 추가 (CDN 방식) -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  
+    <link rel="stylesheet" href="../styles/global.css">
+    <link rel="stylesheet" href="../styles/header.css">
+    <link rel="stylesheet" href="../styles/footer.css">
+    <link rel="stylesheet" href="../styles/signup.css">
+  
+    <!-- JavaScript 파일들 -->
+    <script type="module" src="../config/config.js"></script>
+    <script type="module" src="../scripts/api.js"></script>
+    <script type="module" src="../scripts/components.js"></script>
+    <script type="module" src="../scripts/utils.js"></script>
+    <script type="module" src="../scripts/main.js" defer></script>
+    <script type="module" src="../scripts/signup.js"></script>
+  </head>
+  
+<body>
+  <!-- 헤더는 components.js에 의해 여기에 삽입됩니다 -->
+
+  <main class="main">
+    <div class="auth-container">
+      <div class="auth-form">
+        <h1 class="auth-title">회원가입</h1>
+        
+        <!-- 메시지 컨테이너 -->
+        <div id="message-container"></div>
+        
+        <form id="signup-form">
+          <div class="form-group">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" id="email" name="email" class="form-input" placeholder="이메일 주소" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="password" class="form-label">비밀번호</label>
+            <input type="password" id="password" name="password" class="form-input" placeholder="비밀번호" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="password2" class="form-label">비밀번호 확인</label>
+            <input type="password" id="password2" name="password2" class="form-input" placeholder="비밀번호 확인" required>
+          </div>
+          
+          <div class="form-group">
+            <div class="checkbox-group">
+              <input type="checkbox" id="terms_agree" name="terms_agree" class="checkbox" required>
+              <label for="terms_agree" class="checkbox-label">서비스 이용 약관 동의 (필수)</label>
+            </div>
+          
+            <div class="checkbox-group">
+              <input type="checkbox" id="marketing_agree" name="marketing_agree" class="checkbox">
+              <label for="marketing_agree" class="checkbox-label">마케팅 정보 수신 동의 (선택)</label>
+            </div>
+          </div>
+          
+          
+          <button type="submit" class="btn btn-primary btn-block">회원가입</button>
+        </form>
+        
+        <div class="divider">
+          <span>Or sign in with</span>
+        </div>
+        
+        <button class="btn btn-google btn-block">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18">
+            <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" />
+            <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" />
+            <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" />
+            <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" />
+          </svg>
+          Google
+        </button>
+        
+        <p class="auth-link">이미 계정이 있으신가요? 
+          <a href="login.html" class="link">로그인</a>
+        </p>
+      </div>
+    </div>
+  </main>
+
+  <!-- 푸터는 components.js에 의해 여기에 삽입됩니다 -->
+</body>
+</html>
