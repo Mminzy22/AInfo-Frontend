@@ -9,7 +9,6 @@ import {
 
 document.addEventListener("DOMContentLoaded", async function () {
     const profileForm = document.getElementById("profile-edit-form");
-    const messageContainer = document.getElementById("message-container");
 
     try {
         // 1. 선택 목록(지역, 학력, 관심 분야 등) 먼저 로드
@@ -25,19 +24,22 @@ document.addEventListener("DOMContentLoaded", async function () {
     // 3. 폼 제출 시 API 호출 (프로필 수정)
     profileForm.addEventListener("submit", async function (event) {
         event.preventDefault();
-
+    
         const formData = getFormData();
         console.log("프로필 수정 데이터:", formData);
-
+    
         try {
-            await updateUserProfile(formData);
-            showMessage("프로필이 성공적으로 업데이트되었습니다.", "success");
-
+            const response = await updateUserProfile(formData);
+    
+            alert("프로필이 성공적으로 업데이트되었습니다.", "success");
+            console.log("메시지 표시 성공");
+    
             // 저장 성공 후 profile.html로 이동
             setTimeout(() => {
                 window.location.href = "profile.html";
-            }, 1500);
+            }, 500);
         } catch (error) {
+            console.error("프로필 업데이트 오류:", error);
             showMessage("프로필 업데이트 중 오류가 발생했습니다.", "error");
         }
     });
@@ -229,6 +231,8 @@ function getFormData() {
  * 메시지 표시
  */
 function showMessage(message, type) {
+    const messageContainer = document.getElementById("message-container");
+
     messageContainer.innerHTML = `<p class="message ${type}">${message}</p>`;
     messageContainer.style.display = "block";
 }
