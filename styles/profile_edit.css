@@ -1,0 +1,204 @@
+/* 프로필 수정 페이지 스타일 */
+main.container {
+  padding: 48px 20px;
+}
+
+.profile-edit-container {
+  max-width: 800px;
+  margin: 0 auto;
+  border: 1px solid #d9d9d9;
+  padding: 48px;
+  background-color: white;
+}
+
+.profile-title {
+  font-size: 24px;
+  font-weight: 500;
+  margin: 0 0 32px 0;
+}
+
+.divider {
+  height: 1px;
+  width: 100%;
+  background-color: #d9d9d9;
+  margin-bottom: 32px;
+}
+
+#profile-edit-form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.form-group {
+  margin-bottom: 16px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 14px;
+  color: #767676;
+  margin-bottom: 4px;
+}
+
+.form-input, .form-select {
+  width: 100%;
+  padding: 10px 16px;
+  border: 1px solid #d9d9d9;
+  border-radius: 4px;
+  font-size: 16px;
+  background-color: #fff;
+}
+
+.form-input:focus, .form-select:focus {
+  outline: none;
+  border-color: #0f62fe;
+}
+
+.form-input:disabled {
+  background-color: #f5f5f5;
+  color: #767676;
+  cursor: not-allowed;
+}
+
+.form-select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23000000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  background-size: 16px;
+  padding-right: 40px;
+}
+
+/* 관심 분야 체크박스 그룹 */
+.checkbox-group {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 8px;
+}
+
+.checkbox-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.checkbox-item input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+}
+
+.checkbox-item label {
+  margin-bottom: 0;
+  font-size: 14px;
+  color: #000;
+}
+
+/* 마케팅 동의 체크박스 스타일 */
+.form-group:has(#marketing_agree) {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.form-group:has(#marketing_agree) label {
+  margin-bottom: 0;
+  margin-right: 8px;
+}
+
+input[type="checkbox"]#marketing_agree {
+  width: 16px;
+  height: 16px;
+}
+
+/* 버튼 그룹 */
+.button-group {
+  display: flex;
+  gap: 16px;
+  margin-top: 32px;
+  justify-content: flex-end;
+}
+
+.btn {
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.btn-primary {
+  background-color: #0f62fe;
+  color: white;
+  padding: 10px 24px;
+  border: none;
+}
+
+.btn-primary:hover {
+  background-color: #001d6c;
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: #21272a;
+  padding: 10px 24px;
+  border: 1px solid #d9d9d9;
+  text-decoration: none;
+}
+
+.btn-secondary:hover {
+  background-color: #f5f5f5;
+}
+
+/* 메시지 컨테이너 */
+#message-container {
+  margin-top: 24px;
+}
+
+.error-message {
+  background-color: #ffebee;
+  color: #c62828;
+  padding: 12px 16px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.success-message {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+  padding: 12px 16px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+/* 반응형 스타일 */
+@media (max-width: 768px) {
+  .profile-edit-container {
+    padding: 24px;
+  }
+  
+  .checkbox-group {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+  
+  .button-group {
+    flex-direction: column;
+  }
+  
+  .btn {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .checkbox-group {
+    grid-template-columns: 1fr;
+  }
+  
+  .form-group:has(#marketing_agree) {
+    flex-direction: row;
+    align-items: center;
+  }
+}

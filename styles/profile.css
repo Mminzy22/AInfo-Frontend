@@ -1,0 +1,147 @@
+/* 프로필 조회 페이지 스타일 */
+main.container {
+  padding: 48px 20px;
+}
+
+.profile-container {
+  max-width: 800px;
+  margin: 0 auto;
+  border: 1px solid #d9d9d9;
+  padding: 48px;
+  background-color: white;
+}
+
+.profile-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 32px;
+}
+
+.profile-title {
+  font-size: 24px;
+  font-weight: 500;
+  margin: 0;
+}
+
+.btn-edit {
+  background-color: transparent;
+  border: 1px solid #0f62fe;
+  color: #0f62fe;
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.btn-edit:hover {
+  background-color: rgba(15, 98, 254, 0.1);
+}
+
+.divider {
+  height: 1px;
+  width: 100%;
+  background-color: #d9d9d9;
+  margin-bottom: 32px;
+}
+
+.profile-content {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.profile-section {
+  padding-bottom: 24px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.profile-section:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.section-title {
+  font-size: 18px;
+  font-weight: 500;
+  margin: 0 0 16px 0;
+  color: #333;
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+@media (max-width: 768px) {
+  .profile-container {
+    padding: 24px;
+  }
+  
+  .info-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}
+
+.info-item {
+  margin-bottom: 16px;
+}
+
+.info-label {
+  font-size: 14px;
+  color: #767676;
+  margin-bottom: 4px;
+}
+
+.info-value {
+  font-size: 16px;
+  color: #000;
+}
+
+.interests-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.interest-tag {
+  background-color: #f0f0f0;
+  padding: 6px 12px;
+  border-radius: 16px;
+  font-size: 14px;
+  color: #333;
+}
+
+.loading-placeholder {
+  color: #767676;
+  font-style: italic;
+}
+
+.profile-actions {
+  margin-top: 32px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.btn-primary {
+  background-color: #0f62fe;
+  color: white;
+  padding: 10px 24px;
+  border-radius: 4px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: background-color 0.2s;
+}
+
+.btn-primary:hover {
+  background-color: #001d6c;
+}
+
+.empty-value {
+  color: #767676;
+  font-style: italic;
+}
