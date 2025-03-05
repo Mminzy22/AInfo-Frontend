@@ -1,0 +1,72 @@
+.header {
+    background-color: white;
+    padding: 1rem 1.5rem;
+    width: 100%;
+    border-bottom: 1px solid #f0f0f0;
+  }
+  
+  .header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+  
+  .nav {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .nav-link {
+    font-size: 0.875rem;
+    color: #21272a;
+  }
+  
+  .nav-link.active {
+    font-weight: 600;
+    color: #0f62fe;
+  }
+  
+  .signup-btn {
+    padding: 0.25rem 0.75rem;
+    background-color: #e3e3e3;
+    border-radius: 0.25rem;
+  }
+  
+  .logout-btn {
+    padding: 0.25rem 0.75rem;
+    background-color: #e3e3e3;
+    border-radius: 0.25rem;
+  }
+  
+  .login-btn {
+    padding: 0.25rem 0.75rem;
+    background-color: #1e1e1e;
+    color: white;
+    border-radius: 0.25rem;
+  }
+  
+  .profile-btn {
+    padding: 0.25rem 0.75rem;
+    background-color: #1e1e1e;
+    color: white;
+    border-radius: 0.25rem;
+  }
+  
+  @media (max-width: 768px) {
+    .nav {
+      gap: 0.5rem;
+    }
+    
+    .nav-link {
+      font-size: 0.75rem;
+    }
+  }
+  
