@@ -1,7 +1,7 @@
 // API 기본 설정 (config.js에서 설정한 axios 인스턴스 사용)
 const axiosInstance = window.axiosInstance;
 
-// 회원가입 요청 함수
+// 회원가입 요청
 export async function signup(userData) {
     try {
         const response = await axiosInstance.post("/accounts/signup/", userData);
@@ -12,7 +12,7 @@ export async function signup(userData) {
     }
 }
 
-// 로그인 요청 함수
+// 로그인 요청
 export async function login(credentials) {
     try {
         const response = await axiosInstance.post("/accounts/login/", credentials);
@@ -29,7 +29,7 @@ export async function login(credentials) {
     }
 }
 
-// 로그아웃 요청 함수
+// 로그아웃 요청
 export async function logout() {
     try {
         const refresh_token = localStorage.getItem("refresh_token");
@@ -61,3 +61,69 @@ axiosInstance.interceptors.request.use((config) => {
     }
     return config;
 });
+
+// 프로필 조회 (GET /api/v1/accounts/profile/)
+export async function getUserProfile() {
+    try {
+        const response = await axiosInstance.get("/accounts/profile/");
+        return response.data;
+    } catch (error) {
+        console.error("프로필 조회 실패:", error.response?.data || error.message);
+        throw new Error(error.response?.data?.detail || "프로필 조회 실패. 다시 시도하세요.");
+    }
+}
+
+// 프로필 수정 (PUT /api/v1/accounts/profile/)
+export async function updateUserProfile(updatedData) {
+    try {
+        const response = await axiosInstance.put("/accounts/profile/", updatedData);
+        return response.data;
+    } catch (error) {
+        console.error("프로필 수정 실패:", error.response?.data || error.message);
+        throw new Error(error.response?.data?.detail || "프로필 수정 실패. 다시 시도하세요.");
+    }
+}
+
+// 관심 분야 목록 조회 (GET /api/v1/accounts/interests/)
+export async function getInterests() {
+    try {
+        const response = await axiosInstance.get("/accounts/interests/");
+        return response.data;
+    } catch (error) {
+        console.error("관심 분야 목록 조회 실패:", error.response?.data || error.message);
+        throw new Error(error.response?.data?.detail || "관심 분야 목록 조회 실패. 다시 시도하세요.");
+    }
+}
+
+// 최종 학력 목록 조회 (GET /api/v1/accounts/education-levels/)
+export async function getEducationLevels() {
+    try {
+        const response = await axiosInstance.get("/accounts/education-levels/");
+        return response.data;
+    } catch (error) {
+        console.error("최종 학력 목록 조회 실패:", error.response?.data || error.message);
+        throw new Error(error.response?.data?.detail || "최종 학력 목록 조회 실패. 다시 시도하세요.");
+    }
+}
+
+// 현재 상태 목록 조회 (GET /api/v1/accounts/current-statuses/)
+export async function getCurrentStatuses() {
+    try {
+        const response = await axiosInstance.get("/accounts/current-statuses/");
+        return response.data;
+    } catch (error) {
+        console.error("현재 상태 목록 조회 실패:", error.response?.data || error.message);
+        throw new Error(error.response?.data?.detail || "현재 상태 목록 조회 실패. 다시 시도하세요.");
+    }
+}
+
+// 지역 목록 조회 (GET /api/v1/accounts/subregions/)
+export async function getSubRegions() {
+    try {
+        const response = await axiosInstance.get("/accounts/subregions/");
+        return response.data;
+    } catch (error) {
+        console.error("지역 목록 조회 실패:", error.response?.data || error.message);
+        throw new Error(error.response?.data?.detail || "지역 목록 조회 실패. 다시 시도하세요.");
+    }
+}
