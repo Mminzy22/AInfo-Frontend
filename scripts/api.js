@@ -76,7 +76,15 @@ export async function getUserProfile() {
 // 프로필 수정 (PUT /api/v1/accounts/profile/)
 export async function updateUserProfile(updatedData) {
     try {
-        const response = await axiosInstance.put("/accounts/profile/", updatedData);
+        const transformedData = {
+            ...updatedData,
+            interests_ids: updatedData.interests,  // ID 배열
+            education_level_id: updatedData.education_level,  // ID 값 전송
+            current_status_id: updatedData.current_status,  // ID 값 전송
+            location_id: updatedData.location  // ID 값 전송
+        };
+
+        const response = await axiosInstance.put("/accounts/profile/", transformedData);
         return response.data;
     } catch (error) {
         console.error("프로필 수정 실패:", error.response?.data || error.message);
