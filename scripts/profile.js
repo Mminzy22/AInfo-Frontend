@@ -1,4 +1,4 @@
-import { getUserProfile } from "./api.js";
+import { getUserProfile, deleteAccount } from "./api.js";
 
 document.addEventListener("DOMContentLoaded", function () {
     loadUserProfile();
@@ -95,4 +95,44 @@ document.addEventListener("DOMContentLoaded", function () {
     function showMessage(message, type) {
         alert(message);
     }
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+    // 회원 탈퇴 모달 관련 요소 가져오기
+    const withdrawalModal = document.getElementById("withdrawalModal");
+    const withdrawalBtn = document.getElementById("withdrawalBtn");
+    const cancelWithdrawal = document.getElementById("cancelWithdrawal");
+    const confirmWithdrawal = document.getElementById("confirmWithdrawal");
+
+    // 회원 탈퇴 버튼 클릭 시 모달 표시
+    withdrawalBtn.addEventListener("click", () => {
+        withdrawalModal.classList.add("show");
+    });
+
+    // 취소 버튼 클릭 시 모달 닫기
+    cancelWithdrawal.addEventListener("click", () => {
+        withdrawalModal.classList.remove("show");
+    });
+
+    // 모달 외부 클릭 시 닫기
+    withdrawalModal.addEventListener("click", (event) => {
+        if (event.target === withdrawalModal) {
+            withdrawalModal.classList.remove("show");
+        }
+    });
+
+    // 회원 탈퇴 확인 버튼 클릭 시 API 호출
+    confirmWithdrawal.addEventListener("click", async () => {
+        try {
+            await deleteAccount();
+
+            alert("회원 탈퇴가 완료되었습니다.");
+            window.location.href = "/"; // 메인 페이지로 이동
+        } catch (error) {
+            console.error("회원 탈퇴 중 오류가 발생했습니다:", error);
+            alert("회원 탈퇴 처리 중 오류가 발생했습니다. 다시 시도해주세요.");
+        } finally {
+            withdrawalModal.classList.remove("show");
+        }
+    });
 });
