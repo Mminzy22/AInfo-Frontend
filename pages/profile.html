@@ -83,11 +83,31 @@
                         <div id="marketing_agree" class="info-value">로딩 중...</div>
                     </div>
                 </div>
+
+                <div class="profile-section">
+                    <h2 class="section-title">계정 관리</h2>
+                    <div class="account-management">
+                        <p class="withdrawal-warning">회원 탈퇴 시 모든 데이터가 삭제되며 복구할 수 없습니다.</p>
+                        <button id="withdrawalBtn" class="btn-withdrawal">회원 탈퇴</button>
+                    </div>
+                </div>
             </div>
         </div>
     </main>
 
     <!-- 푸터는 components.js에서 삽입됨 -->
+
+    <!-- 회원 탈퇴 확인 모달 -->
+    <div id="withdrawalModal" class="modal">
+        <div class="modal-content">
+            <h2>정말 탈퇴하시겠습니까?</h2>
+            <p>회원 탈퇴 시 모든 개인정보와 활동 내역이 삭제되며 복구할 수 없습니다.</p>
+            <div class="modal-actions">
+                <button id="cancelWithdrawal" class="btn-cancel">취소</button>
+                <button id="confirmWithdrawal" class="btn-confirm">탈퇴하기</button>
+            </div>
+        </div>
+    </div>
 
 </body>
 </html>
