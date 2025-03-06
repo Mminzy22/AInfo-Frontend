@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         const userData = await getUserProfile();
         populateProfileFields(userData);
     } catch (error) {
-        showMessage("프로필 정보를 불러오는데 실패했습니다.", "error");
+        showMessage("프로필 정보를 불러오는 중 오류가 발생했습니다.", "error");
     }
 
     // 3. 폼 제출 시 API 호출 (프로필 수정)
@@ -26,18 +26,14 @@ document.addEventListener("DOMContentLoaded", async function () {
         event.preventDefault();
     
         const formData = getFormData();
-        console.log("프로필 수정 데이터:", formData);
+
+        if (!formData) return;
     
         try {
-            const response = await updateUserProfile(formData);
+            await updateUserProfile(formData);
     
-            alert("프로필이 성공적으로 업데이트되었습니다.", "success");
-            console.log("메시지 표시 성공");
-    
-            // 저장 성공 후 profile.html로 이동
-            setTimeout(() => {
-                window.location.href = "profile.html";
-            }, 500);
+            alert("프로필이 성공적으로 업데이트되었습니다.");
+            window.location.href = "profile.html";  // 저장 성공 후 profile.html로 이동
         } catch (error) {
             console.error("프로필 업데이트 오류:", error);
             showMessage("프로필 업데이트 중 오류가 발생했습니다.", "error");
@@ -71,8 +67,12 @@ function populateProfileFields(user) {
 
     // 지역 설정 (시/도 + 시/군/구)
     if (user.location) {
-        document.getElementById("region").value = user.location.region.id;
-        document.getElementById("subregion").value = user.location.id;
+        const regionSelect = document.getElementById("region");
+        regionSelect.value = getRegionIdByName(user.location.region);
+
+        updateSubRegionOptions().then(() => {
+            document.getElementById("subregion").value = user.location.id;
+        });
     }
 
     if (user.current_status) {
@@ -87,6 +87,19 @@ function populateProfileFields(user) {
 
     // 관심 분야 체크박스 설정
     setInterestCheckboxes(user.interests || []);
+}
+
+/**
+ * 지역명 → 시/도 ID 변환 함수
+ */
+function getRegionIdByName(regionName) {
+    const regionSelect = document.getElementById("region");
+    for (const option of regionSelect.options) {
+        if (option.textContent === regionName) {
+            return option.value;
+        }
+    }
+    return "";
 }
 
 /**
@@ -122,7 +135,7 @@ async function loadInterestOptions() {
 }
 
 /**
- * 지역(시/도) 목록 로드
+ * 시/도 목록 로드
  */
 async function loadRegions() {
     try {
@@ -130,21 +143,27 @@ async function loadRegions() {
         const regionSelect = document.getElementById("region");
         regionSelect.innerHTML = '<option value="">선택하세요</option>';
 
-        const uniqueRegions = [...new Set(regions.map(region => region.region))];
+        const uniqueRegions = {};
 
-        uniqueRegions.forEach(region => {
-            const option = document.createElement("option");
-            option.value = region.id;
-            option.textContent = region.name;
-            regionSelect.appendChild(option);
+        regions.forEach(region => {
+            if (!uniqueRegions[region.region]) {
+                uniqueRegions[region.region] = region.id;
+            }
         });
+
+        for (const [regionName, regionId] of Object.entries(uniqueRegions)) {
+            const option = document.createElement("option");
+            option.value = regionId;
+            option.textContent = regionName;
+            regionSelect.appendChild(option);
+        }
     } catch (error) {
         showMessage("지역 목록을 불러오는 중 오류가 발생했습니다.", "error");
     }
 }
 
 /**
- * 시/군/구(하위 지역) 목록 로드
+ * 시/군/구 목록 로드
  */
 async function loadSubRegions() {
     try {
@@ -161,14 +180,20 @@ async function loadSubRegions() {
 async function updateSubRegionOptions() {
     const regionId = document.getElementById("region").value;
     const subregionSelect = document.getElementById("subregion");
-    subregionSelect.innerHTML = '<option value="">선택하세요</option>';
 
-    if (!regionId) return;
+    if (!regionId) {
+        subregionSelect.innerHTML = '<option value="">시/도를 먼저 선택하세요</option>';
+        subregionSelect.disabled = true;
+        return;
+    }
+
+    subregionSelect.disabled = false;
+    subregionSelect.innerHTML = '<option value="">시/군/구를 선택하세요</option>';
 
     try {
         const subregions = await getSubRegions();
         subregions
-            .filter(subregion => subregion.region.id === parseInt(regionId))
+            .filter(subregion => subregion.region === document.getElementById("region").selectedOptions[0].textContent)
             .forEach(subregion => {
                 const option = document.createElement("option");
                 option.value = subregion.id;
@@ -214,6 +239,15 @@ function setInterestCheckboxes(selectedInterests) {
  * 폼 데이터 가져오기
  */
 function getFormData() {
+    const regionValue = document.getElementById("region").value;
+    const subregionValue = document.getElementById("subregion").value;
+
+    // ✅ 시/도를 선택했지만 시/군/구를 선택하지 않은 경우 저장 불가
+    if (regionValue && !subregionValue) {
+        alert("시/군/구를 선택하세요.");
+        return null; // 유효성 검사 실패 시 null 반환 → 저장 중단
+    }
+
     return {
         name: document.getElementById("name").value,
         birth_date: document.getElementById("birth_date").value,
@@ -231,8 +265,5 @@ function getFormData() {
  * 메시지 표시
  */
 function showMessage(message, type) {
-    const messageContainer = document.getElementById("message-container");
-
-    messageContainer.innerHTML = `<p class="message ${type}">${message}</p>`;
-    messageContainer.style.display = "block";
+    alert(message);
 }

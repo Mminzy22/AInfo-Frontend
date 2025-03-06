@@ -24,8 +24,9 @@ document.addEventListener("DOMContentLoaded", function () {
         setTextContent("name", user.name);
         setTextContent("birth_date", user.birth_date ? formatDate(user.birth_date) : "설정되지 않음");
 
-        if (user.location && user.location.region) {
-            setTextContent("location", `${user.location.region.name} ${user.location.name}`);
+        // ✅ 지역 정보 수정: region은 문자열이므로 그대로 출력
+        if (user.location) {
+            setTextContent("location", `${user.location.region} ${user.location.name}`);
         } else {
             setTextContent("location", "설정되지 않음");
         }
