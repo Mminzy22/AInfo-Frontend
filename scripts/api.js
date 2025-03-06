@@ -127,3 +127,20 @@ export async function getSubRegions() {
         throw new Error(error.response?.data?.detail || "지역 목록 조회 실패. 다시 시도하세요.");
     }
 }
+
+// 회원 탈퇴 요청 (DELETE /api/v1/accounts/delete/)
+export async function deleteAccount() {
+    try {
+        const response = await axiosInstance.delete("/accounts/delete/");
+        
+        // 탈퇴 성공 시 로컬 스토리지 초기화
+        localStorage.removeItem("access_token");
+        localStorage.removeItem("refresh_token");
+        localStorage.removeItem("user");
+
+        return { message: "회원 탈퇴가 완료되었습니다." };
+    } catch (error) {
+        console.error("회원 탈퇴 실패:", error.response?.data || error.message);
+        throw new Error(error.response?.data?.detail || "회원 탈퇴 실패. 다시 시도하세요.");
+    }
+}
