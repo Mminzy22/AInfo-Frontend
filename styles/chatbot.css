@@ -104,7 +104,7 @@
     transform: translateY(-50%);
     right: 0;  /* 오른쪽 끝에 배치 */
     width: 3px; /* 선의 두께 */
-    height: 80%; /* 메시지 박스 전체 높이 */
+    height: 99%; /* 메시지 박스 전체 높이 */
     background: black; /* 검은색 선 */
     border-radius: 0; /* 선은 직선으로 유지 */
 }
@@ -116,7 +116,7 @@
     transform: translateY(-50%);
     left: 0;  /* 오른쪽 끝에 배치 */
     width: 3px; /* 선의 두께 */
-    height: 80%; /* 메시지 박스 전체 높이 */
+    height: 99%; /* 메시지 박스 전체 높이 */
     background: black; /* 검은색 선 */
     border-radius: 0; /* 선은 직선으로 유지 */
 }
