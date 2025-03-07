@@ -37,8 +37,49 @@
     margin: 5px 0;
 }
 
-/* 사용자 메시지 (우측 정렬) */
+/* 메시지 & 프로필 컨테이너 */
+.message-wrapper {
+    display: flex;
+    /* align-items: center; */
+    margin: 5px 0;
+}
+
+/* 사용자 메시지 컨테이너 */
+.user-wrapper {
+    justify-content: flex-end;
+}
+
+/* AI 메시지 컨테이너 */
+.bot-wrapper {
+    justify-content: flex-start;
+}
+
+/* 프로필 이미지 공통 스타일 */
+.profile-img {
+    width: 40px;
+    height: 40px;
+    margin: 0 10px;
+}
+
+/* 사용자 메시지 스타일 */
 .user-message {
+    background: white;
+    color: black;
+    text-align: left;
+    position: relative;
+    border-top-right-radius: 0;
+}
+
+/* AI 메시지 스타일 */
+.bot-message {
+    background: white;
+    color: black;
+    text-align: left;
+    position: relative;
+    border-top-left-radius: 0;
+}
+
+/* .user-message {
     align-self: flex-end;
     background: white;
     color: black;
@@ -46,6 +87,15 @@
     position: relative;
     border-top-right-radius: 0;
 }
+
+.bot-message {
+    align-self: flex-start;
+    background: white;
+    color: black;
+    text-align: left;
+    position: relative;
+    border-top-left-radius: 0;
+} */
 
 .user-message::after {
     content: "";
@@ -57,16 +107,6 @@
     height: 80%; /* 메시지 박스 전체 높이 */
     background: black; /* 검은색 선 */
     border-radius: 0; /* 선은 직선으로 유지 */
-}
-
-/* AI 응답 (좌측 정렬) */
-.bot-message {
-    align-self: flex-start;
-    background: white;
-    color: black;
-    text-align: left;
-    position: relative;
-    border-top-left-radius: 0;
 }
 
 .bot-message::after {
