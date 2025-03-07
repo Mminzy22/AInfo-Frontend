@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // 사용자 프로필 이미지
         const profileImg = document.createElement("img");
-        profileImg.src = "/assets/images/user_profile.png"; // 사용자 프로필 이미지 경로
+        profileImg.src = "/assets/icons/user_profile.png"; // 사용자 프로필 이미지 경로
         profileImg.alt = "User Profile";
         profileImg.classList.add("profile-img");
 
@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // AI 프로필 이미지
         const profileImg = document.createElement("img");
-        profileImg.src = "/assets/images/bot_profile.png"; // AI 프로필 이미지 경로
+        profileImg.src = "/assets/icons/bot_profile.png"; // AI 프로필 이미지 경로
         profileImg.alt = "Bot Profile";
         profileImg.classList.add("profile-img");
 
@@ -57,11 +57,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // 메시지 전송 핸들러
     async function sendMessage() {
-        const message = userInput.value.trim();
-        if (!message) return;
+        const message = userInput.value.trim();    // 사용자 입력값을 가져오고 앞뒤 공백을 제거
+        if (!message) return;    // 입력값이 없으면 함수를 종료
 
-        addUserMessage(message);
-        userInput.value = "";
+        addUserMessage(message);  // 사용자 메시지를 화면에 표시
+        userInput.value = "";    // 입력 필드를 비운다
 
         try {
             const response = await fetch("http://127.0.0.1:8000/api/chatbot/", {
@@ -70,15 +70,17 @@ document.addEventListener("DOMContentLoaded", function () {
                 body: JSON.stringify({ message }),
             });
 
-            const data = await response.json();
-            addBotMessage(data.reply);
+        const data = await response.json();    // JSON 형식으로 응답을 받습니다
+        addBotMessage(data.reply);    // 챗봇의 응답을 화면에 표시
+
+
         } catch (error) {
             addBotMessage("오류가 발생했습니다. 다시 시도해주세요.");
         }
     }
 
-    sendButton.addEventListener("click", sendMessage);
+    sendButton.addEventListener("click", sendMessage);    // 전송 버튼을 클릭하면 `sendMessage` 함수를 실행
     userInput.addEventListener("keypress", function (event) {
-        if (event.key === "Enter") sendMessage();
+        if (event.key === "Enter") sendMessage();    // Enter 키를 누르면 `sendMessage` 함수를 실행
     });
 });
