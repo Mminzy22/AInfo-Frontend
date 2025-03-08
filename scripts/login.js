@@ -21,11 +21,14 @@ document.addEventListener("DOMContentLoaded", function () {
             localStorage.setItem("access_token", response.access);
             localStorage.setItem("refresh_token", response.refresh);
 
-            alert("로그인 성공! 메인 페이지로 이동합니다.");
+            alert("로그인 성공!");
+
+            const redirectUrl = localStorage.getItem("redirect_after_login") || "/index.html";
+            localStorage.removeItem("redirect_after_login"); // 로그인 후 삭제
 
             // 2초 후 메인 페이지로 이동
             setTimeout(() => {
-                window.location.href = "/index.html";
+                window.location.href = redirectUrl;
             }, 2000);
 
         } catch (error) {

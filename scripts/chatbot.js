@@ -3,31 +3,58 @@ document.addEventListener("DOMContentLoaded", function () {
     const userInput = document.getElementById("user-input");
     const sendButton = document.getElementById("send-button");
 
-    // WebSocket 연결
-    const socket = new WebSocket("ws://127.0.0.1:8000/ws/chat/");
+    let socket = null;
 
-    // WebSocket 연결이 열리면 처리
-    socket.onopen = function () {
-        console.log("WebSocket 연결이 열렸습니다.");
-    };
+    function connectWebSocket() {
+        const token = localStorage.getItem("access_token");
+        if (!token) {
+            console.error("토큰 없음, WebSocket 연결 불가");
+            alert("로그인이 필요합니다.");
 
-    socket.onmessage = function (event) {
-        console.log("서버로부터 받은 데이터:", event.data); // 서버에서 받은 원시 데이터 확인
-    
-        try {
-            const data = JSON.parse(event.data); // 서버로부터 받은 응답을 처리합니다.
-            console.log("파싱된 응답 데이터:", data); // 파싱된 응답 확인
-    
-            if (data.response) {
-                addBotMessage(data.response); // 챗봇의 응답을 화면에 표시합니다.
-            } else {
-                addBotMessage("응답 형식에 오류가 있습니다.");
-            }
-        } catch (error) {
-            console.error("JSON 파싱 오류:", error);
-            addBotMessage("응답을 처리하는 중 오류가 발생했습니다.");
+            localStorage.setItem("redirect_after_login", window.location.href);
+
+            window.location.href = "login.html";
+            return;
         }
-    };
+
+        const wsUrl = `ws://127.0.0.1:8000/ws/chat/?token=${token}`;
+        socket = new WebSocket(wsUrl);
+
+        // WebSocket 연결이 열리면 처리
+        socket.onopen = function () {
+            console.log("WebSocket 연결이 열렸습니다.");
+        };
+        
+        socket.onmessage = function (event) {
+            console.log("서버로부터 받은 데이터:", event.data); // 서버에서 받은 원시 데이터 확인
+        
+            try {
+                const data = JSON.parse(event.data); // 서버로부터 받은 응답을 처리합니다.
+                console.log("파싱된 응답 데이터:", data); // 파싱된 응답 확인
+                
+                if (data.response) {
+                    addBotMessage(data.response); // 챗봇의 응답을 화면에 표시합니다.
+                } else {
+                    addBotMessage("응답 형식에 오류가 있습니다.");
+                }
+            } catch (error) {
+                console.error("JSON 파싱 오류:", error);
+                addBotMessage("응답을 처리하는 중 오류가 발생했습니다.");
+            }
+        };
+        
+        // WebSocket 연결이 닫히면 처리
+        socket.onclose = function () {
+            console.log("WebSocket 연결이 종료되었습니다.");
+        };
+    
+        // WebSocket 오류가 발생하면 처리
+        socket.onerror = function (error) {
+            console.error("WebSocket 오류:", error);
+            addBotMessage("서버와의 연결에 오류가 발생했습니다.");
+        };
+    }
+
 
     // 사용자 메시지 추가
     function addUserMessage(message) {
@@ -95,18 +122,10 @@ document.addEventListener("DOMContentLoaded", function () {
         socket.send(messageData); // 서버로 메시지를 전송
     }
 
+    connectWebSocket();
+
     sendButton.addEventListener("click", sendMessage);    // 전송 버튼을 클릭하면 `sendMessage` 함수를 실행
     userInput.addEventListener("keypress", function (event) {
         if (event.key === "Enter") sendMessage();    // Enter 키를 누르면 `sendMessage` 함수를 실행
     });
-    // WebSocket 연결이 닫히면 처리
-    socket.onclose = function () {
-        console.log("WebSocket 연결이 종료되었습니다.");
-    };
-
-    // WebSocket 오류가 발생하면 처리
-    socket.onerror = function (error) {
-        console.error("WebSocket 오류:", error);
-        addBotMessage("서버와의 연결에 오류가 발생했습니다.");
-    };
 });
