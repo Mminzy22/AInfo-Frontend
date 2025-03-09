@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const sendButton = document.getElementById("send-button");
 
     let socket = null;
+    let currentBotMessage = null; // 현재 생성된 챗봇 메시지를 저장하는 변수
 
     function connectWebSocket() {
         const token = localStorage.getItem("access_token");
@@ -33,13 +34,11 @@ document.addEventListener("DOMContentLoaded", function () {
                 console.log("파싱된 응답 데이터:", data); // 파싱된 응답 확인
                 
                 if (data.response) {
-                    addBotMessage(data.response); // 챗봇의 응답을 화면에 표시합니다.
-                } else {
-                    addBotMessage("응답 형식에 오류가 있습니다.");
+                    addBotMessage(data.response, data.is_streaming); // 챗봇의 응답을 스트리망 상태에 따라 처리
                 }
             } catch (error) {
                 console.error("JSON 파싱 오류:", error);
-                addBotMessage("응답을 처리하는 중 오류가 발생했습니다.");
+                addBotMessage("응답을 처리하는 중 오류가 발생했습니다.", false);
             }
         };
         
@@ -83,30 +82,41 @@ document.addEventListener("DOMContentLoaded", function () {
         chatMessages.scrollTop = chatMessages.scrollHeight;
     }
 
-    // AI 응답 추가
-    function addBotMessage(message) {
-        // 컨테이너 생성 (메시지 + 프로필 이미지)
-        const messageContainer = document.createElement("div");
-        messageContainer.classList.add("message-wrapper", "bot-wrapper");
+    // AI 응답 추가 (스트리밍 상황 추가)
+    function addBotMessage(message, isStreaming) {
+        if (!currentBotMessage) {
+            // 컨테이너 생성 (메시지 + 프로필 이미지)
+            const messageContainer = document.createElement("div");
+            messageContainer.classList.add("message-wrapper", "bot-wrapper");
 
-        // AI 프로필 이미지
-        const profileImg = document.createElement("img");
-        profileImg.src = "/assets/icons/bot_profile.png"; // AI 프로필 이미지 경로
-        profileImg.alt = "Bot Profile";
-        profileImg.classList.add("profile-img");
+            // AI 프로필 이미지
+            const profileImg = document.createElement("img");
+            profileImg.src = "/assets/icons/bot_profile.png"; // AI 프로필 이미지 경로
+            profileImg.alt = "Bot Profile";
+            profileImg.classList.add("profile-img");
 
-        // 메시지 요소
-        const messageElement = document.createElement("div");
-        messageElement.classList.add("message", "bot-message");
-        messageElement.innerHTML = `<span>${message}</span>`;
+            // 메시지 요소
+            const messageDiv = document.createElement("div");
+            messageDiv.classList.add("message", "bot-message");
+            messageDiv.innerHTML = `<span></span>`;
 
-        // 요소 배치 (프로필 왼쪽 + 메시지 오른쪽)
-        messageContainer.appendChild(profileImg);
-        messageContainer.appendChild(messageElement);
+            currentBotMessage = messageDiv.querySelector("span");  // 이전 메시지를 이어 붙이기 위한 변수 저장
 
-        // 채팅창에 추가
-        chatMessages.appendChild(messageContainer);
-        chatMessages.scrollTop = chatMessages.scrollHeight;
+            // 요소 배치 (프로필 왼쪽 + 메시지 오른쪽)
+            messageContainer.appendChild(profileImg);
+            messageContainer.appendChild(messageDiv);
+
+            // 채팅창에 추가
+            chatMessages.appendChild(messageContainer);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+        if (currentBotMessage) {
+            currentBotMessage.textContent += message;
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+        if (!isStreaming) {
+            currentBotMessage = null;
+        }
     }
 
     // 메시지 전송 핸들러
@@ -116,6 +126,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
         addUserMessage(message);  // 사용자 메시지를 화면에 표시
         userInput.value = "";    // 입력 필드를 비운다
+
+        currentBotMessage = null;  // 사용자가 새로운 질문을 입력하면 해당 변수 초기화
 
         // WebSocket을 통해 메시지를 서버로 전송
         const messageData = JSON.stringify({ message: message });
