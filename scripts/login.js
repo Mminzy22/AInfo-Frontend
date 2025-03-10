@@ -1,16 +1,19 @@
-import { login } from "./api.js"; // API 요청 함수 불러오기
+import { login, kakaoLogin } from "./api.js"; // 일반 로그인 + 카카오 로그인
+
+// 카카오 SDK 초기화 (config.js에서 KAKAO_JS_KEY를 전역으로 제공 중)
+Kakao.init(window.appConfig.KAKAO_JS_KEY);
 
 document.addEventListener("DOMContentLoaded", function () {
     const loginForm = document.getElementById("login-form");
     const resultMessage = document.getElementById("message-container");
+    const kakaoLoginBtn = document.getElementById("kakao-login-btn");
 
+    // 1. 이메일/비밀번호 로그인
     loginForm.addEventListener("submit", async function (event) {
-        event.preventDefault(); // 기본 폼 제출 방지
+        event.preventDefault();
 
-        // 입력된 값 가져오기
         const email = document.getElementById("email").value;
         const password = document.getElementById("password").value;
-
         const credentials = { email, password };
 
         try {
@@ -24,24 +27,42 @@ document.addEventListener("DOMContentLoaded", function () {
             alert("로그인 성공!");
 
             const redirectUrl = localStorage.getItem("redirect_after_login") || "/index.html";
-            localStorage.removeItem("redirect_after_login"); // 로그인 후 삭제
+            localStorage.removeItem("redirect_after_login");
 
-            // 2초 후 메인 페이지로 이동
             setTimeout(() => {
                 window.location.href = redirectUrl;
             }, 2000);
-
         } catch (error) {
             console.error("로그인 실패:", error);
-            showMessage(error.error || "로그인 중 오류가 발생했습니다.", "error");
+            showMessage(error.message || "로그인 중 오류가 발생했습니다.", "error");
         }
     });
 
-    /**
-     * 메시지 표시 함수
-     * @param {string} message - 표시할 메시지
-     * @param {string} type - "success" | "error"
-     */
+    // 2. 카카오 로그인 버튼 클릭
+    kakaoLoginBtn.addEventListener("click", () => {
+        Kakao.Auth.login({
+            throughTalk: false,            // 카카오톡 앱이 아닌 브라우저에서 로그인
+            persistAccessToken: false,     // 기존 access_token을 무시하고 새 로그인 강제
+            success: async function (authObj) {
+                const kakaoAccessToken = authObj.access_token;
+
+                try {
+                    const user = await kakaoLogin(kakaoAccessToken);
+                    alert(`${user.name || "사용자"}님 환영합니다!`);
+                    window.location.href = "/index.html";
+                } catch (error) {
+                    console.error("카카오 로그인 실패:", error);
+                    showMessage(error.message || "카카오 로그인 실패", "error");
+                }
+            },
+            fail: function (err) {
+                console.error("카카오 SDK 인증 실패:", err);
+                showMessage("카카오 로그인 인증 중 오류가 발생했습니다.", "error");
+            },
+        });
+    });
+
+    // 공통 메시지 출력 함수
     function showMessage(message, type) {
         resultMessage.innerHTML = `<p class="message ${type}">${message}</p>`;
         resultMessage.style.display = "block";
