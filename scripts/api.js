@@ -30,7 +30,7 @@ export async function login(credentials) {
 }
 
 // 로그아웃 요청
-export async function logout() {
+window.logout = async function () {
     try {
         const refresh_token = localStorage.getItem("refresh_token");
         if (!refresh_token) throw new Error("리프레시 토큰이 없습니다.");
@@ -46,7 +46,7 @@ export async function logout() {
         console.error("로그아웃 실패:", error.response?.data || error.message);
         throw new Error(error.response?.data?.detail || "로그아웃 실패. 다시 시도하세요.");
     }
-}
+};
 
 // 현재 로그인 상태 확인
 export function isLoggedIn() {
