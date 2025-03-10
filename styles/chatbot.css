@@ -89,6 +89,16 @@
     border-top-left-radius: 0;
 }
 
+ul {
+    list-style-type: disc;
+    padding-left: 20px;
+}
+
+ol {
+    list-style-type: decimal;
+    padding-left: 20px;
+}
+
 /* .user-message {
     align-self: flex-end;
     background: white;
