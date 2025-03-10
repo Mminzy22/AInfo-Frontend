@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="../styles/login.css">
   
     <!-- JavaScript 파일들 -->
+    <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
     <script type="module" src="../config/config.js"></script>
     <script type="module" src="../scripts/api.js"></script>
     <script type="module" src="../scripts/components.js"></script>
@@ -60,7 +61,7 @@
           Google
         </button>
 
-        <button class="btn btn-kakao btn-block">
+        <button id="kakao-login-btn" class="btn btn-kakao btn-block">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18">
             <path fill="#3A1D1D" d="M12 3C7.03 3 3 6.14 3 10c0 2.44 1.56 4.61 3.94 5.8-.18.69-.71 2.51-.82 2.9-.12.47.18.46.38.33.16-.09 2.46-1.67 3.46-2.35.33.05.67.07 1.04.07 4.97 0 9-3.14 9-7S16.97 3 12 3z"/>
           </svg>
