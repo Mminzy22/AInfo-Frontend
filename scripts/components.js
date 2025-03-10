@@ -1,14 +1,14 @@
 document.addEventListener("DOMContentLoaded", function () {
     renderHeader();
     renderFooter();
-  });
-  
-  /**
-   * 헤더 동적 생성 (로그인 상태 확인하여 버튼 변경)
-   */
-  function renderHeader() {
+});
+
+/**
+ * 헤더 동적 생성 (로그인 상태 확인하여 버튼 변경)
+ */
+function renderHeader() {
     const isLoggedIn = localStorage.getItem("access_token") !== null;
-  
+
     const headerHTML = `
         <header class="header">
             <div class="header-container">
@@ -31,19 +31,14 @@ document.addEventListener("DOMContentLoaded", function () {
             </div>
         </header>
     `;
-  
+
     document.body.insertAdjacentHTML("afterbegin", headerHTML);
-  
-    // 로그아웃 버튼 이벤트 리스너 추가
-    if (isLoggedIn) {
-        document.querySelector(".logout-btn").addEventListener("click", handleLogout);
-    }
-  }
-  
-  /**
-   * 푸터 동적 생성
-   */
-  function renderFooter() {
+}
+
+/**
+ * 🚀 푸터 동적 생성
+ */
+function renderFooter() {
     const footerHTML = `
         <footer class="footer">
             <div class="footer-container">
@@ -78,16 +73,33 @@ document.addEventListener("DOMContentLoaded", function () {
             </div>
         </footer>
     `;
-  
+
     document.body.insertAdjacentHTML("beforeend", footerHTML);
-  }
-  
-  /**
-   * 로그아웃 처리
-   */
-  function handleLogout() {
-    localStorage.removeItem("access_token");  // 액세스 토큰 삭제
-    localStorage.removeItem("refresh_token"); // 리프레시 토큰 삭제
-    alert("로그아웃 되었습니다.");
-    window.location.href = "/"; // 메인 페이지로 이동
-  }
+}
+
+/**
+ * 로그아웃 버튼 이벤트 리스너 (이벤트 위임 방식)
+ */
+document.addEventListener("click", async function (event) {
+    if (event.target.classList.contains("logout-btn")) {
+        event.preventDefault(); // 기본 동작 방지 (페이지 새로고침 막기)
+        await handleLogout();
+    }
+});
+
+/**
+ * 로그아웃 처리 (`api.js`의 `logout()` 함수 호출)
+ */
+async function handleLogout() {
+    try {
+        if (typeof window.logout === "function") {
+            await window.logout(); // `api.js`의 logout() 호출
+            alert("로그아웃 되었습니다.");
+            window.location.href = "/"; // 메인 페이지로 이동
+        } else {
+            console.error("window.logout 함수가 정의되지 않았습니다.");
+        }
+    } catch (error) {
+        alert(error.message || "로그아웃 실패. 다시 시도하세요."); // 오류 메시지 출력
+    }
+}
