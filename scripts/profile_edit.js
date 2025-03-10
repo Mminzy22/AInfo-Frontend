@@ -242,15 +242,18 @@ function getFormData() {
     const regionValue = document.getElementById("region").value;
     const subregionValue = document.getElementById("subregion").value;
 
-    // ✅ 시/도를 선택했지만 시/군/구를 선택하지 않은 경우 저장 불가
+    // 시/도를 선택했지만 시/군/구를 선택하지 않은 경우 저장 불가
     if (regionValue && !subregionValue) {
         alert("시/군/구를 선택하세요.");
         return null; // 유효성 검사 실패 시 null 반환 → 저장 중단
     }
 
+    const birthDateRaw = document.getElementById("birth_date").value.trim();
+    const birth_date = birthDateRaw === "" ? null : birthDateRaw;
+
     return {
         name: document.getElementById("name").value,
-        birth_date: document.getElementById("birth_date").value,
+        birth_date: birth_date,
         location: document.getElementById("subregion").value || null,
         current_status: document.getElementById("current_status").value || null,
         education_level: document.getElementById("education_level").value || null,
