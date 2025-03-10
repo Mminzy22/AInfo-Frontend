@@ -5,6 +5,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     let socket = null;
     let currentBotMessage = null; // 현재 생성된 챗봇 메시지를 저장하는 변수
+    let currentMarkdownText = ""; // 마크다운 형식의 텍스트를 저장하는 변수
 
     function connectWebSocket() {
         const token = localStorage.getItem("access_token");
@@ -54,6 +55,9 @@ document.addEventListener("DOMContentLoaded", function () {
         };
     }
 
+    function renderMarkdown(text) {
+        return marked.parse(text);
+    }
 
     // 사용자 메시지 추가
     function addUserMessage(message) {
@@ -71,7 +75,6 @@ document.addEventListener("DOMContentLoaded", function () {
         const messageElement = document.createElement("div");
         messageElement.classList.add("message", "user-message");
         messageElement.innerHTML = `<span>${message}</span>`;
-        // messageElement.innerHTML = marked(message);
 
         // 요소 배치 (메시지 왼쪽 + 프로필 오른쪽)
         messageContainer.appendChild(messageElement);
@@ -98,9 +101,9 @@ document.addEventListener("DOMContentLoaded", function () {
             // 메시지 요소
             const messageDiv = document.createElement("div");
             messageDiv.classList.add("message", "bot-message");
-            messageDiv.innerHTML = `<span></span>`;
+            messageDiv.innerHTML = `<div class="markdown-content"></div>`; // 마크다운 텍스트 보여주기 위한 영역
 
-            currentBotMessage = messageDiv.querySelector("span");  // 이전 메시지를 이어 붙이기 위한 변수 저장
+            currentBotMessage = messageDiv.querySelector(".markdown-content");  
 
             // 요소 배치 (프로필 왼쪽 + 메시지 오른쪽)
             messageContainer.appendChild(profileImg);
@@ -111,11 +114,18 @@ document.addEventListener("DOMContentLoaded", function () {
             chatMessages.scrollTop = chatMessages.scrollHeight;
         }
         if (currentBotMessage) {
-            currentBotMessage.textContent += message;
+            // 스트리밍 데이터를 이어 붙이기
+            currentMarkdownText += message;
+            
+            // 마크다운을 HTML로 변환
+            currentBotMessage.innerHTML = renderMarkdown(currentMarkdownText);
             chatMessages.scrollTop = chatMessages.scrollHeight;
         }
+        
+        // 스트리밍 끝나면 변수 초기화
         if (!isStreaming) {
             currentBotMessage = null;
+            currentMarkdownText = "";
         }
     }
 
@@ -127,7 +137,9 @@ document.addEventListener("DOMContentLoaded", function () {
         addUserMessage(message);  // 사용자 메시지를 화면에 표시
         userInput.value = "";    // 입력 필드를 비운다
 
-        currentBotMessage = null;  // 사용자가 새로운 질문을 입력하면 해당 변수 초기화
+        // 사용자 새로운 질문을 입력하면 변수 초기화
+        currentBotMessage = null; 
+        currentMarkdownText = "";
 
         // WebSocket을 통해 메시지를 서버로 전송
         const messageData = JSON.stringify({ message: message });
