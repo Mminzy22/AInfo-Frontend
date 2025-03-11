@@ -1,4 +1,4 @@
-import { login, kakaoLogin } from "./api.js"; // 일반 로그인 + 카카오 로그인
+import { login, kakaoLogin, googleLogin } from "./api.js"; // 일반 로그인 + 카카오 로그인
 
 // 카카오 SDK 초기화 (config.js에서 KAKAO_JS_KEY를 전역으로 제공 중)
 Kakao.init(window.appConfig.KAKAO_JS_KEY);
@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const loginForm = document.getElementById("login-form");
     const resultMessage = document.getElementById("message-container");
     const kakaoLoginBtn = document.getElementById("kakao-login-btn");
+    const googleLoginDiv = document.getElementById("google-login-btn");
 
     // 1. 이메일/비밀번호 로그인
     loginForm.addEventListener("submit", async function (event) {
@@ -61,6 +62,38 @@ document.addEventListener("DOMContentLoaded", function () {
             },
         });
     });
+
+    // 3. 구글 로그인 초기화 및 콜백 처리
+    window.onload = function () {
+        google.accounts.id.initialize({
+            client_id: window.appConfig.GOOGLE_CLIENT_ID,
+            callback: async function (response) {
+                const idToken = response.credential;
+
+                try {
+                    const user = await googleLogin(idToken);
+                    alert(`${user.name || "사용자"}님 환영합니다!`);
+                    window.location.href = "/index.html";
+                } catch (error) {
+                    console.error("구글 로그인 실패:", error);
+                    showMessage(error.message || "구글 로그인 실패", "error");
+                }
+            },
+        });
+
+        // 구글 로그인 버튼 렌더링
+        if (googleLoginDiv) {
+            google.accounts.id.renderButton(googleLoginDiv, {
+                type: "standard",
+                theme: "outline",
+                size: "large",
+                text: "signin_with",
+                shape: "rectangular",
+                logo_alignment: "left",
+                width: googleLoginDiv.offsetWidth,
+            });
+        }
+    };
 
     // 공통 메시지 출력 함수
     function showMessage(message, type) {
