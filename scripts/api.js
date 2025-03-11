@@ -173,3 +173,24 @@ export async function kakaoLogin(kakaoAccessToken) {
         throw new Error(error.response?.data?.detail || "카카오 로그인 실패. 다시 시도하세요.");
     }
 }
+
+// 구글 로그인 요청 (POST /accounts/google-login/)
+export async function googleLogin(googleIdToken) {
+    try {
+        const response = await axiosInstance.post("/accounts/google-login/", {
+            id_token: googleIdToken,
+        });
+
+        const { access, refresh, user } = response.data;
+
+        // JWT 토큰 저장
+        localStorage.setItem("access_token", access);
+        localStorage.setItem("refresh_token", refresh);
+        localStorage.setItem("user_email", user.email);
+
+        return user; // 로그인한 사용자 정보 반환
+    } catch (error) {
+        console.error("구글 로그인 실패:", error.response?.data || error.message);
+        throw new Error(error.response?.data?.detail || "구글 로그인 실패. 다시 시도하세요.");
+    }
+}
