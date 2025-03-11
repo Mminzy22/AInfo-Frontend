@@ -43,6 +43,29 @@ document.addEventListener("DOMContentLoaded", function () {
             }, 2000);
         } catch (error) {
             console.error("회원가입 실패:", error);
+            const data = error.response?.data;
+
+            if (data && typeof data === "object") {
+                // 모든 필드별 에러를 순회
+                for (const field in data) {
+                    const messages = data[field];
+                    if (Array.isArray(messages)) {
+                        // 필드명을 보기 좋게 한글로 변환
+                        const fieldNameMap = {
+                            email: "이메일",
+                            password: "비밀번호",
+                            name: "이름",
+                            terms_agree: "약관 동의",
+                            marketing_agree: "마케팅 동의",
+                            non_field_errors: "오류",
+                        };
+        
+                        const label = fieldNameMap[field] || field;
+                        showMessage(`[${label}] ${messages[0]}`, "error");
+                        return;
+                    }
+                }
+            }
             showMessage(error.message || "회원가입 중 오류가 발생했습니다.", "error");
         }
     });
@@ -105,7 +128,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // 3. 메시지 출력 함수
     function showMessage(message, type) {
-        resultMessage.innerHTML = `<p class="message ${type}">${message}</p>`;
+        const className = type === "error" ? "error-message" : "success-message";
+        resultMessage.innerHTML = `<p class="${className}">${message}</p>`;
         resultMessage.style.display = "block";
     }
 });

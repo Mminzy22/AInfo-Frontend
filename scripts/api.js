@@ -8,7 +8,7 @@ export async function signup(userData) {
         return response.data;
     } catch (error) {
         console.error("회원가입 실패:", error.response?.data || error.message);
-        throw new Error(error.response?.data?.detail || "회원가입 실패. 다시 시도하세요.");
+        throw error;  // 전체 에러 객체 그대로
     }
 }
 

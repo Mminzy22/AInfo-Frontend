@@ -97,7 +97,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // 공통 메시지 출력 함수
     function showMessage(message, type) {
-        resultMessage.innerHTML = `<p class="message ${type}">${message}</p>`;
+        const className = type === "error" ? "error-message" : "success-message";
+        resultMessage.innerHTML = `<p class="${className}">${message}</p>`;
         resultMessage.style.display = "block";
     }
 });
