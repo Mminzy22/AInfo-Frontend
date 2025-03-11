@@ -106,7 +106,7 @@ a {
 .form-input:focus {
   outline: none;
   border-color: #0f62fe;
-  box-shadow: 0 0 0 2px rgba(15, 98, 254, 0.1);
+  box-shadow: 0 0 0 2px rgb(15 98 254 / 10%);
 }
 
 .checkbox-group {
@@ -135,7 +135,7 @@ a {
   background-color: white;
   padding: 2rem;
   border-radius: 0.5rem;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 3px rgb(0 0 0 / 10%);
 }
 
 .auth-title {
@@ -202,7 +202,7 @@ a {
 }
 
 /* Responsive utilities */
-@media (max-width: 768px) {
+@media (width <= 768px) {
   .auth-form {
     padding: 1.5rem;
   }

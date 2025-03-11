@@ -4,7 +4,7 @@
     display: flex;
     align-items: flex-end;
     justify-content: center;
-    padding: 1rem 1rem;
+    padding: 1rem;
 }
 
 .chat-container {
@@ -13,6 +13,7 @@
     max-width: 2000px;
     max-height: 700px;
     margin: 5px auto;
+
     /* border: 1px solid #ccc; */
     border-radius: 10px;
     display: flex;
@@ -50,6 +51,7 @@
 /* 메시지 & 프로필 컨테이너 */
 .message-wrapper {
     display: flex;
+
     /* align-items: center; */
     margin: 5px 0;
 }
