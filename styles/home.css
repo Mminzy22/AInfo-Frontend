@@ -17,7 +17,7 @@
     color: #697077;
   }
   
-  @media (max-width: 768px) {
+  @media (width <= 768px) {
     .welcome-container {
       padding: 2rem 1rem;
     }

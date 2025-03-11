@@ -1,0 +1,28 @@
+{
+  "name": "ainfo_frontend",
+  "version": "1.0.0",
+  "description": "Frontend for IN4U: AI-powered chatbot for youth employment &amp; startup services.",
+  "main": "index.js",
+  "scripts": {
+    "lint:css": "stylelint \"**/*.css\"",
+    "lint:js": "eslint \"**/*.js\"",
+    "fix:js": "eslint --fix \"**/*.js\"",
+    "fix:css": "stylelint --fix \"**/*.css\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mminzy22/AInfo-Frontend.git"
+  },
+  "keywords": [
+    "html",
+    "css",
+    "javascript"
+  ],
+  "author": "4tato",
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^8.57.1",
+    "stylelint": "^16.15.0",
+    "stylelint-config-standard": "^36.0.1"
+  }
+}

@@ -60,7 +60,7 @@
     border-radius: 0.25rem;
   }
   
-  @media (max-width: 768px) {
+  @media (width <= 768px) {
     .nav {
       gap: 0.5rem;
     }
