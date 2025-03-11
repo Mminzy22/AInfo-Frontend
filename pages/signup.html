@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AInfo - 회원가입</title>
+    
+    <!-- Axios 추가 (CDN 방식) -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  
+    <link rel="stylesheet" href="../styles/global.css">
+    <link rel="stylesheet" href="../styles/header.css">
+    <link rel="stylesheet" href="../styles/footer.css">
+    <link rel="stylesheet" href="../styles/signup.css">
+  
+    <!-- JavaScript 파일들 -->
+    <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+    <script src="https://accounts.google.com/gsi/client"></script>
+    <script type="module" src="../config/config.js"></script>
+    <script type="module" src="../scripts/api.js"></script>
+    <script type="module" src="../scripts/components.js"></script>
+    <script type="module" src="../scripts/utils.js"></script>
+    <script type="module" src="../scripts/main.js" defer></script>
+    <script type="module" src="../scripts/signup.js"></script>
+  </head>
+<body>
+  <!-- 헤더는 components.js에 의해 여기에 삽입됩니다 -->
+
+  <main class="main">
+    <div class="auth-container">
+      <div class="auth-form">
+        <h1 class="auth-title">회원가입</h1>
+        
+        <!-- 메시지 컨테이너 -->
+        <div id="message-container"></div>
+        
+        <form id="signup-form">
+          <div class="form-group">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" id="email" name="email" class="form-input" placeholder="이메일 주소" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="password" class="form-label">비밀번호</label>
+            <input type="password" id="password" name="password" class="form-input" placeholder="비밀번호" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="password2" class="form-label">비밀번호 확인</label>
+            <input type="password" id="password2" name="password2" class="form-input" placeholder="비밀번호 확인" required>
+          </div>
+          
+          <div class="form-group">
+            <div class="checkbox-group">
+              <input type="checkbox" id="terms_agree" name="terms_agree" class="checkbox" required>
+              <label for="terms_agree" class="checkbox-label">서비스 이용 약관 동의 (필수)</label>
+            </div>
+          
+            <div class="checkbox-group">
+              <input type="checkbox" id="marketing_agree" name="marketing_agree" class="checkbox">
+              <label for="marketing_agree" class="checkbox-label">마케팅 정보 수신 동의 (선택)</label>
+            </div>
+          </div>
+          
+          
+          <button type="submit" class="btn btn-primary btn-block">회원가입</button>
+        </form>
+        
+        <div class="divider">
+          <span>Or sign in with</span>
+        </div>
+        
+        <div id="google-login-btn" class="google-btn-container"></div>
+
+        <button id="kakao-login-btn"  class="btn btn-kakao btn-block">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18">
+            <path fill="#3A1D1D" d="M12 3C7.03 3 3 6.14 3 10c0 2.44 1.56 4.61 3.94 5.8-.18.69-.71 2.51-.82 2.9-.12.47.18.46.38.33.16-.09 2.46-1.67 3.46-2.35.33.05.67.07 1.04.07 4.97 0 9-3.14 9-7S16.97 3 12 3z"/>
+          </svg>
+          Kakao
+        </button>
+        
+        <p class="auth-link">이미 계정이 있으신가요? 
+          <a href="login.html" class="link">로그인</a>
+        </p>
+      </div>
+    </div>
+  </main>
+
+  <!-- 푸터는 components.js에 의해 여기에 삽입됩니다 -->
+</body>
+</html>

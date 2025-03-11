@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AInfo - 프로필</title>
+
+    <!-- Axios 추가 -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <link rel="stylesheet" href="../styles/global.css">
+    <link rel="stylesheet" href="../styles/header.css">
+    <link rel="stylesheet" href="../styles/footer.css">
+    <link rel="stylesheet" href="../styles/profile.css">
+
+    <!-- JavaScript 파일 -->
+    <script type="module" src="../config/config.js"></script>
+    <script type="module" src="../scripts/api.js"></script>
+    <script type="module" src="../scripts/components.js"></script>
+    <script type="module" src="../scripts/utils.js"></script>
+    <script type="module" src="../scripts/profile.js" defer></script>
+</head>
+<body>
+
+    <!-- 헤더는 components.js에서 삽입됨 -->
+
+    <main class="container">
+        <div class="profile-container">
+            <div class="profile-header">
+                <h1 class="profile-title">프로필</h1>
+                <a href="profile_edit.html" class="btn-edit">프로필 수정</a>
+            </div>
+            <div class="divider"></div>
+
+            <div class="profile-content">
+                <div class="profile-section">
+                    <h2 class="section-title">기본 정보</h2>
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <div class="info-label">이메일</div>
+                            <div id="email" class="info-value">로딩 중...</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">이름</div>
+                            <div id="name" class="info-value">로딩 중...</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">생년월일</div>
+                            <div id="birth_date" class="info-value">로딩 중...</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">지역</div>
+                            <div id="location" class="info-value">로딩 중...</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="profile-section">
+                    <h2 class="section-title">학력 및 상태</h2>
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <div class="info-label">현재 상태</div>
+                            <div id="current_status" class="info-value">로딩 중...</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">최종 학력</div>
+                            <div id="education_level" class="info-value">로딩 중...</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="profile-section">
+                    <h2 class="section-title">관심 분야</h2>
+                    <div id="interests" class="interests-tags">
+                        <div class="loading-placeholder">로딩 중...</div>
+                    </div>
+                </div>
+
+                <div class="profile-section">
+                    <h2 class="section-title">설정</h2>
+                    <div class="info-item">
+                        <div class="info-label">마케팅 정보 수신 동의</div>
+                        <div id="marketing_agree" class="info-value">로딩 중...</div>
+                    </div>
+                </div>
+
+                <div class="profile-section">
+                    <h2 class="section-title">계정 관리</h2>
+                    <div class="account-management">
+                        <p class="withdrawal-warning">회원 탈퇴 시 모든 데이터가 삭제되며 복구할 수 없습니다.</p>
+                        <button id="withdrawalBtn" class="btn-withdrawal">회원 탈퇴</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- 푸터는 components.js에서 삽입됨 -->
+
+    <!-- 회원 탈퇴 확인 모달 -->
+    <div id="withdrawalModal" class="modal">
+        <div class="modal-content">
+            <h2>정말 탈퇴하시겠습니까?</h2>
+            <p>회원 탈퇴 시 모든 개인정보와 활동 내역이 삭제되며 복구할 수 없습니다.</p>
+            <div class="modal-actions">
+                <button id="cancelWithdrawal" class="btn-cancel">취소</button>
+                <button id="confirmWithdrawal" class="btn-confirm">탈퇴하기</button>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
