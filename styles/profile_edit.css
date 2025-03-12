@@ -96,18 +96,18 @@ main.container {
 }
 
 /* 마케팅 동의 체크박스 스타일 */
-.form-group:has(#marketing-agree) {
+.form-group:has(#marketing_agree) {
   display: flex;
   align-items: center;
   gap: 8px;
 }
 
-.form-group:has(#marketing-agree) label {
+.form-group:has(#marketing_agree) label {
   margin-bottom: 0;
   margin-right: 8px;
 }
 
-input[type="checkbox"]#marketing-agree {
+input[type="checkbox"]#marketing_agree {
   width: 16px;
   height: 16px;
 }
@@ -197,7 +197,7 @@ input[type="checkbox"]#marketing-agree {
     grid-template-columns: 1fr;
   }
   
-  .form-group:has(#marketing-agree) {
+  .form-group:has(#marketing_agree) {
     flex-direction: row;
     align-items: center;
   }
