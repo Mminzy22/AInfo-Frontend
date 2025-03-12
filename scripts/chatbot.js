@@ -112,6 +112,12 @@ document.addEventListener('DOMContentLoaded', function () {
       // 채팅창에 추가
       chatMessages.appendChild(messageContainer);
       chatMessages.scrollTop = chatMessages.scrollHeight;
+
+      // 로딩메세지를 삭제
+      const loadingMessageContainer = document.querySelector('.message-wrapper.bot-wrapper.loading');
+      if (loadingMessageContainer) {
+        loadingMessageContainer.remove(); // 기존 로딩 메시지 삭제
+      }
     }
     if (currentBotMessage) {
       // 스트리밍 데이터를 이어 붙이기
@@ -129,12 +135,39 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   }
 
+// 로딩 메시지를 추가하는 함수
+function addBotMessage_loading() {
+  // 로딩 메시지 컨테이너 생성 (메시지 + 프로필 이미지)
+  const messageContainer = document.createElement('div');
+  messageContainer.classList.add('message-wrapper', 'bot-wrapper', 'loading');
+
+  // AI 프로필 이미지
+  const profileImg = document.createElement('img');
+  profileImg.src = '/assets/icons/bot_profile.png'; // AI 프로필 이미지 경로
+  profileImg.alt = 'Bot Profile';
+  profileImg.classList.add('profile-img');
+
+  // 로딩 메시지 내용
+  const messageDiv = document.createElement('div');
+  messageDiv.classList.add('message', 'bot-message');
+  messageDiv.innerHTML = '<div class="markdown-content">답변을 생성 중입니다...</div>';
+
+  // 요소 배치 (프로필 왼쪽 + 메시지 오른쪽)
+  messageContainer.appendChild(profileImg);
+  messageContainer.appendChild(messageDiv);
+
+  // 채팅창에 추가
+  chatMessages.appendChild(messageContainer);
+  chatMessages.scrollTop = chatMessages.scrollHeight;
+}
+
   // 메시지 전송 핸들러
   async function sendMessage() {
     const message = userInput.value.trim();    // 사용자 입력값을 가져오고 앞뒤 공백을 제거
     if (!message) return;    // 입력값이 없으면 함수를 종료
 
     addUserMessage(message);  // 사용자 메시지를 화면에 표시
+    addBotMessage_loading()  // 로딩메세지를 화면에 표시
     userInput.value = '';    // 입력 필드를 비운다
 
     // 사용자 새로운 질문을 입력하면 변수 초기화

@@ -174,3 +174,29 @@ ol {
 #send-button:hover {
     background: #dededf;
 }
+
+
+/* 챗봇 이미지와 메시지를 왼쪽에 두고, 스피너를 오른쪽에 배치 */
+.message-wrapper.loading img {
+    order: 0; /* 챗봇 이미지를 왼쪽으로 설정 */
+}
+
+/* 로딩 애니메이션을 위한 스피너 추가 */
+.message-wrapper.loading::before {
+    content: '';
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #383535; /* 파란색 스피너 */
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    animation: spin 0.8s linear infinite;
+    margin-left: 5px; /* 스피너와 텍스트 간의 간격을 주기 위해 */
+    margin-top: 10px;
+    order: 2; /* 스피너를 오른쪽으로 설정 */
+}
+
+/* 스피너 애니메이션 정의 */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
