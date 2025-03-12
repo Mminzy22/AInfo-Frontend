@@ -112,3 +112,24 @@ async function handleLogout() {
     alert(error.message || '로그아웃 실패. 다시 시도하세요.'); // 오류 메시지 출력
   }
 }
+
+document.addEventListener('click', function (event) {
+  const target = event.target;
+
+  if (target.matches('.nav-link[href="/pages/community.html"]')) {
+    event.preventDefault();
+    alert('커뮤니티 페이지는 현재 준비 중입니다. 곧 오픈 예정입니다!');
+    window.location.href = '/index.html';
+  }
+});
+
+document.addEventListener('click', function (event) {
+  const target = event.target;
+
+  // 팀 소개 페이지 클릭 시 처리
+  if (target.matches('.nav-link[href="/pages/team.html"]')) {
+    event.preventDefault();
+    alert('팀 소개 페이지는 현재 준비 중입니다. 곧 만나보실 수 있습니다!');
+    window.location.href = '/index.html';
+  }
+});
