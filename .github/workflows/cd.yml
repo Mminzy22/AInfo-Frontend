@@ -17,14 +17,14 @@ jobs:
       with:
         args: |
           --delete
-          --exclude ".git/*"
-          --exclude ".github/*"
-          --exclude ".eslintrc.json"
-          --exclude ".stylelintrc.json"
-          --exclude ".gitignore"
-          --exclude "package.json"
-          --exclude "package-lock.json"
-          --exclude "README.md"
+          --exclude=".git"
+          --exclude=".github"
+          --exclude=".eslintrc.json"
+          --exclude=".stylelintrc.json"
+          --exclude=".gitignore"
+          --exclude="package.json"
+          --exclude="package-lock.json"
+          --exclude="README.md"
       env:
         AWS_S3_BUCKET: ainfo-frontend
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
