@@ -167,7 +167,7 @@ document.addEventListener('DOMContentLoaded', function () {
     if (!message) return;    // 입력값이 없으면 함수를 종료
 
     addUserMessage(message);  // 사용자 메시지를 화면에 표시
-    addBotMessage_loading()  // 로딩메세지를 화면에 표시
+    addBotMessage_loading();  // 로딩메세지를 화면에 표시
     userInput.value = '';    // 입력 필드를 비운다
 
     // 사용자 새로운 질문을 입력하면 변수 초기화
