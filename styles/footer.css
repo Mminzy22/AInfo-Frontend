@@ -15,11 +15,23 @@
   .footer-section {
     margin-bottom: 1rem;
   }
+
+  .logo img{
+    width: 70px;
+    height: 30px;
+    object-fit: contain;
+  }
   
   .social-links {
     display: flex;
     gap: 0.5rem;
     margin-top: 1rem;
+  }
+
+  .social-links img{
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
   }
   
   .social-link {
