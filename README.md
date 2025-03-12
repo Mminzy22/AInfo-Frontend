@@ -1,4 +1,3 @@
-
 ## 📝 프로젝트 개요
 
 AInfo는 맞춤형 공공서비스 추천 AI 챗봇입니다. Django Rest Framework(DRF)를 기반으로 API를 제공하며, AI 모델과 연동하여 실시간으로 사용자의 질의에 응답합니다.
@@ -25,6 +24,10 @@ AInfo는 맞춤형 공공서비스 추천 AI 챗봇입니다. Django Rest Framew
     - WebSocket 기반 챗봇 구현
     - WebSocket에서 JWT 인증 미들웨어 적용
     - 챗봇 메시지 스트리밍 기능 추가
+
+### 🐣 Release Version : 1.0.0
+
+### 🔗 서비스 접속 : [https://www.ainfo.ai.kr](https://www.ainfo.ai.kr/)
 
 ### 🔗연결 Backend repo: [AInfo-Backend](https://github.com/Mminzy22/AInfo-Backend)
 
@@ -90,10 +93,8 @@ AInfo는 맞춤형 공공서비스 추천 AI 챗봇입니다. Django Rest Framew
 │   │   ├── custom.md
 │   │   └── feature_request.md
 │   └── workflows/
-│       └── ci.yml
-│
-├── tests/ → 테스트 파일 (필요 시)
-│   └── test.js → 기본 테스트 스크립트
+│       ├── ci.yml
+│       └── cd.yml
 │
 ├── .gitignore → Git에 포함하지 않을 파일
 ├── index.html → 메인 페이지
@@ -118,7 +119,8 @@ cd AInfo-Backend
 ```bash
 pip install -r requirements.txt
 python manage.py migrate
-redis-server
+python -m vector_store.load_data
+docker run --rm -p 6379:6379 --name redis-server redis
 python manage.py runserver
 ```
 
@@ -158,5 +160,4 @@ window.axiosInstance = axios.create({
 ## 📄 라이센스
 
 이 프로젝트는 학습 목적으로 제작되었으며, 공개된 코드는 자유롭게 참고할 수 있습니다. 
-
 단, 상업적 사용은 금지됩니다.
