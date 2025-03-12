@@ -210,7 +210,7 @@ axiosInstance.interceptors.response.use(
       originalRequest._retry = true;
 
       try {
-        const refreshResponse = await axios.post('/api/v1/accounts/token/refresh/', {
+        const refreshResponse = await axiosInstance.post('/accounts/token/refresh/', {
           refresh: localStorage.getItem('refresh_token'),
         });
 
@@ -226,7 +226,7 @@ axiosInstance.interceptors.response.use(
         // refresh 토큰도 만료되었을 때 → 로그아웃 처리
         localStorage.removeItem('access_token');
         localStorage.removeItem('refresh_token');
-        window.location.href = '/login.html'; // 로그인 페이지로 리디렉션
+        window.location.href = '/pages/login.html'; // 로그인 페이지로 리디렉션
         return Promise.reject(refreshError);
       }
     }
