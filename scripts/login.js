@@ -102,3 +102,15 @@ document.addEventListener('DOMContentLoaded', function () {
     resultMessage.style.display = 'block';
   }
 });
+
+// 패스워드 찾기
+document.addEventListener('DOMContentLoaded', function () {
+  const findPasswordLink = document.getElementById('find-password');
+
+  if (findPasswordLink) {
+    findPasswordLink.addEventListener('click', function (event) {
+      event.preventDefault();  // 기본 이벤트 방지
+      alert('비밀번호 찾기 기능은 현재 지원되지 않습니다.');
+    });
+  }
+});

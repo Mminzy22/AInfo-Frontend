@@ -12,7 +12,9 @@ function renderHeader() {
   const headerHTML = `
         <header class="header">
             <div class="header-container">
-                <a href="/" class="logo">A</a>
+                <a href="/" class="logo">
+                  <img src="/assets/icons/main-logo7.png">
+                </a>
                 <nav class="nav">
                     <a href="/pages/chatbot.html" class="nav-link">챗봇</a>
                     <a href="/pages/community.html" class="nav-link">커뮤니티</a>
@@ -43,19 +45,26 @@ function renderFooter() {
         <footer class="footer">
             <div class="footer-container">
                 <div class="footer-section">
-                    <a href="/" class="logo">A</a>
+                    <a href="/" class="logo">
+                      <img src="/assets/icons/main-logo7.png">
+                    </a>
                     <div class="social-links">
-                        <a href="#" class="social-link">📱</a>
-                        <a href="#" class="social-link">📘</a>
-                        <a href="#" class="social-link">📺</a>
-                        <a href="#" class="social-link">💼</a>
+                        <a href="https://github.com/Mminzy22/AInfo-Backend" class="social-link" target="_blank" rel="noopener noreferrer">
+                          <img src="/assets/icons/github-logo.png">
+                        </a>
+                        <a href="https://young-hardware-f96.notion.site/19faf76d38e280cd8ebbc140c6588adf" class="social-link" target="_blank" rel="noopener noreferrer">
+                          <img src="/assets/icons/Notion-logo.png">
+                        </a>
+                        <!-- <a href="#" class="social-link" target="_blank" rel="noopener noreferrer">
+                          <img src="/assets/icons/"> 
+                        </a> -->
                     </div>
                 </div>
                 
                 <div class="footer-section">
-                    <h3 class="footer-heading">팀 명 or 챗봇 이름</h3>
+                    <h3 class="footer-heading">AInfo</h3>
                     <p class="footer-text">내일배움캠프 AI 트랙 9기</p>
-                    <p class="footer-text">admin@example.com</p>
+                    <p class="footer-text">ainfo@google.com</p>
                 </div>
                 
                 <div class="footer-section">
