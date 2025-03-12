@@ -5,11 +5,6 @@ yarn-debug.log*
 yarn-error.log*
 dist/
 
-# 정적 파일 (캐시 관련)
-assets/images/
-assets/icons/
-assets/fonts/
-
 # 빌드 관련
 build/
 dist/
