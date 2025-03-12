@@ -135,31 +135,31 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   }
 
-// 로딩 메시지를 추가하는 함수
-function addBotMessage_loading() {
-  // 로딩 메시지 컨테이너 생성 (메시지 + 프로필 이미지)
-  const messageContainer = document.createElement('div');
-  messageContainer.classList.add('message-wrapper', 'bot-wrapper', 'loading');
+  // 로딩 메시지를 추가하는 함수
+  function addBotMessage_loading() {
+    // 로딩 메시지 컨테이너 생성 (메시지 + 프로필 이미지)
+    const messageContainer = document.createElement('div');
+    messageContainer.classList.add('message-wrapper', 'bot-wrapper', 'loading');
 
-  // AI 프로필 이미지
-  const profileImg = document.createElement('img');
-  profileImg.src = '/assets/icons/bot_profile.png'; // AI 프로필 이미지 경로
-  profileImg.alt = 'Bot Profile';
-  profileImg.classList.add('profile-img');
+    // AI 프로필 이미지
+    const profileImg = document.createElement('img');
+    profileImg.src = '/assets/icons/bot_profile.png'; // AI 프로필 이미지 경로
+    profileImg.alt = 'Bot Profile';
+    profileImg.classList.add('profile-img');
 
-  // 로딩 메시지 내용
-  const messageDiv = document.createElement('div');
-  messageDiv.classList.add('message', 'bot-message');
-  messageDiv.innerHTML = '<div class="markdown-content">답변을 생성 중입니다...</div>';
+    // 로딩 메시지 내용
+    const messageDiv = document.createElement('div');
+    messageDiv.classList.add('message', 'bot-message');
+    messageDiv.innerHTML = '<div class="markdown-content">답변을 생성 중입니다...</div>';
 
-  // 요소 배치 (프로필 왼쪽 + 메시지 오른쪽)
-  messageContainer.appendChild(profileImg);
-  messageContainer.appendChild(messageDiv);
+    // 요소 배치 (프로필 왼쪽 + 메시지 오른쪽)
+    messageContainer.appendChild(profileImg);
+    messageContainer.appendChild(messageDiv);
 
-  // 채팅창에 추가
-  chatMessages.appendChild(messageContainer);
-  chatMessages.scrollTop = chatMessages.scrollHeight;
-}
+    // 채팅창에 추가
+    chatMessages.appendChild(messageContainer);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+  }
 
   // 메시지 전송 핸들러
   async function sendMessage() {
