@@ -194,3 +194,43 @@ export async function googleLogin(googleIdToken) {
     throw new Error(error.response?.data?.detail || '구글 로그인 실패. 다시 시도하세요.');
   }
 }
+
+// 새 access 토큰 발급
+axiosInstance.interceptors.response.use(
+  (response) => response,
+  async (error) => {
+    const originalRequest = error.config;
+
+    // access 토큰이 만료되어 401 에러가 발생한 경우
+    if (
+      error.response?.status === 401 &&
+      !originalRequest._retry && // 무한루프 방지용 플래그
+      localStorage.getItem('refresh_token')
+    ) {
+      originalRequest._retry = true;
+
+      try {
+        const refreshResponse = await axios.post('/api/v1/accounts/token/refresh/', {
+          refresh: localStorage.getItem('refresh_token'),
+        });
+
+        const newAccessToken = refreshResponse.data.access;
+
+        // 새 access 토큰 저장
+        localStorage.setItem('access_token', newAccessToken);
+
+        // 실패했던 요청에 새 토큰 설정 후 재요청
+        originalRequest.headers['Authorization'] = `Bearer ${newAccessToken}`;
+        return axiosInstance(originalRequest);
+      } catch (refreshError) {
+        // refresh 토큰도 만료되었을 때 → 로그아웃 처리
+        localStorage.removeItem('access_token');
+        localStorage.removeItem('refresh_token');
+        window.location.href = '/login.html'; // 로그인 페이지로 리디렉션
+        return Promise.reject(refreshError);
+      }
+    }
+
+    return Promise.reject(error);
+  }
+);
