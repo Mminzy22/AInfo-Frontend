@@ -83,7 +83,7 @@ function populateProfileFields(user) {
     document.getElementById('education_level').value = user.education_level.id;
   }
 
-  document.getElementById('marketing_agree').checked = user.marketing_agree;
+  document.getElementById('marketing-agree').checked = user.marketing_agree;
 
   // 관심 분야 체크박스 설정
   setInterestCheckboxes(user.interests || []);
@@ -257,7 +257,7 @@ function getFormData() {
     location: document.getElementById('subregion').value || null,
     current_status: document.getElementById('current_status').value || null,
     education_level: document.getElementById('education_level').value || null,
-    marketing_agree: document.getElementById('marketing_agree').checked,
+    marketing_agree: document.getElementById('marketing-agree').checked,
     interests: Array.from(document.querySelectorAll('#interests-container input[name=\'interests\']:checked')).map(
       checkbox => checkbox.value
     ),
