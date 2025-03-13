@@ -70,3 +70,24 @@
     }
   }
   
+  @media (width <= 380px) {
+    .header-container {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .nav {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.25rem;
+    }
+  
+    .nav-link {
+      font-size: 0.75rem;
+    }
+  
+    .logo {
+      font-size: 1.25rem;
+    }
+  }
+  
