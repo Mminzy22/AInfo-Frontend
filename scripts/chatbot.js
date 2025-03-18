@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function () {
       return;
     }
 
-    const wsUrl = `wss://ainfo.ai.kr/ws/chat/?token=${token}`;
+    const wsUrl = `${window.appConfig.WSURL}?token=${token}`;
     socket = new WebSocket(wsUrl);
 
     // WebSocket 연결이 열리면 처리

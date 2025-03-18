@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', function () {
         window.location.href = redirectUrl;
       }, 2000);
     } catch (error) {
-      console.error('로그인 실패:', error);
+      console.error('로그인 실패:', error.message);
       showMessage(error.message || '로그인 중 오류가 발생했습니다.', 'error');
     }
   });

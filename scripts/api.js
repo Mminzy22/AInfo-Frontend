@@ -24,8 +24,8 @@ export async function login(credentials) {
 
     return response.data;
   } catch (error) {
-    console.error('로그인 실패:', error.response?.data || error.message);
-    throw new Error(error.response?.data?.detail || '로그인 실패. 다시 시도하세요.');
+    console.error('로그인 실패:', error.response?.data?.error || error.message);
+    throw new Error(error.response?.data?.error || error.message || '로그인 실패. 다시 시도하세요.');
   }
 }
 
