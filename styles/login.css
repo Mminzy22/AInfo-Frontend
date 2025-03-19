@@ -1,3 +1,61 @@
 /* Login page specific styles */
 
 /* Most styles are inherited from global.css */
+
+/* 모달창 스타일 */
+.modal {
+    display: none; /* 기본적으로 숨김 */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(0 0 0 / 50%); /* 배경을 반투명하게 */
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 0.5rem;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 4px 6px rgb(0 0 0 / 10%);
+}
+
+.modal-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.modal h2 {
+    margin-bottom: 1rem;
+    font-size: 1.25rem;
+}
+
+.modal .form-group {
+    margin-bottom: 1.5rem;
+}
+
+.modal .form-label {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.modal .form-input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #d9d9d9;
+    border-radius: 0.25rem;
+}
+
+.modal .btn {
+    width: 100%;
+    padding: 0.75rem;
+    font-size: 1rem;
+}

@@ -1,4 +1,4 @@
-import { login, kakaoLogin, googleLogin } from './api.js'; // 일반 로그인 + 카카오 로그인
+import { login, kakaoLogin, googleLogin, resetPassword } from './api.js'; // 일반 로그인 + 카카오 로그인
 
 // 카카오 SDK 초기화 (config.js에서 KAKAO_JS_KEY를 전역으로 제공 중)
 Kakao.init(window.appConfig.KAKAO_JS_KEY);
@@ -103,14 +103,48 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 });
 
-// 패스워드 찾기
-document.addEventListener('DOMContentLoaded', function () {
-  const findPasswordLink = document.getElementById('find-password');
 
-  if (findPasswordLink) {
-    findPasswordLink.addEventListener('click', function (event) {
-      event.preventDefault();  // 기본 이벤트 방지
-      alert('비밀번호 찾기 기능은 현재 지원되지 않습니다.');
-    });
+// 비밀번호 찾기 링크 클릭 시 모달 열기
+document.getElementById('find-password').addEventListener('click', function(e) {
+  e.preventDefault(); // 기본 링크 동작 방지
+  document.getElementById('password-reset-modal').style.display = 'flex'; // 모달 열기
+});
+
+// 모달 닫기
+document.getElementById('modal-close').addEventListener('click', function() {
+  document.getElementById('password-reset-modal').style.display = 'none'; // 모달 닫기
+});
+
+// 모달 외부 클릭 시 닫기
+window.addEventListener('click', function(e) {
+  if (e.target == document.getElementById('password-reset-modal')) {
+    document.getElementById('password-reset-modal').style.display = 'none'; // 모달 닫기
+  }
+});
+
+// 비밀번호 찾기 폼 제출 시 처리 (백엔드로 요청 보내기)
+document.getElementById('password-reset-form').addEventListener('submit', async function(e) {
+  e.preventDefault();  // 기본 폼 제출 동작 방지
+
+  const email = document.getElementById('reset-email').value;
+  
+  // 이메일이 비어있지 않은지 확인
+  if (!email) {
+    alert('이메일을 입력해 주세요.');
+    return;
+  }
+
+  try {
+    // 백엔드로 비밀번호 리셋 요청 보내기
+    const response = await resetPassword(email);
+    
+    // 성공 시
+    console.log('서버 응답:', response);
+    alert(response.message);
+    document.getElementById('password-reset-modal').style.display = 'none'; // 모달 닫기
+  } catch (error) {
+    // 에러 시
+    console.error('서버 오류:', error.message);
+    alert(error.message);
   }
 });
