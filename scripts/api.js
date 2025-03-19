@@ -234,3 +234,15 @@ axiosInstance.interceptors.response.use(
     return Promise.reject(error);
   }
 );
+
+
+// 비밀번호 찾기 요청 (POST /accounts/reset-password/)
+export async function resetPassword(email) {
+  try {
+    const response = await axiosInstance.post('/accounts/reset-password/', { email });
+    return response.data;
+  } catch (error) {
+    console.error('비밀번호 리셋 실패:', error.response?.data?.message || error.message);
+    throw new Error(error.response?.data?.message || '비밀번호 리셋 실패. 다시 시도하세요.');
+  }
+}

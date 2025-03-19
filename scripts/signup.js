@@ -36,6 +36,7 @@ document.addEventListener('DOMContentLoaded', function () {
       // 회원가입 API 호출
       await signup(userData);
       showMessage('회원가입 성공! 로그인 페이지로 이동합니다.', 'success');
+      alert('이메일로 전달한 인증링크를 통해 본인확인을 해주세요!');
 
       // 2초 후 로그인 페이지 이동
       setTimeout(() => {
