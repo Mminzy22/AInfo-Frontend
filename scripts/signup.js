@@ -1,4 +1,4 @@
-import { signup, kakaoLogin, googleLogin } from './api.js';
+import { signup, kakaoLogin, googleLogin, agreeToTerms } from './api.js';
 
 // 카카오 SDK 초기화 (config.js에서 KAKAO_JS_KEY를 전역으로 제공 중)
 Kakao.init(window.appConfig.KAKAO_JS_KEY);
@@ -81,8 +81,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
         try {
           const user = await kakaoLogin(kakaoAccessToken);
-          alert(`${user.name || '사용자'}님 환영합니다!`);
-          window.location.href = '/index.html';
+
+          if (user.agree_check) {
+            showTermsModal();
+          } 
+          else {
+            alert(`${user.name || '사용자'}님 환영합니다!`);
+            window.location.href = '/index.html';
+          }
         } catch (error) {
           console.error('카카오 로그인 실패:', error);
           showMessage(error.message || '카카오 로그인 실패', 'error');
@@ -105,8 +111,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
         try {
           const user = await googleLogin(idToken);
-          alert(`${user.name || '사용자'}님 환영합니다!`);
-          window.location.href = '/index.html';
+
+          if (user.agree_check) {
+            showTermsModal();
+          }
+          else {
+            alert(`${user.name || '사용자'}님 환영합니다!`);
+            window.location.href = '/index.html';
+          }
         } catch (error) {
           console.error('구글 로그인 실패:', error);
           showMessage(error.message || '구글 로그인 실패', 'error');
@@ -166,5 +178,51 @@ document.addEventListener('DOMContentLoaded', function () {
         modal.style.display = 'none';
       }
     });
+  });
+});
+
+
+function showTermsModal() {
+  let modal = document.getElementById('terms-modal-social');
+  if (modal) {
+    modal.style.display = 'block';
+    modal.querySelector('.modal-content').scrollTop = 0;
+  } else {
+    console.error('terms-modal 요소를 찾을 수 없습니다.');
+  }
+}
+
+// 모달 닫기 기능 추가
+document.addEventListener('DOMContentLoaded', function () {
+  const modal = document.getElementById('terms-modal-social');
+  const closeButton = modal.querySelector('.close');
+  const agreeButton = document.getElementById('terms-agree-btn');
+  const agreeCheckbox = document.getElementById('terms-agree');
+
+  // 닫기 버튼 클릭 시 모달 닫기
+  closeButton.addEventListener('click', function () {
+    modal.style.display = 'none';
+  });
+
+  // 모달 바깥 영역 클릭 시 모달 닫기
+  window.addEventListener('click', function (event) {
+    if (event.target === modal) {
+      modal.style.display = 'none';
+    }
+  });
+
+  // 동의 체크 시 버튼 활성화
+  agreeCheckbox.addEventListener('change', function () {
+    agreeButton.disabled = !this.checked;
+  });
+
+  // 동의 버튼 클릭 시 모달 닫기 (추가 로직 가능)
+  agreeButton.addEventListener('click', function () {
+    if (!agreeButton.disabled) {
+      agreeToTerms();
+      alert('이용 약관에 동의하셨습니다.');
+      modal.style.display = 'none';
+      window.location.href = '/index.html';
+    }
   });
 });
