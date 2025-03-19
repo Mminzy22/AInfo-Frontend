@@ -133,3 +133,36 @@ document.addEventListener('DOMContentLoaded', function () {
     resultMessage.style.display = 'block';
   }
 });
+
+document.addEventListener('DOMContentLoaded', function () {
+  function openModal(modalId) {
+    let modal = document.getElementById(modalId);
+    modal.style.display = 'block';
+    modal.querySelector('.modal-content').scrollTop = 0;
+  }
+
+  document.getElementById('open-terms-modal').addEventListener('click', function (event) {
+    event.preventDefault();
+    openModal('terms-modal');
+  });
+
+  document.getElementById('open-marketing-modal').addEventListener('click', function (event) {
+    event.preventDefault();
+    openModal('marketing-modal');
+  });
+
+  document.querySelectorAll('.close').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      let modalId = this.getAttribute('data-target');
+      document.getElementById(modalId).style.display = 'none';
+    });
+  });
+
+  window.addEventListener('click', function (event) {
+    document.querySelectorAll('.modal').forEach(function (modal) {
+      if (event.target === modal) {
+        modal.style.display = 'none';
+      }
+    });
+  });
+});
