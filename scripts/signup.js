@@ -73,6 +73,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // 2. 카카오 로그인 처리
   kakaoLoginBtn.addEventListener('click', () => {
+    const termsAgree = document.getElementById('terms_agree').checked;
+
+    // "서비스 이용 약관 동의" 체크 여부 확인
+    if (!termsAgree) {
+      alert('서비스 이용 약관에 동의해주세요.');
+      return; // 체크가 안되어 있으면 로그인 진행 안함
+    }
+
     Kakao.Auth.login({
       throughTalk: false,
       persistAccessToken: false,
@@ -93,6 +101,20 @@ document.addEventListener('DOMContentLoaded', function () {
         showMessage('카카오 로그인 인증 중 오류가 발생했습니다.', 'error');
       },
     });
+  });
+
+
+  googleLoginDiv.addEventListener('click', () => {
+    const termsAgree = document.getElementById('terms_agree').checked;
+  
+    // "서비스 이용 약관 동의" 체크 여부 확인
+    if (!termsAgree) {
+      alert('서비스 이용 약관에 동의해주세요.');
+      return; // 체크가 안되어 있으면 로그인 진행 안함
+    }
+  
+    // 구글 로그인 초기화 및 로그인 창 열기
+    google.accounts.id.prompt();
   });
 
   // 3. 구글 로그인 초기화 및 콜백 처리

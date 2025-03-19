@@ -20,9 +20,9 @@
     padding: 20px;
     border-radius: 10px;
     width: 80%;
-    max-width: 500px;
+    max-width: 700px;
     margin: 10% auto;
-    max-height: 80vh; /* 화면 높이의 80%로 제한 */
+    max-height: 60vh; /* 화면 높이의 80%로 제한 */
     overflow-y: auto; /* 내용이 넘치면 스크롤 생성 */
     box-shadow: 0 4px 6px rgb(0 0 0 / 10%);
 }
