@@ -1,4 +1,4 @@
-import { signup, kakaoLogin, googleLogin, agreeToTerms } from './api.js';
+import { signup, kakaoLogin, googleLogin, agreeToTerms, deleteAccount } from './api.js';
 
 // 카카오 SDK 초기화 (config.js에서 KAKAO_JS_KEY를 전역으로 제공 중)
 Kakao.init(window.appConfig.KAKAO_JS_KEY);
@@ -202,12 +202,14 @@ document.addEventListener('DOMContentLoaded', function () {
   // 닫기 버튼 클릭 시 모달 닫기
   closeButton.addEventListener('click', function () {
     modal.style.display = 'none';
+    deleteAccount();
   });
 
   // 모달 바깥 영역 클릭 시 모달 닫기
   window.addEventListener('click', function (event) {
     if (event.target === modal) {
       modal.style.display = 'none';
+      deleteAccount();
     }
   });
 

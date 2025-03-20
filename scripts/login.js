@@ -1,4 +1,4 @@
-import { login, kakaoLogin, googleLogin, resetPassword, agreeToTerms } from './api.js'; // 일반 로그인 + 카카오 로그인
+import { login, kakaoLogin, googleLogin, resetPassword, agreeToTerms, deleteAccount } from './api.js'; // 일반 로그인 + 카카오 로그인
 
 // 카카오 SDK 초기화 (config.js에서 KAKAO_JS_KEY를 전역으로 제공 중)
 Kakao.init(window.appConfig.KAKAO_JS_KEY);
@@ -165,7 +165,7 @@ function showTermsModal() {
   let modal = document.getElementById('terms-modal-social');
   if (modal) {
     modal.style.display = 'block';
-    modal.querySelector('.modal-content').scrollTop = 0;
+    modal.querySelector('.modal-content-social').scrollTop = 0;
   } else {
     console.error('terms-modal 요소를 찾을 수 없습니다.');
   }
@@ -181,12 +181,14 @@ document.addEventListener('DOMContentLoaded', function () {
   // 닫기 버튼 클릭 시 모달 닫기
   closeButton.addEventListener('click', function () {
     modal.style.display = 'none';
+    deleteAccount();
   });
 
   // 모달 바깥 영역 클릭 시 모달 닫기
   window.addEventListener('click', function (event) {
     if (event.target === modal) {
       modal.style.display = 'none';
+      deleteAccount();
     }
   });
 
