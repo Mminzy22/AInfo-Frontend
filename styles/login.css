@@ -33,31 +33,68 @@
     cursor: pointer;
 }
 
-.modal h2 {
-    margin-bottom: 1rem;
-    font-size: 1.25rem;
+/* 제목 (h2) */
+.modal-content-social h2 {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 16px;
 }
 
-.modal .form-group {
-    margin-bottom: 1.5rem;
+/* 조항 제목 (h3) */
+.modal-content-social h3 {
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 24px;
+    margin-bottom: 8px;
+    color: #222;
 }
 
-.modal .form-label {
-    font-size: 1rem;
-    margin-bottom: 0.5rem;
+/* 본문 단락 */
+.modal-content-social p {
+    margin-bottom: 12px;
 }
 
-.modal .form-input {
-    width: 100%;
-    padding: 0.75rem;
-    border: 1px solid #d9d9d9;
-    border-radius: 0.25rem;
+/* 리스트 스타일 */
+.modal-content-social ul {
+    padding-left: 20px;
+    margin-bottom: 12px;
 }
 
-.modal .btn {
-    width: 100%;
-    padding: 0.75rem;
-    font-size: 1rem;
+.modal-content-social li {
+    margin-bottom: 4px;
+}
+
+/* ─────────────────────────────
+    하단 체크박스 + 버튼 정렬
+───────────────────────────── */
+
+/* 하단 전체 레이아웃 */
+.modal-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 24px;
+    flex-wrap: wrap;
+}
+
+/* 체크박스 그룹 - 가운데 정렬 */
+.checkbox-group {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    flex: 1;
+}
+
+/* 체크박스 */
+.checkbox {
+    width: 16px;
+    height: 16px;
+}
+
+/* 체크박스 라벨 */
+.checkbox-label {
+    font-size: 14px;
 }
 
 /* 모달 배경 */
@@ -120,4 +157,9 @@
 
 #terms-agree-btn:not([disabled]):hover {
     background-color: #202020;
+}
+
+.terms-agree-button {
+    display: flex;
+    justify-content: flex-end;
 }
