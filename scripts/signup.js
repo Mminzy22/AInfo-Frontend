@@ -186,7 +186,7 @@ function showTermsModal() {
   let modal = document.getElementById('terms-modal-social');
   if (modal) {
     modal.style.display = 'block';
-    modal.querySelector('.modal-content').scrollTop = 0;
+    modal.querySelector('.modal-content-social').scrollTop = 0;
   } else {
     console.error('terms-modal 요소를 찾을 수 없습니다.');
   }

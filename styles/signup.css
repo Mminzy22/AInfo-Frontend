@@ -27,6 +27,37 @@
     box-shadow: 0 4px 6px rgb(0 0 0 / 10%);
 }
 
+/* 제목 (h2) */
+.modal-content h2 {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 16px;
+}
+
+/* 조항 제목 (h3) */
+.modal-content h3 {
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 24px;
+    margin-bottom: 8px;
+    color: #222;
+}
+
+/* 본문 단락 */
+.modal-content p {
+    margin-bottom: 12px;
+}
+
+/* 리스트 스타일 */
+.modal-content ul {
+    padding-left: 20px;
+    margin-bottom: 12px;
+}
+
+.modal-content li {
+    margin-bottom: 4px;
+}
+
 /* 닫기 버튼 */
 .close {
     float: right;
@@ -61,4 +92,98 @@
 
 #terms-agree-btn:not([disabled]):hover {
     background-color: #202020;
+}
+
+.terms-agree-button {
+    display: flex;
+    justify-content: flex-end;
+}
+
+/* 제목 (h2) */
+.modal-content-social h2 {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 16px;
+}
+
+/* 조항 제목 (h3) */
+.modal-content-social h3 {
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 24px;
+    margin-bottom: 8px;
+    color: #222;
+}
+
+/* 본문 단락 */
+.modal-content-social p {
+    margin-bottom: 12px;
+}
+
+/* 리스트 스타일 */
+.modal-content-social ul {
+    padding-left: 20px;
+    margin-bottom: 12px;
+}
+
+.modal-content-social li {
+    margin-bottom: 4px;
+}
+
+/* ─────────────────────────────
+    하단 체크박스 + 버튼 정렬
+───────────────────────────── */
+
+/* 하단 전체 레이아웃 */
+.modal-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 24px;
+    flex-wrap: wrap;
+}
+
+/* 체크박스 그룹 - 가운데 정렬 */
+.checkbox-group-social {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    flex: 1;
+}
+
+/* 체크박스 */
+.checkbox {
+    width: 16px;
+    height: 16px;
+}
+
+/* 체크박스 라벨 */
+.checkbox-label {
+    font-size: 14px;
+}
+
+/* 모달 배경 */
+.modal-social {
+    display: none; /* 기본적으로 숨김 */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(0 0 0 / 50%);
+}
+
+/* 모달 내용 */
+.modal-content-social {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 700px;
+    margin: 10% auto;
+    max-height: 60vh; /* 화면 높이의 80%로 제한 */
+    overflow-y: auto; /* 내용이 넘치면 스크롤 생성 */
+    box-shadow: 0 4px 6px rgb(0 0 0 / 10%);
 }
