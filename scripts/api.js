@@ -246,3 +246,15 @@ export async function resetPassword(email) {
     throw new Error(error.response?.data?.message || '비밀번호 리셋 실패. 다시 시도하세요.');
   }
 }
+
+// 약관 동의 요청
+export async function agreeToTerms() {
+  try {
+    const response = await axiosInstance.post('/accounts/agree-terms/',);
+
+    return response.data;
+  } catch (error) {
+    console.error('약관 동의 실패:', error.response?.data || error.message);
+    throw new Error(error.response?.data?.detail || '약관 동의 실패. 다시 시도하세요.');
+  }
+}
