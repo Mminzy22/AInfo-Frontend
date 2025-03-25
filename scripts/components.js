@@ -16,6 +16,7 @@ function renderHeader() {
                   <img src="/assets/icons/main-logo7.png">
                 </a>
                 <nav class="nav">
+                    <a href="/pages/payment.html" class="nav-link">결제</a>
                     <a href="/pages/chatbot.html" class="nav-link">챗봇</a>
                     <a href="/pages/community.html" class="nav-link">커뮤니티</a>
                     <a href="/pages/team.html" class="nav-link">팀 소개</a>
