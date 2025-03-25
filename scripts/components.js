@@ -19,7 +19,7 @@ function renderHeader() {
                     <a href="/pages/payment.html" class="nav-link">결제</a>
                     <a href="/pages/chatbot.html" class="nav-link">챗봇</a>
                     <a href="/pages/community.html" class="nav-link">커뮤니티</a>
-                    <a href="/pages/team.html" class="nav-link">팀 소개</a>
+                    <a href="/pages/introduction.html" class="nav-link">소개</a>
                     
                     <div class="auth-links">
                         ${isLoggedIn ? `
@@ -73,10 +73,6 @@ function renderFooter() {
                         <div>
                             <h3 class="footer-heading">개인정보처리방침</h3>
                             <p class="footer-text">사이트 이용 약관</p>
-                        </div>
-                        <div>
-                            <h3 class="footer-heading">Resources</h3>
-                            <p class="footer-text">Blog</p>
                         </div>
                     </div>
                 </div>
