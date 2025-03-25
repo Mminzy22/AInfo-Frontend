@@ -350,3 +350,15 @@ export async function renameChatRoom(roomId, newTitle) {
     throw error;
   }
 }
+
+// 결제 정보를 서버로 전송하는 함수
+export async function sendPaymentData(paymentData) {
+  try {
+    const response = await axiosInstance.post('/payments/pay-verify/', {
+      payment_id: paymentData.paymentId,
+    });
+    return response;
+  } catch (error) {
+    throw new Error('결제 요청 실패: ' + error.message);
+  }
+}

@@ -197,7 +197,7 @@
     gap: var(--var-sds-size-space-1200, 48px);
     align-items: center;
     justify-content: center;
-    height: 500px;
+    height: 700px;
     position: relative;
     margin-left: 100px;
     
@@ -210,8 +210,8 @@
     align-items: flex-start;
     justify-content: flex-start;
     flex-shrink: 0;
-    width: 500px;
-    height: 400px;
+    width: 400px;
+    height: 600px;
     min-width: 300px;
     position: relative;
 }
@@ -275,4 +275,16 @@
     font-weight: var(--body-base-font-weight, 400);
     position: relative;
     flex: 1;
+}
+
+.img1 {
+    width: 300px;
+    height: 100px;
+}
+
+.img1 img {
+    width: 100%; /* div 크기에 맞게 이미지 크기 조정 */
+    height: auto; /* 비율 유지 */
+    object-fit: cover; /* 이미지를 div에 맞게 잘라서 채울 수 있음 */
+    border-radius: 20px;
 }
