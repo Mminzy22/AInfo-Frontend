@@ -1,28 +1,348 @@
-.welcome-container {
-    text-align: center;
-    max-width: 32rem;
-    margin: 0 auto;
-    padding: 4rem 1rem;
+/* 기본 스타일 리셋 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Pretendard, 'Apple SD Gothic Neo', sans-serif;
+}
+
+body {
+  width: 100%;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* 메인 컨테이너 */
+.main-container {
+  display: flex;
+  min-height: 100vh;
+  width: 100%;
+}
+
+/* 왼쪽 섹션 */
+.left-section {
+  width: 60%;
+  background-color: #f9f9f9;
+  padding: 2rem;
+  position: relative;
+}
+
+.left-content {
+  margin-top: 4rem;
+  margin-left: 2rem;
+}
+
+.policy-count {
+  font-size: 1.125rem;
+  margin-bottom: 1.5rem;
+}
+
+.custom-text {
+  margin-bottom: 1.5rem;
+}
+
+.custom-text span {
+  font-size: 1.25rem;
+}
+
+.highlight-green {
+  color: #2e9353;
+  font-weight: 500;
+}
+
+.main-title {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 3rem;
+}
+
+/* 말풍선 영역 */
+.speech-bubbles-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.speech-bubble {
+  max-width: 80%;
+  padding: 1rem 1.25rem;
+  font-size: 1rem;
+  border-radius: 1.5rem;
+  background-color: white;
+  box-shadow: 0 2px 6px rgb(0 0 0 / 10%);
+  line-height: 1.5;
+  word-break: keep-all;
+  position: relative;
+}
+
+/* 꼬리 있는 말풍선 (왼쪽 방향 꼬리) */
+.speech-bubble.left {
+  align-self: flex-start;
+  border-bottom-left-radius: 0;
+}
+
+.speech-bubble.left::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: -10px;
+  width: 0;
+  height: 0;
+  border: 10px solid transparent;
+  border-right-color: white;
+  border-left: 0;
+  border-bottom: 0;
+  margin-bottom: 5px;
+}
+
+/* 꼬리 있는 말풍선 (오른쪽 방향 꼬리) */
+.speech-bubble.right {
+  align-self: flex-end;
+  background-color: #edf8f6;
+  border-bottom-right-radius: 0;
+}
+
+.speech-bubble.right::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: -10px;
+  width: 0;
+  height: 0;
+  border: 10px solid transparent;
+  border-left-color: #edf8f6;
+  border-right: 0;
+  border-bottom: 0;
+  margin-bottom: 5px;
+}
+
+/* 말풍선 안에 글자 사이즈 */
+.speech-bubble p {
+  font-size: 24px;
+}
+
+.top-left {
+  left: 1.5rem;
+  top: 1.5rem;
+}
+
+.top-right {
+  right: 1.5rem;
+  top: 18%;
+}
+
+.bottom-left {
+  left: 1.5rem;
+  top: 48%;
+}
+
+.bottom-right {
+  right: 1.5rem;
+  top: 72%;
+}
+
+/* 오른쪽 섹션 */
+.right-section {
+  width: 40%;
+  background-color: #4fa199;
+  padding: 2rem;
+  position: relative;
+  color: white;
+}
+
+.right-content {
+  margin-top: 4rem;
+  text-align: center;
+}
+
+.report-title-sub {
+  font-size: 1.875rem;
+  margin-bottom: 0.25rem;
+}
+
+.report-title-main {
+  font-size: 2.25rem;
+  font-weight: 700;
+  margin-bottom: 3rem;
+}
+
+/* 문서 아이콘 */
+.document-icon {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 3rem;
+}
+
+.blue-clip {
+  position: absolute;
+  top: -0.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1.5rem;
+  height: 2.5rem;
+  background-color: #60a5fa;
+  border-radius: 0.75rem 0.75rem 0 0;
+  z-index: 10;
+}
+
+.document-stack {
+  position: relative;
+}
+
+.document {
+  width: 9rem;
+  height: 11rem;
+  background-color: white;
+  border-radius: 0.5rem;
+}
+
+.back-document {
+  position: absolute;
+  bottom: -0.25rem;
+  right: -0.25rem;
+  background-color: rgb(255 255 255 / 90%);
+  transform: rotate(2deg);
+}
+
+.middle-document {
+  position: absolute;
+  bottom: -0.5rem;
+  left: -0.25rem;
+  background-color: rgb(255 255 255 / 90%);
+  transform: rotate(-2deg);
+}
+
+.front-document {
+  position: relative;
+  box-shadow: 0 1px 3px rgb(0 0 0 / 10%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.document-lines {
+  width: 75%;
+  height: 50%;
+}
+
+.doc-line {
+  width: 100%;
+  height: 0.5rem;
+  background-color: #e5e7eb;
+  margin-bottom: 0.5rem;
+}
+
+.doc-line.short {
+  width: 75%;
+}
+
+.doc-line.shorter {
+  width: 66%;
+}
+
+/* 옵션 컨테이너 */
+.options-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  max-width: 28rem;
+  margin: 0 auto;
+}
+
+.option-item {
+  background-color: rgb(255 255 255 / 20%);
+  border-radius: 9999px;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+}
+
+.option-number {
+  background-color: rgb(20 184 166 / 80%);
+  border-radius: 9999px;
+  width: 3rem;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 1rem;
+}
+
+.option-number span {
+  color: white;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.option-text {
+  color: white;
+  font-size: 1.25rem;
+}
+
+/* 버튼 스타일 */
+.top-button-container {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+}
+
+.goto-button {
+  border-radius: 9999px;
+  padding: 0.75rem 2rem;
+  font-size: 1rem;
+  border: none;
+  cursor: pointer;
+}
+
+.goto-button-light {
+  background-color: #e5e7eb;
+  color: black;
+}
+
+.goto-button-light:hover {
+  background-color: #d1d5db;
+}
+
+.goto-button-dark {
+  background-color: rgb(20 184 166 / 40%);
+  color: white;
+}
+
+.goto-button-dark:hover {
+  background-color: rgb(20 184 166 / 60%);
+}
+
+/* 반응형 디자인 */
+@media (width <= 768px) {
+  .main-container {
+    flex-direction: column;
   }
-  
-  .welcome-title {
+
+  .left-section, .right-section {
+    width: 100%;
+    min-height: 100vh;
+  }
+
+  .left-content, .right-content {
+    margin-top: 3rem;
+    margin-left: 0;
+  }
+
+  .main-title {
     font-size: 2.5rem;
-    font-weight: 700;
-    margin-bottom: 1rem;
-    color: #21272a;
+    margin-bottom: 4rem;
   }
-  
-  .welcome-text {
-    font-size: 1rem;
-    color: #697077;
+
+  .speech-bubbles-container {
+    height: 24rem;
   }
-  
-  @media (width <= 768px) {
-    .welcome-container {
-      padding: 2rem 1rem;
-    }
-    
-    .welcome-title {
-      font-size: 2rem;
-    }
+
+  .report-title-sub {
+    font-size: 1.5rem;
   }
+
+  .report-title-main {
+    font-size: 2rem;
+  }
+}
