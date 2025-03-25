@@ -32,26 +32,52 @@
 
 
 
+
+
     <!-- Main Content -->
     <main class="chatbot-main">
-        <div class="chat-container">
-            <div id="chat-messages">
-            
-            </div>
 
-            <div class="chat-input">
-                <input type="text" id="user-input" placeholder="질문을 입력해주세요...">
-                <button id="send-button">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M22 2L11 13" stroke="#02040f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M22 2L15 22L11 13L2 9L22 2Z" stroke="#02040f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                    <!-- <img src="/assets/icons/chatbot_send_icon.png" alt="Send"> -->
-                </button>
-            </div>
-        </div>
-    </main>
-
+        <!-- 사이드바 컨테이너 -->
+        <div class="sidebar-container">
+           <div id="sidebar" class="sidebar">
+               <!-- 사이드바 헤더 - 제목과 + 버튼 포함 -->
+               <div class="sidebar-header">
+                   <!-- 토글 버튼 - 사이드바 내부에 배치 -->
+                   <button id="toggle-sidebar" class="sidebar-toggle">≡</button>
+                   <h3 class="sidebar-title">채팅 목록</h3>
+                   <button id="new-chat-btn" class="new-chat-btn">+</button>
+               </div>
+   
+               <div id="chatroom-list">
+                   <!-- 채팅방 목록 아이템들 -->
+               </div>
+           </div>
+           
+           <!-- 사이드바가 닫혀있을 때 보이는 토글 버튼 -->
+           <button id="toggle-sidebar-closed" class="sidebar-toggle-closed">≡</button>
+       </div>
+          
+           <div class="chat-container">
+               <div id="chat-messages">
+               
+               </div>
+   
+               <div class="chat-input">
+                   <textarea id="user-input" rows="1" placeholder="질문을 입력해주세요..."></textarea>
+                   <button id="send-button">
+                       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                           <path d="M22 2L11 13" stroke="#02040f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                           <path d="M22 2L15 22L11 13L2 9L22 2Z" stroke="#02040f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                       </svg>
+                       <!-- <img src="/assets/icons/chatbot_send_icon.png" alt="Send"> -->
+                   </button>
+                   
+               </div>
+               <p class="chatbot-disclaimer">
+                   AInfo는 실수를 할 수 있습니다. 중요한 정보는 꼭! 재차 확인하세요.
+                 </p>
+           </div>
+       </main>
 
 
 

@@ -14,8 +14,6 @@
     max-height: 700px;
     min-width: 360px;
     margin: 5px auto;
-
-    /* border: 1px solid #ccc; */
     border-radius: 10px;
     display: flex;
     flex-direction: column;
@@ -23,7 +21,7 @@
     overflow: hidden;
 }
 
-/* 입력창 스타일 */ 
+/* 입력창 스타일 */
 .chat-input {
     display: flex;
     padding: 10px;
@@ -52,46 +50,64 @@
 /* 메시지 & 프로필 컨테이너 */
 .message-wrapper {
     display: flex;
-
-    /* align-items: center; */
     margin: 5px 0;
 }
 
-/* 사용자 메시지 컨테이너 */
+/* 사용자/AI 메시지 컨테이너 */
 .user-wrapper {
     justify-content: flex-end;
 }
 
-/* AI 메시지 컨테이너 */
 .bot-wrapper {
     justify-content: flex-start;
 }
 
-/* 프로필 이미지 공통 스타일 */
+/* 프로필 이미지 스타일 */
 .profile-img {
     width: 40px;
     height: 40px;
     margin: 0 10px;
 }
 
-/* 사용자 메시지 스타일 */
-.user-message {
-    background: white;
-    color: black;
-    text-align: left;
-    position: relative;
-    border-top-right-radius: 0;
-}
-
-/* AI 메시지 스타일 */
+/* 사용자 및 AI 메시지 스타일 */
+.user-message,
 .bot-message {
     background: white;
     color: black;
     text-align: left;
     position: relative;
+}
+
+.user-message {
+    border-top-right-radius: 0;
+}
+
+.bot-message {
     border-top-left-radius: 0;
 }
 
+/* 메시지 사이드 라인 */
+.user-message::after,
+.bot-message::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 3px;
+    height: 99%;
+    background: black;
+    border-radius: 0;
+}
+
+.user-message::after {
+    right: 0;
+}
+
+.bot-message::after {
+    left: 0;
+}
+
+/* 리스트 스타일 */
 ul {
     list-style-type: disc;
     padding-left: 20px;
@@ -101,50 +117,6 @@ ol {
     list-style-type: decimal;
     padding-left: 20px;
 }
-
-/* .user-message {
-    align-self: flex-end;
-    background: white;
-    color: black;
-    text-align: right;
-    position: relative;
-    border-top-right-radius: 0;
-}
-
-.bot-message {
-    align-self: flex-start;
-    background: white;
-    color: black;
-    text-align: left;
-    position: relative;
-    border-top-left-radius: 0;
-} */
-
-.user-message::after {
-    content: "";
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    right: 0;  /* 오른쪽 끝에 배치 */
-    width: 3px; /* 선의 두께 */
-    height: 99%; /* 메시지 박스 전체 높이 */
-    background: black; /* 검은색 선 */
-    border-radius: 0; /* 선은 직선으로 유지 */
-}
-
-.bot-message::after {
-    content: "";
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    left: 0;  /* 오른쪽 끝에 배치 */
-    width: 3px; /* 선의 두께 */
-    height: 99%; /* 메시지 박스 전체 높이 */
-    background: black; /* 검은색 선 */
-    border-radius: 0; /* 선은 직선으로 유지 */
-}
-
-
 
 /* 입력 필드 */
 #user-input {
@@ -156,7 +128,6 @@ ol {
     font-size: 16px;
     outline: none; 
 }
-
 
 /* 전송 버튼 */
 #send-button {
@@ -176,28 +147,202 @@ ol {
     background: #dededf;
 }
 
-
-/* 챗봇 이미지와 메시지를 왼쪽에 두고, 스피너를 오른쪽에 배치 */
+/* 로딩 애니메이션 */
 .message-wrapper.loading img {
-    order: 0; /* 챗봇 이미지를 왼쪽으로 설정 */
+    order: 0;
 }
 
-/* 로딩 애니메이션을 위한 스피너 추가 */
 .message-wrapper.loading::before {
     content: '';
     border: 4px solid #f3f3f3;
-    border-top: 4px solid #383535; /* 파란색 스피너 */
+    border-top: 4px solid #383535;
     border-radius: 50%;
     width: 30px;
     height: 30px;
     animation: spin 0.8s linear infinite;
-    margin-left: 5px; /* 스피너와 텍스트 간의 간격을 주기 위해 */
+    margin-left: 5px;
     margin-top: 10px;
-    order: 2; /* 스피너를 오른쪽으로 설정 */
+    order: 2;
 }
 
-/* 스피너 애니메이션 정의 */
 @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
+}
+
+/* 사이드바 스타일 */
+.sidebar {
+    width: 230px;
+    height: 70vh;
+    background-color: #f7f7f7;
+    position: fixed;
+    left: -250px;
+    top: 68px;
+    transition: left 0.3s ease-in-out;
+    padding: 15px 15px 15px 45px;
+    border-right: 1px solid #ccc;
+    box-shadow: 2px 0 5px rgb(0 0 0 / 10%);
+    overflow-y: auto;
+    z-index: 1000;
+}
+
+.sidebar.open {
+    left: 0;
+}
+
+/* 사이드바 헤더 */
+.sidebar-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 15px;
+    position: relative;
+    height: 30px;
+}
+
+.sidebar-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 0;
+    position: absolute;
+    left: 0;
+    right: 0;
+    text-align: center;
+    width: 100%;
+}
+
+/* 토글 버튼 */
+.sidebar-toggle,
+.sidebar-toggle-closed {
+    position: absolute;
+    left: -35px;
+    width: 30px;
+    height: 30px;
+    background-color: #d2d5d2;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+    border-radius: 5px;
+    z-index: 1200;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.sidebar-toggle-closed {
+    top: 83px;
+    left: 15px;
+    display: none;
+    z-index: 1100;
+}
+
+.sidebar-toggle:hover,
+.sidebar-toggle-closed:hover {
+    background-color: #bbb;
+}
+
+
+
+/* 새 채팅 버튼 */
+.new-chat-btn {
+    position: absolute;
+    right: 0;
+    width: 30px;
+    height: 30px;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    z-index: 2;
+}
+
+.new-chat-btn:hover {
+    background-color: #e0e0e0;
+}
+
+/* 채팅방 목록 */
+#chatroom-list {
+    margin-top: 10px;
+}
+
+.chatroom-item {
+    padding: 10px;
+    margin-bottom: 5px;
+    background-color: white;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.chatroom-item:hover {
+    background-color: #ddd;
+}
+
+/* 사이드바 컨테이너 및 레이아웃 조정 */
+.sidebar-container {
+    width: 250px;
+    display: flex;
+    align-items: flex-start;
+    position: relative;
+}
+
+.chat-container ~ .sidebar.open {
+    margin-left: 250px;
+}
+
+/* 채팅방 아이템 추가 스타일 */
+.chatroom-item.active {
+    background-color: #d8e8ff;
+    font-weight: bold;
+    border: 1px solid #2b77e3;
+}
+
+/* 채팅 관리 버튼 */
+.delete-chat-btn {
+    margin-left: 10px;
+    color: red;
+    background: none;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.delete-chat-btn:hover {
+    color: darkred;
+}
+
+.edit-chat-btn {
+    margin-left: 8px;
+    font-size: 14px;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.edit-chat-btn:hover {
+    color: #007bff;
+}
+
+.edit-chat-input {
+    font-size: 14px;
+    padding: 2px 4px;
+    border: 1px solid #aaa;
+    border-radius: 4px;
+    width: 70%;
+    margin-right: 4px;
+}
+
+/* 챗봇 고지사항 */
+.chatbot-disclaimer {
+    text-align: center;
+    font-size: 13px;
+    color: #666;
+    margin-top: 10px;
+    margin-bottom: 15px;
+    font-style: italic;
 }

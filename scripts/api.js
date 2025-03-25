@@ -258,3 +258,95 @@ export async function agreeToTerms() {
     throw new Error(error.response?.data?.detail || '약관 동의 실패. 다시 시도하세요.');
   }
 }
+
+/////////////////chatbot part
+// ============ chatbot API ============
+
+const API_BASE_URL = 'http://localhost:8000/api/v1/chatbot/';
+
+// 채팅방 생성
+export async function createChatRoom() {
+  const token = localStorage.getItem('access_token');
+
+  try {
+    const response = await axios.post(`${API_BASE_URL}room/`, {}, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      }
+    });
+    return response.data;
+  } catch (error) {
+    console.error('채팅방 생성 실패:', error);
+    throw error;
+  }
+}
+
+// 채팅방 목록 조회
+export async function getChatRoomList() {
+  const token = localStorage.getItem('access_token');
+
+  try {
+    const response = await axios.get(`${API_BASE_URL}room/`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      }
+    });
+    return response.data;
+  } catch (error) {
+    console.error('채팅방 목록 조회 실패:', error);
+    throw error;
+  }
+}
+
+// 채팅 로그 조회
+export async function getChatLogs(roomId) {
+  const token = localStorage.getItem('access_token');
+
+  try {
+    const response = await axios.get(`${API_BASE_URL}room/${roomId}/logs/`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      }
+    });
+    return response.data;
+  } catch (error) {
+    console.error('채팅 로그 조회 실패:', error);
+    throw error;
+  }
+}
+
+// 채팅방 삭제
+export async function deleteChatRoom(roomId) {
+  const token = localStorage.getItem('access_token');
+
+  try {
+    const response = await axios.delete(`${API_BASE_URL}room/${roomId}/`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      }
+    });
+    return response.data;
+  } catch (error) {
+    console.error('채팅방 삭제 실패:', error);
+    throw error;
+  }
+}
+
+// 채팅방 이름 변경
+export async function renameChatRoom(roomId, newTitle) {
+  const token = localStorage.getItem('access_token');
+
+  try {
+    const response = await axios.patch(`${API_BASE_URL}room/${roomId}/`, {
+      title: newTitle,
+    }, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      }
+    });
+    return response.data;
+  } catch (error) {
+    console.error('채팅방 이름 수정 실패:', error);
+    throw error;
+  }
+}
