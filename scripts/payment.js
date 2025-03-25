@@ -1,5 +1,7 @@
 /* global PortOne */  // 
 // KG 이니시스
+import { sendPaymentData } from './api.js'; 
+
 document.getElementById('portone-btn').addEventListener('click', async function() {
   // PortOne이 로드되었는지 확인
   if (typeof PortOne === 'undefined') {
@@ -52,6 +54,10 @@ document.getElementById('portone-btn').addEventListener('click', async function(
     if (response && response.paymentId && response.code != 'FAILURE_TYPE_PG') {
       console.log('response:', response);
       alert('결제가 성공적으로 완료되었습니다.');
+      
+      setTimeout(() => {
+        sendPaymentData(paymentData);
+      }, 100); // 100ms 후 실행
     } else {
       alert('결제 요청에 실패했습니다. ' + response.message);
       console.log('response:', response);
