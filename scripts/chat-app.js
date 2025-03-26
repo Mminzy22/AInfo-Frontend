@@ -52,6 +52,8 @@ class ChatApp {
     if (this.isBotResponding) return;
     const message = this.userInput.value;
     if (!message.trim()) return;
+
+    this.firstUserMessage = message;
     
     const isReport = this.inputMode === "crew_report"
 
@@ -60,7 +62,6 @@ class ChatApp {
     
     this.userInput.value = '';
     this.userInput.style.height = 'auto';
-    // this.renderer.resetCurrentMessage();
     
     // 메시지 상태만 초기화하고 스피너는 유지
     this.renderer.currentBotMessage = null;
@@ -200,12 +201,14 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   if (!room) {
     room = await createChatRoom();
+    // 이때는 새로운 채팅방이니까 인사말 표시
+    window.chatApp.renderer.addBotMessageInitial('안녕하세요! 무엇을 도와드릴까요?');
+    await loadChatRooms();
   }
 
   await window.chatApp.init(room);
 
-  // 안내 메시지 뺄것
-  //window.chatApp.renderer.addBotMessageInitial('안녕하세요! 무엇을 도와드릴까요?');
+
 });
 
 export default ChatApp;
