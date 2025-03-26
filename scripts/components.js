@@ -63,7 +63,7 @@ function renderFooter() {
                 <div class="footer-section">
                     <h3 class="footer-heading">AInfo</h3>
                     <p class="footer-text">내일배움캠프 AI 트랙 9기</p>
-                    <p class="footer-text">ainfo@google.com</p>
+                    <p class="footer-text">ainfo.ai.kr@gmail.com</p>
                 </div>
                 
                 <div class="footer-section">

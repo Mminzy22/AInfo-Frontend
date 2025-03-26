@@ -10,21 +10,28 @@ body {
   width: 100%;
   min-height: 100vh;
   overflow-x: hidden;
+  background-color: #ffffff;
+  /* background: linear-gradient(to right, #f9f9f9 0%, #f9f9f9 50%, #4fa199 50%, #4fa199 100%); */
 }
 
 /* 메인 컨테이너 */
 .main-container {
   display: flex;
-  min-height: 100vh;
-  width: 100%;
+  flex-wrap: wrap;
+  /* min-height: 100vh; */
+  width: 90%;
+  margin: 0 auto;
+  /* overflow: hidden; */
 }
 
 /* 왼쪽 섹션 */
 .left-section {
-  width: 60%;
+  flex: 6;
   background-color: #f9f9f9;
   padding: 2rem;
   position: relative;
+  height: auto;
+  flex-shrink: 0;     
 }
 
 .left-content {
@@ -144,16 +151,16 @@ body {
 
 /* 오른쪽 섹션 */
 .right-section {
-  width: 40%;
+  flex: 4;
   background-color: #4fa199;
   padding: 2rem;
   position: relative;
-  color: white;
 }
 
 .right-content {
   margin-top: 4rem;
   text-align: center;
+  color: white;
 }
 
 .report-title-sub {
@@ -321,7 +328,7 @@ body {
 
   .left-section, .right-section {
     width: 100%;
-    min-height: 100vh;
+    height: auto;           /* 꼭 auto로 */
   }
 
   .left-content, .right-content {
@@ -335,7 +342,7 @@ body {
   }
 
   .speech-bubbles-container {
-    height: 24rem;
+    height: auto;
   }
 
   .report-title-sub {
