@@ -64,7 +64,7 @@ class WebSocketService {
   sendMessage(message) {
     if (this.socket && this.socket.readyState === WebSocket.OPEN) {
       console.log('📤 WebSocket 메시지 전송:', message);
-      const messageData = JSON.stringify({ message });
+      const messageData = JSON.stringify(message);
       this.socket.send(messageData);
       return true;
     }
