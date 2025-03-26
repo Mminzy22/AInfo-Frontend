@@ -22,7 +22,8 @@ class ChatRenderer {
 
     const messageElement = document.createElement('div');
     messageElement.classList.add('message', 'user-message');
-    messageElement.innerHTML = `<span>${message}</span>`;
+    const formattedMessage = message.replace(/\n/g, '<br>');
+    messageElement.innerHTML = `<span>${formattedMessage}</span>`;
 
     messageContainer.appendChild(messageElement);
     messageContainer.appendChild(profileImg);
