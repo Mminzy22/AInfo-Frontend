@@ -412,6 +412,26 @@
     margin-bottom: 10px;
 }
 
+.markdown-content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 16px;
+    font-size: 14px;
+}
+
+.markdown-content th,
+.markdown-content td {
+    border: 1px solid #d9d9d9;
+    padding: 10px;
+    text-align: left;
+}
+
+.markdown-content th {
+    background-color: #4fa09bd3;
+    color: #333;
+    font-weight: 600;
+}
+
 /* 로딩 애니메이션 */
 .message-wrapper.loading {
     align-items: center;
