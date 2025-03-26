@@ -49,18 +49,35 @@ class ChatApp {
   }
 
   async sendMessage() {
+    if (this.isBotResponding) return;
     const message = this.userInput.value;
     if (!message.trim()) return;
-
-    this.renderer.addUserMessage(message);
-    this.renderer.addLoadingMessage();
+    
+    this.isBotResponding = true;
+    this.userInput.disabled = true;
+    this.sendButton.disabled = true;
+    
     this.userInput.value = '';
     this.userInput.style.height = 'auto';
     // this.renderer.resetCurrentMessage();
-
+    
     // 메시지 상태만 초기화하고 스피너는 유지
     this.renderer.currentBotMessage = null;
     this.renderer.currentMarkdownText = '';
+
+    this.renderer.addUserMessage(message);
+    if (this.inputMode === 'crew_report') {
+      this.renderer.addLoadingMessage('📄 보고서 생성에는 1분 정도 소요됩니다...');
+    } else {
+      this.renderer.addLoadingMessage('답변을 생성 중입니다...');
+    }
+
+    if (this.inputMode === 'crew_report') {
+      const crewBtn = document.getElementById('crew-report-btn');
+      crewBtn.classList.remove('active');
+      this.inputMode = 'default';
+      this.renderer.addSystemMessage('✏️ 일반 대화 모드로 돌아왔습니다.');
+    }
     // 아직 연결되지 않았을 때
     if (!this.websocketService) {
       this.firstUserMessage = message;
@@ -97,7 +114,7 @@ class ChatApp {
     this.firstUserMessage = this.pendingMessage;
 
     
-    // ✅ "안녕하세요!" 메시지를 항상 맨 위에 먼저 추가
+    // "안녕하세요!" 메시지를 항상 맨 위에 먼저 추가
     //this.chatMessages.innerHTML = '';
     //this.renderer.addBotMessageInitial('안녕하세요! 무엇을 도와드릴까요?');
     
@@ -106,9 +123,18 @@ class ChatApp {
         // 스트리밍 시작 시 로딩 메시지 제거
         if (isStreaming && !this.renderer.currentBotMessage) {
           this.renderer.removeLoadingMessage();
+          this.isBotResponding = true;
+          this.userInput.disabled = true;
+          this.sendButton.disabled = true;
         }
         
         this.renderer.addBotMessage(message, isStreaming);
+
+        if (!isStreaming) {
+          this.isBotResponding = false;
+          this.userInput.disabled = false;
+          this.sendButton.disabled = false;
+        }
 
         if (!isStreaming && !this.isFirstResponseHandled) {
           this.isFirstResponseHandled = true;
