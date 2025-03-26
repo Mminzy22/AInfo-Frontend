@@ -21,17 +21,26 @@ class ChatApp {
 
     this.sendButton.addEventListener('click', () => this.sendMessage());
     this.userInput.addEventListener('keypress', (event) => {
-      if (event.key === 'Enter') this.sendMessage();
+      if (event.key === 'Enter' && !event.shiftKey) {
+        event.preventDefault();
+        this.sendMessage();
+      }
+    });
+
+    this.userInput.addEventListener('input', () => {
+      this.userInput.style.height = 'auto';
+      this.userInput.style.height = Math.min(this.userInput.scrollHeight, 120) + 'px';
     });
   }
 
   async sendMessage() {
-    const message = this.userInput.value.trim();
-    if (!message) return;
+    const message = this.userInput.value;
+    if (!message.trim()) return;
 
     this.renderer.addUserMessage(message);
     this.renderer.addLoadingMessage();
     this.userInput.value = '';
+    this.userInput.style.height = 'auto';
     // this.renderer.resetCurrentMessage();
 
     // 메시지 상태만 초기화하고 스피너는 유지

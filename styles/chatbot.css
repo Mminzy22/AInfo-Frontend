@@ -1,21 +1,42 @@
 /* 챗봇 메인 컨테이너 */
 .chatbot-main {
     display: flex;
-    height: calc(100vh - 140px); /* 헤더와 푸터 높이를 고려 */
+    justify-content: flex-start; /* 기본: 왼쪽 정렬 */
+    align-items: stretch;
+    height: calc(100vh - 100px);
     background-color: #f9f9f9;
     padding: 20px;
     gap: 20px;
 }
 
-.chat-container.centered {
-    margin-left: auto;
-    margin-right: auto;
-  }
+.chatbot-main.centered {
+    justify-content: center;
+}
 
-/* 사이드바 스타일 */
+/* 초기 상태: 숨김 */
+.sidebar-container.hidden {
+    opacity: 0;
+    transform: translateX(-20px);
+    pointer-events: none;
+}
+  
+  /* 보일 때: 자연스럽게 나타나게 */
 .sidebar-container {
-    position: relative;
-    height: 100%;
+    opacity: 1;
+    transform: translateX(0);
+    transition: all 0.3s ease-in-out;
+}
+
+/* 채팅 컨테이너 */
+.chat-container {
+    width: 100%;
+    max-width: 1000px;
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgb(0 0 0 / 8%);
+    overflow: hidden;
 }
 
 .sidebar {
@@ -56,9 +77,13 @@
     flex: 1; /* 추가: 공간 차지 */
 }
 
-/* 토글 버튼 - 수정된 부분 */
-.sidebar-toggle,
-.sidebar-toggle-closed {
+
+/* 새 통합 토글 버튼 스타일 */
+.sidebar-toggle-unified {
+    position: absolute;
+    top: 110px;
+    left: 40px;
+    z-index: 1100;
     width: 36px;
     height: 36px;
     background-color: #fff;
@@ -74,22 +99,7 @@
     transition: all 0.2s ease;
 }
 
-/* 수정: 토글 버튼 위치 변경 */
-.sidebar-toggle {
-    position: static; /* absolute에서 static으로 변경 */
-    margin-right: 10px; /* 오른쪽 여백 추가 */
-}
-
-.sidebar-toggle-closed {
-    position: fixed;
-    left: 20px;
-    top: 90px;
-    display: none;
-    z-index: 1100;
-}
-
-.sidebar-toggle:hover,
-.sidebar-toggle-closed:hover {
+.sidebar-toggle-unified:hover {
     background-color: #f0f0f0;
     transform: scale(1.05);
 }
@@ -189,20 +199,6 @@
     border-color: #53B2AC;
     box-shadow: 0 0 0 2px rgb(58 134 255 / 20%);
 }
-
-/* 채팅 컨테이너 */
-.chat-container {
-    width: 100%;
-    max-width: 1000px;
-    display: flex;
-    flex-direction: column;
-    background-color: #fff;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgb(0 0 0 / 8%);
-    overflow: hidden;
-    margin-left: 0; /* 기본 왼쪽 정렬 */
-    transition: margin 0.3s ease, transform 0.3s ease;
-  }
 
 /* 채팅 헤더 */
 .chat-header {
@@ -433,5 +429,15 @@
     
     .message-wrapper {
         max-width: 95%;
+    }
+
+    .sidebar-toggle-unified {
+        top: 100px;
+    }
+}
+
+@media (width <= 380px) {
+    .sidebar-toggle-unified {
+        top: 175px;
     }
 }

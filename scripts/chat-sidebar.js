@@ -139,21 +139,27 @@ export async function loadChatRooms() {
 export async function initSidebar() {
   const sidebar = document.getElementById('sidebar');
   const toggleBtn = document.getElementById('toggle-sidebar');
-  const toggleBtnClosed = document.getElementById('toggle-sidebar-closed');
+  const chatMain = document.querySelector('.chatbot-main');
+  const sidebarContainer = document.querySelector('.sidebar-container');
   const newChatBtn = document.getElementById('new-chat-btn');
-
+  
+  // 사이드바 시작 상태: 열림
   sidebar.classList.add('open');
-  toggleBtnClosed.style.display = 'none';
+  chatMain.classList.remove('centered');
+  sidebarContainer.style.display = 'block';
 
   toggleBtn.addEventListener('click', () => {
-    sidebar.classList.remove('open');
-    toggleBtnClosed.style.display = 'flex';
+    const isOpen = sidebar.classList.toggle('open');
+
+    if (isOpen) {
+      chatMain.classList.remove('centered');
+      sidebarContainer.style.display = 'block';
+    } else {
+      chatMain.classList.add('centered');
+      sidebarContainer.style.display = 'none';
+    }
   });
 
-  toggleBtnClosed.addEventListener('click', () => {
-    sidebar.classList.add('open');
-    toggleBtnClosed.style.display = 'none';
-  });
 
   newChatBtn.addEventListener('click', async () => {
     try {
