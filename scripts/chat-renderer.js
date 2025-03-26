@@ -19,6 +19,14 @@ class ChatRenderer {
     return marked.parse(text);
   }
 
+  addSystemMessage(text) {
+    const messageEl = document.createElement('div');
+    messageEl.className = 'system-message';
+    messageEl.textContent = text;
+    this.chatMessages.appendChild(messageEl);
+    this.chatMessages.scrollTop = this.chatMessages.scrollHeight;
+  }
+  
   addUserMessage(message) {
     const messageContainer = document.createElement('div');
     messageContainer.classList.add('message-wrapper', 'user-wrapper');
