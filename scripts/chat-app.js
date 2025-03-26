@@ -119,6 +119,13 @@ class ChatApp {
 }
 
 document.addEventListener('DOMContentLoaded', async () => {
+  const token = localStorage.getItem('access_token');
+  if (!token) {
+    alert('로그인이 필요합니다.');
+    localStorage.setItem('redirect_after_login', window.location.href);
+    window.location.href = 'login.html';
+    return;
+  }
   await initSidebar();
   window.chatApp = new ChatApp();
 
