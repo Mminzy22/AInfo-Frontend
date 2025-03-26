@@ -235,7 +235,7 @@
 #crew-report-btn.active {
     background-color: #2e7d78; /* 좀 더 진한 색으로 강조 */
     color: white;
-    box-shadow: 0 0 0 2px rgba(83, 178, 172, 0.3);
+    box-shadow: 0 0 0 2px rgb(83 178 172 / 30%);
 }
 
 /* 채팅 메시지 영역 */
