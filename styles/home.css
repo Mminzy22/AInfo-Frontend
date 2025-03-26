@@ -346,3 +346,53 @@ body {
     font-size: 2rem;
   }
 }
+
+.modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  z-index: 9999;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal.hidden {
+  display: none;
+}
+
+.modal-content {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 1rem;
+  max-width: 700px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  position: relative;
+}
+
+.close-button {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.modal-body h2, .modal-body h3 {
+  color: #2e9353;
+  margin-top: 1rem;
+}
+
+.modal-body ul {
+  padding-left: 1.2rem;  /* 기본값보다 줄이거나 조절 */
+  margin-left: 0;
+}
+
+.modal-body li {
+  margin-bottom: 0.5rem;
+}

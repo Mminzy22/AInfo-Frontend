@@ -70,7 +70,7 @@ function renderFooter() {
                     <div class="footer-grid">
                         <div>
                             <h3 class="footer-heading">개인정보처리방침</h3>
-                            <p class="footer-text">사이트 이용 약관</p>
+                            <p class="footer-text"><span class="open-terms" style="cursor:pointer;">사이트 이용 약관</span></p>
                         </div>
                     </div>
                 </div>
@@ -107,3 +107,13 @@ async function handleLogout() {
     alert(error.message || '로그아웃 실패. 다시 시도하세요.'); // 오류 메시지 출력
   }
 }
+
+document.addEventListener('click', function (event) {
+  if (event.target.classList.contains('open-terms')) {
+    document.getElementById('termsModal').classList.remove('hidden');
+  }
+
+  if (event.target.classList.contains('close-button') || event.target.id === 'termsModal') {
+    document.getElementById('termsModal').classList.add('hidden');
+  }
+});
