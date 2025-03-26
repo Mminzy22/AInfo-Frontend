@@ -67,9 +67,9 @@ class ChatApp {
 
     this.renderer.addUserMessage(message);
     if (this.inputMode === 'crew_report') {
-      this.renderer.addLoadingMessage("📄 보고서 생성에는 1분 정도 소요됩니다...");
+      this.renderer.addLoadingMessage('📄 보고서 생성에는 1분 정도 소요됩니다...');
     } else {
-      this.renderer.addLoadingMessage("답변을 생성 중입니다...");
+      this.renderer.addLoadingMessage('답변을 생성 중입니다...');
     }
 
     if (this.inputMode === 'crew_report') {
