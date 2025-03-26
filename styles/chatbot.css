@@ -231,6 +231,7 @@ ol {
 }
 
 .sidebar-toggle-closed {
+    position: fixed;
     top: 83px;
     left: 15px;
     display: none;
