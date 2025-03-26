@@ -202,9 +202,12 @@
 
 /* 채팅 헤더 */
 .chat-header {
-    padding: 15px 20px;
+    padding: 10px 20px;
     background-color: #f8f9fa;
     border-bottom: 1px solid #eaeaea;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .chat-header h2 {
@@ -214,10 +217,31 @@
     color: #333;
 }
 
+#crew-report-btn {
+    background-color: #53b2ac88;
+    border: none;
+    border-radius: 8px;
+    padding: 8px 14px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.2s ease;
+}
+
+#crew-report-btn:hover {
+    background-color: #33736f;
+    color: white;
+}
+
+#crew-report-btn.active {
+    background-color: #2e7d78; /* 좀 더 진한 색으로 강조 */
+    color: white;
+    box-shadow: 0 0 0 2px rgba(83, 178, 172, 0.3);
+}
+
 /* 채팅 메시지 영역 */
 #chat-messages {
     flex: 1;
-    padding: 20px;
+    padding: 20px; 
     overflow-y: auto;
     display: flex;
     flex-direction: column;
@@ -354,6 +378,18 @@
 
 .markdown-content p {
     margin-bottom: 10px;
+}
+
+.markdown-content a {
+    color: #007bff; /* 링크 색상 */
+    text-decoration: underline; /* 밑줄 */
+    word-break: break-word; /* 긴 링크 줄바꿈 */
+    transition: color 0.2s ease;
+}
+
+.markdown-content a:hover {
+    color: #0056b3; /* 호버 시 진한 파란색 */
+    text-decoration: underline;
 }
 
 .markdown-content ul, .markdown-content ol {
