@@ -1,5 +1,4 @@
 // chat-sidebar.js : 사이드바 담당
-// chat-sidebar.js
 import {
   createChatRoom,
   getChatRoomList,
@@ -21,6 +20,7 @@ export async function loadChatRooms() {
     rooms.forEach(room => {
       const item = document.createElement('div');
       item.className = 'chatroom-item';
+      item.dataset.id = room.id;
 
       const titleSpan = document.createElement('span');
       titleSpan.textContent = room.title;
@@ -93,6 +93,8 @@ export async function loadChatRooms() {
       });
 
       item.addEventListener('click', async () => {
+        localStorage.setItem('last_room_id', room.id);
+
         const chatMessages = document.getElementById('chat-messages');
         chatMessages.innerHTML = '';
 
@@ -112,7 +114,7 @@ export async function loadChatRooms() {
         }
 
         window.chatApp.currentRoomId = room.id;
-
+        window.chatApp.renderer.addBotMessageInitial('안녕하세요! 무엇을 도와드릴까요?');
         logs.forEach(log => {
           if (log.role === 'user') {
             window.chatApp.renderer.addUserMessage(log.message);
@@ -142,7 +144,7 @@ export async function initSidebar() {
   const chatMain = document.querySelector('.chatbot-main');
   const sidebarContainer = document.querySelector('.sidebar-container');
   const newChatBtn = document.getElementById('new-chat-btn');
-  
+
   // 사이드바 시작 상태: 열림
   sidebar.classList.add('open');
   chatMain.classList.remove('centered');
@@ -160,10 +162,11 @@ export async function initSidebar() {
     }
   });
 
-
   newChatBtn.addEventListener('click', async () => {
     try {
       const room = await createChatRoom();
+      localStorage.setItem('last_room_id', room.id);
+
       const chatMessages = document.getElementById('chat-messages');
       chatMessages.innerHTML = '';
 
@@ -175,6 +178,7 @@ export async function initSidebar() {
 
       window.chatApp.currentRoomId = room.id;
       window.chatApp.renderer.addBotMessageInitial('안녕하세요! 무엇을 도와드릴까요?');
+
       await loadChatRooms();
     } catch (error) {
       console.error('새 채팅방 생성 실패:', error);
@@ -182,4 +186,15 @@ export async function initSidebar() {
   });
 
   await loadChatRooms();
+
+  // 마지막 사용한 채팅방 자동 클릭
+  const lastRoomId = localStorage.getItem('last_room_id');
+  if (lastRoomId) {
+    const item = [...document.querySelectorAll('.chatroom-item')]
+      .find(el => el.dataset.id === lastRoomId);
+
+    if (item) {
+      item.click();
+    }
+  }
 }

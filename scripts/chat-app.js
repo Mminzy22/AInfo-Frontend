@@ -92,9 +92,15 @@ class ChatApp {
 
   async init(room) {
     this.currentRoomId = room.id;
+    localStorage.setItem('last_room_id', room.id);
     this.isFirstResponseHandled = false;
     this.firstUserMessage = this.pendingMessage;
 
+    
+    // ✅ "안녕하세요!" 메시지를 항상 맨 위에 먼저 추가
+    //this.chatMessages.innerHTML = '';
+    //this.renderer.addBotMessageInitial('안녕하세요! 무엇을 도와드릴까요?');
+    
     this.websocketService = new WebSocketService(
       async (message, isStreaming) => {
         // 스트리밍 시작 시 로딩 메시지 제거
@@ -153,11 +159,26 @@ document.addEventListener('DOMContentLoaded', async () => {
   await initSidebar();
   window.chatApp = new ChatApp();
 
-  const room = await createChatRoom();
-  window.chatApp.currentRoomId = room.id;
+  const lastRoomId = localStorage.getItem('last_room_id');
+  const rooms = await getChatRoomList();
 
-  // 안내 메시지
-  window.chatApp.renderer.addBotMessageInitial('안녕하세요! 무엇을 도와드릴까요?');
+  let room = null;
+  if (lastRoomId) {
+    room = rooms.find(r => r.id == lastRoomId);
+  }
+
+  if (!room && rooms.length > 0) {
+    room = rooms[0];
+  }
+
+  if (!room) {
+    room = await createChatRoom();
+  }
+
+  await window.chatApp.init(room);
+
+  // 안내 메시지 뺄것
+  //window.chatApp.renderer.addBotMessageInitial('안녕하세요! 무엇을 도와드릴까요?');
 });
 
 export default ChatApp;
