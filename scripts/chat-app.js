@@ -197,7 +197,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   if (!room) {
     room = await createChatRoom();
-      // 이때는 새로운 채팅방이니까 인사말 표시
+    // 이때는 새로운 채팅방이니까 인사말 표시
     window.chatApp.renderer.addBotMessageInitial('안녕하세요! 무엇을 도와드릴까요?');
     await loadChatRooms();
   }
