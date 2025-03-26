@@ -1,5 +1,13 @@
 // chat-renderer.js : 채팅 메시지 렌더링 담당
 
+marked.use({
+  renderer: {
+    link(href, title, text) {
+      return `<a href="${href}" target="_blank" rel="noopener noreferrer"${title ? ` title="${title}"` : ''}>${text}</a>`;
+    }
+  }
+});
+
 class ChatRenderer {
   constructor(chatMessagesElement) {
     this.chatMessages = chatMessagesElement;
@@ -89,7 +97,7 @@ class ChatRenderer {
     this.scrollToBottom();
   }
 
-  addLoadingMessage() {
+  addLoadingMessage(message = '답변을 생성 중입니다...') {
     this.removeLoadingMessage(); // 중복 방지
 
     const loadingContainer = document.createElement('div');
@@ -103,7 +111,7 @@ class ChatRenderer {
 
     const messageElement = document.createElement('div');
     messageElement.classList.add('message', 'bot-message');
-    messageElement.innerHTML = '<span>답변을 생성 중입니다...</span>';
+    messageElement.innerHTML = `<span>${message}</span>`;
 
     loadingContainer.appendChild(profileImg);
     loadingContainer.appendChild(messageElement);
