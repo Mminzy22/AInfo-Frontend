@@ -95,7 +95,7 @@ export async function loadChatRooms() {
       item.addEventListener('click', async () => {
         localStorage.setItem('last_room_id', room.id);
         if (window.chatApp?.isBotResponding) {
-          const proceed = confirm("현재 응답이 생성 중입니다. 그래도 다른 채팅방으로 이동할까요?");
+          const proceed = confirm('현재 응답이 생성 중입니다. 그래도 다른 채팅방으로 이동할까요?');
           if (!proceed) return;
         }
 

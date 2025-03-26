@@ -55,7 +55,7 @@ class ChatApp {
 
     this.firstUserMessage = message;
     
-    const isReport = this.inputMode === "crew_report"
+    const isReport = this.inputMode === 'crew_report';
 
     this.isBotResponding = true;
     this.sendButton.disabled = true;
@@ -81,7 +81,7 @@ class ChatApp {
       this.renderer.addSystemMessage('✏️ 일반 대화 모드로 돌아왔습니다.');
     }
 
-    const messagePayload = { message, is_report: isReport}
+    const messagePayload = { message, is_report: isReport};
     // 아직 연결되지 않았을 때
     if (!this.websocketService) {
       this.firstUserMessage = message;
