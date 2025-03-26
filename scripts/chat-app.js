@@ -31,6 +31,21 @@ class ChatApp {
       this.userInput.style.height = 'auto';
       this.userInput.style.height = Math.min(this.userInput.scrollHeight, 120) + 'px';
     });
+
+    // 보고서 버튼 이벤트 리스너 추가
+    this.inputMode = 'default';
+
+    const crewBtn = document.getElementById('crew-report-btn');
+    crewBtn.addEventListener('click', () => {
+      const isActive = crewBtn.classList.toggle('active');
+      this.inputMode = isActive ? 'crew_report' : 'default';
+
+      if (isActive) {
+        this.renderer.addSystemMessage('📝 보고서 생성 모드입니다.');
+      } else {
+        this.renderer.addSystemMessage('✏️ 일반 대화 모드로 돌아왔습니다.');
+      }
+    });
   }
 
   async sendMessage() {
