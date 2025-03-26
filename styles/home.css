@@ -155,7 +155,7 @@ body {
 /* 오른쪽 섹션 */
 .right-section {
   flex: 4;
-  background-color: #4fa199;
+  background-color: #53B2AC;
   padding: 2rem;
   position: relative;
 }
@@ -269,7 +269,7 @@ body {
 }
 
 .option-number {
-  background-color: rgb(20 184 166 / 80%);
+  background-color: #129c8bcc;
   border-radius: 9999px;
   width: 3rem;
   height: 3rem;
@@ -315,12 +315,12 @@ body {
 }
 
 .goto-button-dark {
-  background-color: rgb(20 184 166 / 40%);
+  background-color: #129c8bcc;
   color: white;
 }
 
 .goto-button-dark:hover {
-  background-color: rgb(20 184 166 / 60%);
+  background-color: #17c0ac99;
 }
 
 /* 반응형 디자인 */
