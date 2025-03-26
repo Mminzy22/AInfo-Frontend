@@ -10,21 +10,31 @@ body {
   width: 100%;
   min-height: 100vh;
   overflow-x: hidden;
+  background-color: #fff;
+
+  /* background: linear-gradient(to right, #f9f9f9 0%, #f9f9f9 50%, #4fa199 50%, #4fa199 100%); */
 }
 
 /* 메인 컨테이너 */
 .main-container {
   display: flex;
-  min-height: 100vh;
-  width: 100%;
+  flex-wrap: wrap;
+
+  /* min-height: 100vh; */
+  width: 90%;
+  margin: 0 auto;
+
+  /* overflow: hidden; */
 }
 
 /* 왼쪽 섹션 */
 .left-section {
-  width: 60%;
+  flex: 6;
   background-color: #f9f9f9;
   padding: 2rem;
   position: relative;
+  height: auto;
+  flex-shrink: 0;     
 }
 
 .left-content {
@@ -144,16 +154,16 @@ body {
 
 /* 오른쪽 섹션 */
 .right-section {
-  width: 40%;
+  flex: 4;
   background-color: #4fa199;
   padding: 2rem;
   position: relative;
-  color: white;
 }
 
 .right-content {
   margin-top: 4rem;
   text-align: center;
+  color: white;
 }
 
 .report-title-sub {
@@ -321,7 +331,7 @@ body {
 
   .left-section, .right-section {
     width: 100%;
-    min-height: 100vh;
+    height: auto;           /* 꼭 auto로 */
   }
 
   .left-content, .right-content {
@@ -335,7 +345,7 @@ body {
   }
 
   .speech-bubbles-container {
-    height: 24rem;
+    height: auto;
   }
 
   .report-title-sub {
@@ -345,4 +355,54 @@ body {
   .report-title-main {
     font-size: 2rem;
   }
+}
+
+.modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  z-index: 9999;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgb(0 0 0 / 50%);
+}
+
+.modal.hidden {
+  display: none;
+}
+
+.modal-content {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 1rem;
+  max-width: 700px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 4px 20px rgb(0 0 0 / 30%);
+  position: relative;
+}
+
+.close-button {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.modal-body h2, .modal-body h3 {
+  color: #2e9353;
+  margin-top: 1rem;
+}
+
+.modal-body ul {
+  padding-left: 1.2rem;  /* 기본값보다 줄이거나 조절 */
+  margin-left: 0;
+}
+
+.modal-body li {
+  margin-bottom: 0.5rem;
 }

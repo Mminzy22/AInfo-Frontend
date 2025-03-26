@@ -63,14 +63,14 @@ function renderFooter() {
                 <div class="footer-section">
                     <h3 class="footer-heading">AInfo</h3>
                     <p class="footer-text">내일배움캠프 AI 트랙 9기</p>
-                    <p class="footer-text">ainfo@google.com</p>
+                    <p class="footer-text">ainfo.ai.kr@gmail.com</p>
                 </div>
                 
                 <div class="footer-section">
                     <div class="footer-grid">
                         <div>
                             <h3 class="footer-heading">개인정보처리방침</h3>
-                            <p class="footer-text">사이트 이용 약관</p>
+                            <p class="footer-text"><span class="open-terms" style="cursor:pointer;">사이트 이용 약관</span></p>
                         </div>
                     </div>
                 </div>
@@ -109,22 +109,11 @@ async function handleLogout() {
 }
 
 document.addEventListener('click', function (event) {
-  const target = event.target;
-
-  if (target.matches('.nav-link[href="/pages/community.html"]')) {
-    event.preventDefault();
-    alert('커뮤니티 페이지는 현재 준비 중입니다. 곧 오픈 예정입니다!');
-    window.location.href = '/index.html';
+  if (event.target.classList.contains('open-terms')) {
+    document.getElementById('termsModal').classList.remove('hidden');
   }
-});
 
-document.addEventListener('click', function (event) {
-  const target = event.target;
-
-  // 팀 소개 페이지 클릭 시 처리
-  if (target.matches('.nav-link[href="/pages/team.html"]')) {
-    event.preventDefault();
-    alert('팀 소개 페이지는 현재 준비 중입니다. 곧 만나보실 수 있습니다!');
-    window.location.href = '/index.html';
+  if (event.target.classList.contains('close-button') || event.target.id === 'termsModal') {
+    document.getElementById('termsModal').classList.add('hidden');
   }
 });
