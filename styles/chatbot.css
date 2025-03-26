@@ -409,7 +409,7 @@
 }
 
 /* 반응형 디자인 */
-@media (max-width: 768px) {
+@media (width <= 768px) {
     .chatbot-main {
         padding: 10px;
         gap: 10px;
@@ -436,7 +436,7 @@
     }
 }
 
-@media (max-width: 380px) {
+@media (width <= 380px) {
     .sidebar-toggle-unified {
         top: 175px;
     }
