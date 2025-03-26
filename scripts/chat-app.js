@@ -73,6 +73,11 @@ class ChatApp {
 
     this.websocketService = new WebSocketService(
       async (message, isStreaming) => {
+        // 스트리밍 시작 시 로딩 메시지 제거
+        if (isStreaming && !this.renderer.currentBotMessage) {
+          this.renderer.removeLoadingMessage();
+        }
+        
         this.renderer.addBotMessage(message, isStreaming);
 
         if (!isStreaming && !this.isFirstResponseHandled) {
