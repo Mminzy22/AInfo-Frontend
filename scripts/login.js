@@ -1,4 +1,4 @@
-import { login, kakaoLogin, googleLogin } from './api.js'; // 일반 로그인 + 카카오 로그인
+import { login, kakaoLogin, googleLogin, resetPassword, agreeToTerms, deleteAccount } from './api.js'; // 일반 로그인 + 카카오 로그인
 
 // 카카오 SDK 초기화 (config.js에서 KAKAO_JS_KEY를 전역으로 제공 중)
 Kakao.init(window.appConfig.KAKAO_JS_KEY);
@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', function () {
         window.location.href = redirectUrl;
       }, 2000);
     } catch (error) {
-      console.error('로그인 실패:', error);
+      console.error('로그인 실패:', error.message);
       showMessage(error.message || '로그인 중 오류가 발생했습니다.', 'error');
     }
   });
@@ -49,8 +49,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
         try {
           const user = await kakaoLogin(kakaoAccessToken);
-          alert(`${user.name || '사용자'}님 환영합니다!`);
-          window.location.href = '/index.html';
+
+          if (user.agree_check) {
+            showTermsModal();
+          }
+          else {
+            alert(`${user.name || '사용자'}님 환영합니다!`);
+            window.location.href = '/index.html';
+          }
         } catch (error) {
           console.error('카카오 로그인 실패:', error);
           showMessage(error.message || '카카오 로그인 실패', 'error');
@@ -72,8 +78,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
         try {
           const user = await googleLogin(idToken);
-          alert(`${user.name || '사용자'}님 환영합니다!`);
-          window.location.href = '/index.html';
+
+          if (user.agree_check) {
+            showTermsModal();
+          }
+          else {
+            alert(`${user.name || '사용자'}님 환영합니다!`);
+            window.location.href = '/index.html';
+          }
         } catch (error) {
           console.error('구글 로그인 실패:', error);
           showMessage(error.message || '구글 로그인 실패', 'error');
@@ -103,14 +115,95 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 });
 
-// 패스워드 찾기
-document.addEventListener('DOMContentLoaded', function () {
-  const findPasswordLink = document.getElementById('find-password');
 
-  if (findPasswordLink) {
-    findPasswordLink.addEventListener('click', function (event) {
-      event.preventDefault();  // 기본 이벤트 방지
-      alert('비밀번호 찾기 기능은 현재 지원되지 않습니다.');
-    });
+// 비밀번호 찾기 링크 클릭 시 모달 열기
+document.getElementById('find-password').addEventListener('click', function(e) {
+  e.preventDefault(); // 기본 링크 동작 방지
+  document.getElementById('password-reset-modal').style.display = 'flex'; // 모달 열기
+});
+
+// 모달 닫기
+document.getElementById('modal-close').addEventListener('click', function() {
+  document.getElementById('password-reset-modal').style.display = 'none'; // 모달 닫기
+});
+
+// 모달 외부 클릭 시 닫기
+window.addEventListener('click', function(e) {
+  if (e.target == document.getElementById('password-reset-modal')) {
+    document.getElementById('password-reset-modal').style.display = 'none'; // 모달 닫기
   }
+});
+
+// 비밀번호 찾기 폼 제출 시 처리 (백엔드로 요청 보내기)
+document.getElementById('password-reset-form').addEventListener('submit', async function(e) {
+  e.preventDefault();  // 기본 폼 제출 동작 방지
+
+  const email = document.getElementById('reset-email').value;
+  
+  // 이메일이 비어있지 않은지 확인
+  if (!email) {
+    alert('이메일을 입력해 주세요.');
+    return;
+  }
+
+  try {
+    // 백엔드로 비밀번호 리셋 요청 보내기
+    const response = await resetPassword(email);
+    
+    // 성공 시
+    console.log('서버 응답:', response);
+    alert(response.message);
+    document.getElementById('password-reset-modal').style.display = 'none'; // 모달 닫기
+  } catch (error) {
+    // 에러 시
+    console.error('서버 오류:', error.message);
+    alert(error.message);
+  }
+});
+
+function showTermsModal() {
+  let modal = document.getElementById('terms-modal-social');
+  if (modal) {
+    modal.style.display = 'block';
+    modal.querySelector('.modal-content-social').scrollTop = 0;
+  } else {
+    console.error('terms-modal 요소를 찾을 수 없습니다.');
+  }
+}
+
+// 모달 닫기 기능 추가
+document.addEventListener('DOMContentLoaded', function () {
+  const modal = document.getElementById('terms-modal-social');
+  const closeButton = modal.querySelector('.close');
+  const agreeButton = document.getElementById('terms-agree-btn');
+  const agreeCheckbox = document.getElementById('terms-agree');
+
+  // 닫기 버튼 클릭 시 모달 닫기
+  closeButton.addEventListener('click', function () {
+    modal.style.display = 'none';
+    deleteAccount();
+  });
+
+  // 모달 바깥 영역 클릭 시 모달 닫기
+  window.addEventListener('click', function (event) {
+    if (event.target === modal) {
+      modal.style.display = 'none';
+      deleteAccount();
+    }
+  });
+
+  // 동의 체크 시 버튼 활성화
+  agreeCheckbox.addEventListener('change', function () {
+    agreeButton.disabled = !this.checked;
+  });
+
+  // 동의 버튼 클릭 시 모달 닫기 (추가 로직 가능)
+  agreeButton.addEventListener('click', function () {
+    if (!agreeButton.disabled) {
+      agreeToTerms();
+      alert('이용 약관에 동의하셨습니다.');
+      modal.style.display = 'none';
+      window.location.href = '/index.html';
+    }
+  });
 });

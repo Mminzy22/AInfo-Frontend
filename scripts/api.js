@@ -24,8 +24,8 @@ export async function login(credentials) {
 
     return response.data;
   } catch (error) {
-    console.error('로그인 실패:', error.response?.data || error.message);
-    throw new Error(error.response?.data?.detail || '로그인 실패. 다시 시도하세요.');
+    console.error('로그인 실패:', error.response?.data?.error || error.message);
+    throw new Error(error.response?.data?.error || error.message || '로그인 실패. 다시 시도하세요.');
   }
 }
 
@@ -234,3 +234,142 @@ axiosInstance.interceptors.response.use(
     return Promise.reject(error);
   }
 );
+
+
+// 비밀번호 찾기 요청 (POST /accounts/reset-password/)
+export async function resetPassword(email) {
+  try {
+    const response = await axiosInstance.post('/accounts/reset-password/', { email });
+    return response.data;
+  } catch (error) {
+    console.error('비밀번호 리셋 실패:', error.response?.data?.message || error.message);
+    throw new Error(error.response?.data?.message || '비밀번호 리셋 실패. 다시 시도하세요.');
+  }
+}
+
+// 약관 동의 요청
+export async function agreeToTerms() {
+  try {
+    const response = await axiosInstance.post('/accounts/agree-terms/',);
+
+    return response.data;
+  } catch (error) {
+    console.error('약관 동의 실패:', error.response?.data || error.message);
+    throw new Error(error.response?.data?.detail || '약관 동의 실패. 다시 시도하세요.');
+  }
+}
+
+/////////////////chatbot part
+// ============ chatbot API ============
+
+const API_BASE_URL = 'http://localhost:8000/api/v1/chatbot/';
+
+// 채팅방 생성
+export async function createChatRoom() {
+  const token = localStorage.getItem('access_token');
+
+  try {
+    const response = await axios.post(`${API_BASE_URL}room/`, {}, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      }
+    });
+    return response.data;
+  } catch (error) {
+    console.error('채팅방 생성 실패:', error);
+    throw error;
+  }
+}
+
+// 채팅방 목록 조회
+export async function getChatRoomList() {
+  const token = localStorage.getItem('access_token');
+
+  try {
+    const response = await axios.get(`${API_BASE_URL}room/`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      }
+    });
+    return response.data;
+  } catch (error) {
+    console.error('채팅방 목록 조회 실패:', error);
+    throw error;
+  }
+}
+
+// 채팅 로그 조회
+export async function getChatLogs(roomId) {
+  const token = localStorage.getItem('access_token');
+
+  try {
+    const response = await axios.get(`${API_BASE_URL}room/${roomId}/logs/`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      }
+    });
+    return response.data;
+  } catch (error) {
+    console.error('채팅 로그 조회 실패:', error);
+    throw error;
+  }
+}
+
+// 채팅방 삭제
+export async function deleteChatRoom(roomId) {
+  const token = localStorage.getItem('access_token');
+
+  try {
+    const response = await axios.delete(`${API_BASE_URL}room/${roomId}/`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      }
+    });
+    return response.data;
+  } catch (error) {
+    console.error('채팅방 삭제 실패:', error);
+    throw error;
+  }
+}
+
+// 채팅방 이름 변경
+export async function renameChatRoom(roomId, newTitle) {
+  const token = localStorage.getItem('access_token');
+
+  try {
+    const response = await axios.patch(`${API_BASE_URL}room/${roomId}/`, {
+      title: newTitle,
+    }, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      }
+    });
+    return response.data;
+  } catch (error) {
+    console.error('채팅방 이름 수정 실패:', error);
+    throw error;
+  }
+}
+
+// 결제 정보를 서버로 전송하는 함수
+export async function sendPaymentData(paymentData) {
+  try {
+    const response = await axiosInstance.post('/payments/pay-verify/', {
+      payment_id: paymentData.paymentId,
+    });
+    return response;
+  } catch (error) {
+    throw new Error('결제 요청 실패: ' + error.message);
+  }
+}
+
+// 유저의 크레딧 수를 조회하는 함수
+export async function fetchCreditCount() {
+  try {
+    const response = await axiosInstance.get('/accounts/credit/');
+    return response.data.credit;  // 서버에서 {"credit": 12} 형식으로 반환됨
+  } catch (error) {
+    console.error('크레딧 조회 실패:', error.response?.data || error.message);
+    throw new Error(error.response?.data?.detail || '크레딧 조회에 실패했습니다.');
+  }
+}

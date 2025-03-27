@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AInfo - 결제</title>
+
+    <!-- Axios 추가 -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <!-- 결제기능을 위한 SDK 추가 -->
+    <script src="https://cdn.portone.io/v2/browser-sdk.js" defer></script>
+
+    <link rel="stylesheet" href="../styles/global.css">
+    <link rel="stylesheet" href="../styles/header.css">
+    <link rel="stylesheet" href="../styles/footer.css">
+    <link rel="stylesheet" href="../styles/payment.css">
+
+
+    <!-- JavaScript 파일 -->
+    <script type="module" src="../config/config.js"></script>
+    <script type="module" src="../scripts/api.js"></script>
+    <script type="module" src="../scripts/components.js"></script>
+    <script type="module" src="../scripts/utils.js"></script>
+    <script type="module" src="../scripts/payment.js"></script>
+</head>
+<body>
+    <!-- 헤더는 components.js에서 삽입됨 -->
+
+    <!-- Main Content -->
+    <main class="main">
+        <!-- <button id="kakaopay-btn">Kakao Pay</button>
+        <button id="tosspay-btn">Toss Pay</button> -->
+        <!-- <button id="portone-btn">카드결제</button> -->
+        
+        <div class="pricing-card">
+            <div class="top">
+                <div class="text-heading">
+                    <div class="text-heading2">100 크레딧</div>
+                </div>
+                <div class="text-price">
+                    <div class="price">
+                        <div class="div"></div>
+                        <div class="price-krw">1000 </div>
+                    </div>
+                    <div class="mo"> KRW</div>
+                </div>
+                <div class="text-list">
+                    <div class="text-list-item">
+                        <div class="list-item">
+                            <ul class="list-item-span">
+                                <li>챗봇에게 질문 가능</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="text-list-item">
+                        <div class="list-item">
+                            <ul class="list-item-span2">
+                                <li>질문 1회당 1크레딧 차감</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="text-list-item">
+                        <div class="list-item">
+                            <ul class="list-item-span2">
+                                <li>보고서 1회당 50크레딧 차감</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="text-list-item">
+                        <div class="list-item">
+                            <ul class="list-item-span3">
+                                <li>맞춤형 보고서 생성 가능</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button id="portone-btn">결제하기</button>
+        </div>
+
+        <div class="panel-image-content-reverse">
+            <div class="text-content-flow">
+                <div class="text-content-heading">
+                    <div class="heading">크레딧이란?</div>
+                    <div class="subheading">AInfo의 결제수단</div>
+                </div>
+                <div class="text">
+                    <div class="text2">
+                    📢 챗봇에게 질문할 때마다 1크레딧이 차감됩니다.<br>📝 보고서 생성 1회에 50크레딧이 차감됩니다.
+                    </div>
+                </div>
+                <div class="text">
+                    <div class="text2">
+                    ❌ 상업적인 목적은 없으며, 결제기능 구현을 위한 최소금액 1000원으로 설정되었습니다
+                    
+                    ❌ 테스트 결제수단이라 매일 자정에 자동으로 환불 처리됩니다.
+                    </div>
+                </div>
+                <div class="img1">
+                    <img src="/assets/images/환불1.jpg" alt="환불 이미지">
+                    <img src="/assets/images/환불2.jpg" alt="환불 이미지">
+                </div>
+            </div>
+        </div>
+
+    </main>
+    <!-- 푸터는 components.js에서 삽입됨 -->
+</body>
+</html>

@@ -7,27 +7,101 @@
 
   <!-- Axios 추가 (CDN 방식) -->
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-  
+
+  <!-- 기존 스타일 시트들 -->
   <link rel="stylesheet" href="styles/global.css">
   <link rel="stylesheet" href="styles/header.css">
   <link rel="stylesheet" href="styles/footer.css">
   <link rel="stylesheet" href="styles/home.css">
+  <link rel="stylesheet" href="styles.css"> <!-- 새 UI에 필요한 스타일 추가 -->
 
+  <!-- 모듈 스크립트 -->
   <script type="module" src="config/config.js"></script>
   <script type="module" src="scripts/api.js"></script>
   <script type="module" src="scripts/components.js"></script>
   <script type="module" src="scripts/main.js" defer></script>
 </head>
 <body>
-  <!-- 헤더는 components.js에 의해 여기에 삽입됩니다 -->
+  <!-- 헤더는 components.js에 의해 삽입 -->
 
-  <main class="main">
-    <div class="welcome-container">
-      <h1 class="welcome-title">환영합니다!</h1>
-      <p class="welcome-text">맞춤형 취·창업 공공서비스 추천 AI 챗봇</p>
+  <main class="main-container">
+    <!-- 왼쪽 섹션 - 챗봇 -->
+    <div class="left-section">
+      <div class="top-button-container">
+        <button class="goto-button goto-button-light" onclick="location.href='pages/chatbot.html'">바로가기</button>
+      </div>      
+
+      <div class="left-content">
+        <p class="policy-count">14,000개 이상의 정책이 준비되어 있습니다.</p>
+        
+        <div class="custom-text">
+          <span>나에게 꼭 맞는 </span>
+          <span class="highlight-green">맞춤형</span>
+        </div>
+        
+        <h1 class="main-title">공공서비스 챗봇</h1>
+        
+        <div class="speech-bubbles-container">
+          <div class="speech-bubble left">
+            <p>구직자 대상 지원 제도 같은 거 있어?</p>
+          </div>
+          <div class="speech-bubble right">
+            <p>월세 부담 너무 큰데 지원 제도 있을까?</p>
+          </div>
+          <div class="speech-bubble left">
+            <p>결혼 준비 중인데 받을 수 있는 혜택 있나?</p>
+          </div>
+          <div class="speech-bubble right">
+            <p>창업 생각 중인데 도움받을 수 있는 서비스 알려줘</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 오른쪽 섹션 - 보고서 -->
+    <div class="right-section">
+      <div class="top-button-container">
+        <button class="goto-button goto-button-dark" onclick="location.href='pages/payment.html'">바로가기</button>
+      </div>
+
+      <div class="right-content">
+        <p class="report-title-sub">AInfo에만 있는</p>
+        <p class="report-title-main">특별한 보고서</p>
+        
+        <div class="document-icon">
+          <div class="blue-clip"></div>
+          <div class="document-stack">
+            <div class="document back-document"></div>
+            <div class="document middle-document"></div>
+            <div class="document front-document">
+              <div class="document-lines">
+                <div class="doc-line"></div>
+                <div class="doc-line short"></div>
+                <div class="doc-line"></div>
+                <div class="doc-line shorter"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="options-container">
+          <div class="option-item">
+            <div class="option-number"><span>1</span></div>
+            <span class="option-text">AI가 딱 골라준 내 맞춤 정책</span>
+          </div>
+          <div class="option-item">
+            <div class="option-number"><span>2</span></div>
+            <span class="option-text">헷갈리는 정책, 한눈에 비교</span>
+          </div>
+          <div class="option-item">
+            <div class="option-number"><span>3</span></div>
+            <span class="option-text">언제, 뭘 먼저 신청할지까지 전략 추천</span>
+          </div>
+        </div>
+      </div>
     </div>
   </main>
 
-  <!-- 푸터는 components.js에 의해 여기에 삽입됩니다 -->
+  <!-- 푸터는 components.js에 의해 삽입 -->
 </body>
 </html>

@@ -270,3 +270,24 @@ function getFormData() {
 function showMessage(message, type) {
   alert(message);
 }
+
+// 마케팅 동의 텍스트 클릭 시 모달 열기
+document.addEventListener('DOMContentLoaded', function () {
+  const modal = document.getElementById('marketing-modal');
+  const openBtn = document.getElementById('marketing-terms-link');
+  const closeBtn = document.querySelector('.close[data-target="marketing-modal"]');
+
+  openBtn.addEventListener('click', function () {
+    modal.style.display = 'block';
+  });
+
+  closeBtn.addEventListener('click', function () {
+    modal.style.display = 'none';
+  });
+
+  window.addEventListener('click', function (event) {
+    if (event.target === modal) {
+      modal.style.display = 'none';
+    }
+  });
+});
