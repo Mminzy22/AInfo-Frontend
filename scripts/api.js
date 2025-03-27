@@ -362,3 +362,14 @@ export async function sendPaymentData(paymentData) {
     throw new Error('결제 요청 실패: ' + error.message);
   }
 }
+
+// 유저의 크레딧 수를 조회하는 함수
+export async function fetchCreditCount() {
+  try {
+    const response = await axiosInstance.get('/accounts/credit/');
+    return response.data.credit;  // 서버에서 {"credit": 12} 형식으로 반환됨
+  } catch (error) {
+    console.error('크레딧 조회 실패:', error.response?.data || error.message);
+    throw new Error(error.response?.data?.detail || '크레딧 조회에 실패했습니다.');
+  }
+}

@@ -57,7 +57,10 @@
             <div class="chat-header">
                 <h2>AInfo 챗봇</h2>
                 <!-- 크루 모드 버튼 -->
-                <button id="crew-report-btn" title="입력한 질문을 기반으로 보고서를 생성해줍니다.">📄 보고서</button>
+                <div class="report-credit-container">
+                    <span id="credit-display" title="챗봇 사용 시 50 크레딧씩 차감됩니다.">잔여 크레딧: <strong id="credit-count">-</strong></span>
+                    <button id="crew-report-btn" title="입력한 질문을 기반으로 보고서를 생성해줍니다.">📄 보고서</button>
+                </div>
             </div>
             
             <div id="chat-messages">

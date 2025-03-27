@@ -2,7 +2,7 @@
 
 import WebSocketService from './websocket-service.js';
 import ChatRenderer from './chat-renderer.js';
-import { renameChatRoom, createChatRoom, getChatRoomList } from './api.js';
+import { renameChatRoom, createChatRoom, getChatRoomList, fetchCreditCount } from './api.js';
 import { loadChatRooms, initSidebar } from './chat-sidebar.js';
 
 class ChatApp {
@@ -46,6 +46,18 @@ class ChatApp {
         this.renderer.addSystemMessage('✏️ 일반 대화 모드로 돌아왔습니다.');
       }
     });
+    this.updateCreditDisplay();
+  }
+
+  async updateCreditDisplay() {
+    const span = document.getElementById('credit-count');
+    try {
+      const credit = await fetchCreditCount();
+      span.textContent = credit;
+    } catch (err) {
+      console.error('크레딧 조회 실패:', err);
+      span.textContent = '에러';
+    }
   }
   
   async sendMessage() {
@@ -56,6 +68,7 @@ class ChatApp {
     this.firstUserMessage = message;
     
     const isReport = this.inputMode === 'crew_report';
+    this.lastMessageWasReport = isReport;
 
     this.isBotResponding = true;
     this.sendButton.disabled = true;
@@ -135,6 +148,10 @@ class ChatApp {
         if (!isStreaming) {
           this.isBotResponding = false;
           this.sendButton.disabled = false;
+          
+          if (this.lastMessageWasReport) {
+            await this.updateCreditDisplay();
+          }
 
           if (this.inputMode === 'default' && this.firstUserMessage && this.firstUserMessage.trim().length > 0 && message.includes('보고서')) {
             this.renderer.addSystemMessage('✏️ 일반 대화 모드로 돌아왔습니다.');
