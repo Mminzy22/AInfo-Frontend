@@ -22,8 +22,7 @@ class WebSocketService {
       return;
     }
 
-    const wsUrl = `ws://localhost:8000/ws/chat/${roomId}/?token=${token}`;
-    // const wsUrl = `wss://ainfo.ai.kr/ws/chat/${roomId}/?token=${token}`;
+    const wsUrl = `${window.appConfig.WSURL}${roomId}/?token=${token}`;
 
     return new Promise((resolve, reject) => {
       this.socket = new WebSocket(wsUrl);
