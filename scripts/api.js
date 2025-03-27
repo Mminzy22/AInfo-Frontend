@@ -269,7 +269,7 @@ export async function createChatRoom() {
   const token = localStorage.getItem('access_token');
 
   try {
-    const response = await axios.post(`${API_BASE_URL}/room/`, {}, {
+    const response = await axios.post(`${API_BASE_URL}/chatbot/room/`, {}, {
       headers: {
         Authorization: `Bearer ${token}`,
       }
@@ -286,7 +286,7 @@ export async function getChatRoomList() {
   const token = localStorage.getItem('access_token');
 
   try {
-    const response = await axios.get(`${API_BASE_URL}/room/`, {
+    const response = await axios.get(`${API_BASE_URL}/chatbot/room/`, {
       headers: {
         Authorization: `Bearer ${token}`,
       }
@@ -303,7 +303,7 @@ export async function getChatLogs(roomId) {
   const token = localStorage.getItem('access_token');
 
   try {
-    const response = await axios.get(`${API_BASE_URL}/room/${roomId}/logs/`, {
+    const response = await axios.get(`${API_BASE_URL}/chatbot/room/${roomId}/logs/`, {
       headers: {
         Authorization: `Bearer ${token}`,
       }
@@ -320,7 +320,7 @@ export async function deleteChatRoom(roomId) {
   const token = localStorage.getItem('access_token');
 
   try {
-    const response = await axios.delete(`${API_BASE_URL}/room/${roomId}/`, {
+    const response = await axios.delete(`${API_BASE_URL}/chatbot/room/${roomId}/`, {
       headers: {
         Authorization: `Bearer ${token}`,
       }
@@ -337,7 +337,7 @@ export async function renameChatRoom(roomId, newTitle) {
   const token = localStorage.getItem('access_token');
 
   try {
-    const response = await axios.patch(`${API_BASE_URL}/room/${roomId}/`, {
+    const response = await axios.patch(`${API_BASE_URL}/chatbot/room/${roomId}/`, {
       title: newTitle,
     }, {
       headers: {
