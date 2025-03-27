@@ -275,19 +275,21 @@ function showMessage(message, type) {
 document.addEventListener('DOMContentLoaded', function () {
   const modal = document.getElementById('marketing-modal');
   const openBtn = document.getElementById('marketing-terms-link');
-  const closeBtn = document.querySelector('.close[data-target="marketing-modal"]');
+  const closeBtn = modal.querySelector('.close[data-target="marketing-modal"]'); 
 
-  openBtn.addEventListener('click', function () {
-    modal.style.display = 'block';
+  openBtn?.addEventListener('click', () => {
+    modal.style.display = 'flex';
   });
 
-  closeBtn.addEventListener('click', function () {
+  closeBtn?.addEventListener('click', () => {
     modal.style.display = 'none';
   });
 
-  window.addEventListener('click', function (event) {
+  window.addEventListener('click', (event) => {
     if (event.target === modal) {
       modal.style.display = 'none';
     }
   });
 });
+
+
