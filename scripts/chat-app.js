@@ -41,13 +41,13 @@ class ChatApp {
       this.inputMode = isActive ? 'crew_report' : 'default';
 
       if (isActive) {
-        this.renderer.addSystemMessage('📝 보고서 생성 모드입니다.');
+        this.renderer.addSystemMessage('📝 보고서 생성 모드입니다. 어떤 유형의 보고서를 만들어드릴까요?');
       } else {
         this.renderer.addSystemMessage('✏️ 일반 대화 모드로 돌아왔습니다.');
       }
     });
   }
-
+  
   async sendMessage() {
     if (this.isBotResponding) return;
     const message = this.userInput.value;
@@ -69,7 +69,7 @@ class ChatApp {
 
     this.renderer.addUserMessage(message);
     if (isReport) {
-      this.renderer.addLoadingMessage('📄 보고서 생성에는 1분 정도 소요됩니다...');
+      this.renderer.addLoadingMessage('📄 보고서 생성에는 2~3분 정도 소요됩니다...');
     } else {
       this.renderer.addLoadingMessage('답변을 생성 중입니다...');
     }
@@ -78,7 +78,6 @@ class ChatApp {
       const crewBtn = document.getElementById('crew-report-btn');
       crewBtn.classList.remove('active');
       this.inputMode = 'default';
-      this.renderer.addSystemMessage('✏️ 일반 대화 모드로 돌아왔습니다.');
     }
 
     const messagePayload = { message, is_report: isReport};
@@ -136,6 +135,10 @@ class ChatApp {
         if (!isStreaming) {
           this.isBotResponding = false;
           this.sendButton.disabled = false;
+
+          if (this.inputMode === 'default' && this.firstUserMessage && this.firstUserMessage.trim().length > 0 && message.includes('보고서')) {
+            this.renderer.addSystemMessage('✏️ 일반 대화 모드로 돌아왔습니다.');
+          }
         }
 
         if (!isStreaming && !this.isFirstResponseHandled) {
