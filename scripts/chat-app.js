@@ -149,9 +149,8 @@ class ChatApp {
           this.isBotResponding = false;
           this.sendButton.disabled = false;
           
-          if (this.lastMessageWasReport) {
-            await this.updateCreditDisplay();
-          }
+          await this.updateCreditDisplay();
+
 
           if (this.inputMode === 'default' && this.firstUserMessage && this.firstUserMessage.trim().length > 0 && message.includes('보고서')) {
             this.renderer.addSystemMessage('✏️ 일반 대화 모드로 돌아왔습니다.');
