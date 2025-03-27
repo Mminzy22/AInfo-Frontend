@@ -5,7 +5,8 @@ marked.use({
     link(href, title, text) {
       return `<a href="${href}" target="_blank" rel="noopener noreferrer"${title ? ` title="${title}"` : ''}>${text}</a>`;
     }
-  }
+  },
+  breaks: true
 });
 
 class ChatRenderer {
