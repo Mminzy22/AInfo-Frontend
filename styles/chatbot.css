@@ -502,6 +502,18 @@
     .sidebar-toggle-unified {
         top: 100px;
     }
+
+    .profile-img {
+        display: none;
+    }
+
+    .user-message {
+        margin-right: 0;
+    }
+
+    .bot-message {
+        margin-left: 0;
+    }
 }
 
 @media (width <= 380px) {
