@@ -82,7 +82,7 @@ class ChatApp {
 
     this.renderer.addUserMessage(message);
     if (isReport) {
-      this.renderer.addLoadingMessage('📄 보고서 생성에는 2~3분 정도 소요됩니다...');
+      this.renderer.addLoadingMessage('📄 보고서 생성에는 평균 2~3분이 소요됩니다.<br>입력 내용이 보고서와 관련이 없을 경우, 일반 모드로 전환하여 응답해드립니다.');
     } else {
       this.renderer.addLoadingMessage('답변을 생성 중입니다...');
     }
@@ -152,7 +152,7 @@ class ChatApp {
           await this.updateCreditDisplay();
 
 
-          if (this.inputMode === 'default' && this.firstUserMessage && this.firstUserMessage.trim().length > 0 && message.includes('보고서')) {
+          if (this.lastMessageWasReport && this.inputMode === 'default') {
             this.renderer.addSystemMessage('✏️ 일반 대화 모드로 돌아왔습니다.');
           }
         }
