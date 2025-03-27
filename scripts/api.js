@@ -262,7 +262,7 @@ export async function agreeToTerms() {
 /////////////////chatbot part
 // ============ chatbot API ============
 
-const API_BASE_URL = 'http://localhost:8000/api/v1/chatbot/';
+const API_BASE_URL = window.appConfig.API_BASE_URL;
 
 // 채팅방 생성
 export async function createChatRoom() {
