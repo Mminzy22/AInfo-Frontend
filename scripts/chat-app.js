@@ -41,7 +41,7 @@ class ChatApp {
       this.inputMode = isActive ? 'crew_report' : 'default';
 
       if (isActive) {
-        this.renderer.addSystemMessage('📝 보고서 생성 모드입니다. 어떤 유형의 보고서를 만들어드릴까요?');
+        this.renderer.addSystemMessage('📝 보고서 생성 모드입니다. 어떤 내용의 보고서를 만들어드릴까요?');
       } else {
         this.renderer.addSystemMessage('✏️ 일반 대화 모드로 돌아왔습니다.');
       }
