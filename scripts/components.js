@@ -15,6 +15,11 @@ function renderHeader() {
                 <a href="/" class="logo">
                   <img src="/assets/icons/main-logo7.png">
                 </a>
+                <div class="menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
                 <nav class="nav">
                     <a href="/pages/chatbot.html" class="nav-link">챗봇</a>
                     <a href="/pages/introduction.html" class="nav-link">소개</a>  
@@ -31,6 +36,7 @@ function renderHeader() {
                 </nav>
             </div>
         </header>
+        <div class="menu-overlay"></div>
     `;
 
   document.body.insertAdjacentHTML('afterbegin', headerHTML);
@@ -142,5 +148,25 @@ document.addEventListener('click', function (event) {
 
   if (event.target.classList.contains('close-button') || event.target.id === 'termsModal') {
     document.getElementById('termsModal').classList.add('hidden');
+  }
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+  const toggle = document.querySelector('.menu-toggle');
+  const nav = document.querySelector('.nav');
+  const overlay = document.querySelector('.menu-overlay');
+
+  if (toggle && nav && overlay) {
+    toggle.addEventListener('click', () => {
+      toggle.classList.toggle('active');
+      nav.classList.toggle('active');
+      overlay.classList.toggle('active');
+    });
+
+    overlay.addEventListener('click', () => {
+      toggle.classList.remove('active');
+      nav.classList.remove('active');
+      overlay.classList.remove('active');
+    });
   }
 });

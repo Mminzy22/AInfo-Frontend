@@ -527,9 +527,3 @@
         margin-left: 0;
     }
 }
-
-@media (width <= 380px) {
-    .sidebar-toggle-unified {
-        top: 175px;
-    }
-}
