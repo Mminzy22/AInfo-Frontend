@@ -225,6 +225,7 @@
     cursor: pointer;
     font-size: 16px;
     transition: background-color 0.2s ease;
+    flex-shrink: 0;
 }
 
 #crew-report-btn:hover {
@@ -436,18 +437,22 @@
 .message-wrapper.loading {
     align-items: center;
     justify-content: flex-end; /* 오른쪽 정렬 추가 */
+    max-width: 85%;
 }
 
 .message-wrapper.loading::before {
     content: '';
     width: 24px;
     height: 24px;
+    min-width: 24px;
+    min-height: 24px;
     border: 3px solid #dde7e6;
     border-top: 3px solid #53B2AC;
     border-radius: 50%;
     animation: spin 1s linear infinite;
-    margin: 0 10px;
+    margin: 6px 10px;
     order: 3; /* 순서 변경으로 오른쪽에 배치 */
+    align-self: center;
 }
 
 /* 로딩 메시지 컨테이너 내부 요소 순서 조정 */
@@ -481,6 +486,37 @@
 #credit-display {
     font-size: 14px;
     color: #555;
+}
+
+/* PDF 다운로드 버튼 스타일 */
+.download-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 10px;
+}
+
+.pdf-download-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f0f4ff;
+    color: #53b2ac;
+    border: 1px solid #53b2ac;
+    border-radius: 6px;
+    padding: 6px 12px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.pdf-download-btn:hover {
+    background-color: #53b2ac;
+    color: white;
+}
+
+.pdf-download-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
 }
 
 @keyframes spin {
