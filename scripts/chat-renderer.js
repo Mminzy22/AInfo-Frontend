@@ -1,4 +1,5 @@
 // chat-renderer.js : 채팅 메시지 렌더링 담당
+import pdfGenerator from './pdf-generator.js';
 
 marked.use({
   renderer: {
@@ -50,11 +51,6 @@ class ChatRenderer {
   }
 
   addBotMessage(message, isStreaming) {
-    // 응답 시작 전에는 메시지 초기화
-    if (!isStreaming) {
-      this.resetCurrentMessage();
-      return;
-    }
 
     if (!this.currentBotMessage) {
       // 메시지 처음 생성 시
@@ -78,7 +74,11 @@ class ChatRenderer {
       this.scrollToBottom();
     }
 
-    this.currentMarkdownText += message;
+    if (isStreaming) {
+      this.currentMarkdownText += message;
+    } else {
+      this.currentMarkdownText = message;
+    }
     this.currentBotMessage.innerHTML = this.renderMarkdown(this.currentMarkdownText);
     this.scrollToBottom();
   }
@@ -143,6 +143,55 @@ class ChatRenderer {
 
   scrollToBottom() {
     this.chatMessages.scrollTop = this.chatMessages.scrollHeight;
+  }
+
+  addDownloadButton(messageElement, content, isReport = false) {
+    // 이미 다운로드 버튼이 있는지 확인
+    if (messageElement.querySelector('.pdf-download-btn')) {
+      return;
+    }
+
+    const downloadContainer = document.createElement('div');
+    downloadContainer.classList.add('download-container');
+
+    const downloadBtn = document.createElement('button');
+    downloadBtn.classList.add('pdf-download-btn');
+    downloadBtn.innerHTML = `
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-right: 5px;">
+        <path d="M12 16L12 8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        <path d="M9 13L12 16L15 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M3 15V16C3 18.2091 4.79086 20 7 20H17C19.2091 20 21 18.2091 21 16V15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+      ${isReport ? 'PDF 다운로드' : 'PDF로 저장'}
+    `;
+
+    downloadBtn.addEventListener('click', async () => {
+      try {
+        downloadBtn.disabled = true;
+        downloadBtn.textContent = '생성 중...';
+
+        // 제목 생성
+        const title = isReport ? '보고서' : 'AInfo 챗봇 대화';
+
+        // PDF 생성 및 다운로드
+        await pdfGenerator.generatePDF(content, title);
+      } catch (error) {
+        console.error('PDF 생성 오류:', error);
+        alert('PDF 생성 중 오류가 발생했습니다.');
+      } finally {
+        downloadBtn.disabled = false;
+        downloadBtn.innerHTML = `
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-right: 5px;">
+            <path d="M12 16L12 8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <path d="M9 13L12 16L15 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M3 15V16C3 18.2091 4.79086 20 7 20H17C19.2091 20 21 18.2091 21 16V15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          ${isReport ? 'PDF 다운로드' : 'PDF로 저장'}
+        `;
+      }
+    });
+    downloadContainer.appendChild(downloadBtn);
+    messageElement.appendChild(downloadContainer);
   }
 }
 

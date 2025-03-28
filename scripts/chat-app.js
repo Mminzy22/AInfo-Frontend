@@ -37,6 +37,11 @@ class ChatApp {
 
     const crewBtn = document.getElementById('crew-report-btn');
     crewBtn.addEventListener('click', () => {
+      if (this.isBotResponding) {
+        this.renderer.addSystemMessage('⏳ 현재 응답 중입니다. 잠시만 기다려주세요.');
+        return;
+      }
+
       const isActive = crewBtn.classList.toggle('active');
       this.inputMode = isActive ? 'crew_report' : 'default';
 
@@ -87,12 +92,6 @@ class ChatApp {
       this.renderer.addLoadingMessage('답변을 생성 중입니다...');
     }
 
-    if (isReport) {
-      const crewBtn = document.getElementById('crew-report-btn');
-      crewBtn.classList.remove('active');
-      this.inputMode = 'default';
-    }
-
     const messagePayload = { message, is_report: isReport};
     // 아직 연결되지 않았을 때
     if (!this.websocketService) {
@@ -141,6 +140,7 @@ class ChatApp {
           this.renderer.removeLoadingMessage();
           this.isBotResponding = true;
           this.sendButton.disabled = true;
+          document.getElementById('crew-report-btn').disabled = true;
         }
         
         this.renderer.addBotMessage(message, isStreaming);
@@ -148,14 +148,28 @@ class ChatApp {
         if (!isStreaming) {
           this.isBotResponding = false;
           this.sendButton.disabled = false;
-          
+
+          document.getElementById('crew-report-btn').disabled = false;
+        
           await this.updateCreditDisplay();
+        
+          if (this.lastMessageWasReport && this.renderer.currentBotMessage) {
+            const messageElement = this.renderer.currentBotMessage.closest('.bot-message');
 
-
-          if (this.lastMessageWasReport && this.inputMode === 'default') {
+            if (messageElement) {
+              const markdownCopy = this.renderer.currentMarkdownText; // 복사해두기
+              const html = this.renderer.renderMarkdown(markdownCopy); // 변환 후 넘기기
+              this.renderer.addDownloadButton(messageElement, html, true);
+            }
+        
+            const crewBtn = document.getElementById('crew-report-btn');
+            crewBtn.classList.remove('active');
+            this.inputMode = 'default';
             this.renderer.addSystemMessage('✏️ 일반 대화 모드로 돌아왔습니다.');
           }
-        }
+        
+          this.renderer.resetCurrentMessage();
+        }        
 
         if (!isStreaming && !this.isFirstResponseHandled) {
           this.isFirstResponseHandled = true;
