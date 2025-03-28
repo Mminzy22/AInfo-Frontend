@@ -15,7 +15,6 @@
     <link rel="stylesheet" href="../styles/footer.css">
     <link rel="stylesheet" href="../styles/payment.css">
 
-
     <!-- JavaScript 파일 -->
     <script type="module" src="../config/config.js"></script>
     <script type="module" src="../scripts/api.js"></script>
@@ -27,83 +26,161 @@
     <!-- 헤더는 components.js에서 삽입됨 -->
 
     <!-- Main Content -->
-    <main class="main">
-        <!-- <button id="kakaopay-btn">Kakao Pay</button>
-        <button id="tosspay-btn">Toss Pay</button> -->
-        <!-- <button id="portone-btn">카드결제</button> -->
-        
-        <div class="pricing-card">
-            <div class="top">
-                <div class="text-heading">
-                    <div class="text-heading2">100 크레딧</div>
+    <main class="main-container">
+        <section class="hero-section">
+            <div class="hero-content">
+                <h1>AInfo 크레딧 충전</h1>
+                <p>AI 챗봇과 맞춤형 보고서 생성을 위한 크레딧을 충전하세요</p>
+            </div>
+        </section>
+
+        <section class="pricing-section">
+            <div class="pricing-container">
+                <div class="pricing-card">
+                    <div class="popular-tag">인기</div>
+                    <div class="card-header">
+                        <h3>100 크레딧</h3>
+                        <div class="price">
+                            <span class="amount">1,000</span>
+                            <span class="currency">KRW</span>
+                        </div>
+                    </div>
+                    <div class="card-features">
+                        <ul>
+                            <li>
+                                <svg class="check-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                챗봇에게 질문 가능
+                            </li>
+                            <li>
+                                <svg class="check-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                질문 1회당 1크레딧 차감
+                            </li>
+                            <li>
+                                <svg class="check-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                맞춤형 보고서 생성 가능
+                            </li>
+                            <li>
+                                <svg class="check-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                보고서 1회당 50크레딧 차감
+                            </li>
+                        </ul>
+                    </div>
+                    <button id="portone-btn" class="payment-button">결제하기</button>
                 </div>
-                <div class="text-price">
-                    <div class="price">
-                        <div class="div"></div>
-                        <div class="price-krw">1000 </div>
+            </div>
+        </section>
+
+        <section class="info-section">
+            <div class="info-container">
+                <div class="info-card">
+                    <div class="info-header">
+                        <h2>크레딧이란?</h2>
+                        <p>AInfo의 서비스를 이용하기 위한 결제수단입니다</p>
                     </div>
-                    <div class="mo"> KRW</div>
+                    <div class="info-content">
+                        <div class="info-item">
+                            <div class="info-icon">
+                                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" stroke-width="2"/>
+                                    <path d="M12 8V16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                    <path d="M8 12H16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                </svg>
+                            </div>
+                            <div class="info-text">
+                                <h3>크레딧 사용 방법</h3>
+                                <p>챗봇에게 질문할 때마다 1크레딧이 차감됩니다.</p>
+                                <p>보고서 생성 1회에 50크레딧이 차감됩니다.</p>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-icon">
+                                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" stroke-width="2"/>
+                                    <path d="M12 16V16.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                    <path d="M12 8V12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                </svg>
+                            </div>
+                            <div class="info-text">
+                                <h3>중요 안내사항</h3>
+                                <p>❌ 상업적인 목적은 없으며, 결제기능 구현을 위한 최소금액 1,000원으로 설정되었습니다.</p>
+                                <p>❌ 테스트 결제수단이라 매일 자정에 자동으로 환불 처리됩니다.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="refund-images">
+                        <img src="/assets/images/환불1.jpg" alt="환불 이미지">
+                        <img src="/assets/images/환불2.jpg" alt="환불 이미지">
+                    </div>
                 </div>
-                <div class="text-list">
-                    <div class="text-list-item">
-                        <div class="list-item">
-                            <ul class="list-item-span">
-                                <li>챗봇에게 질문 가능</li>
-                            </ul>
+            </div>
+        </section>
+
+        <section class="faq-section">
+            <div class="faq-container">
+                <h2>자주 묻는 질문</h2>
+                <div class="faq-list">
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>크레딧은 언제까지 사용할 수 있나요?</h3>
+                            <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <div class="faq-answer">
+                            <p>구매하신 크레딧은 사용 기한 없이 언제든지 이용하실 수 있습니다.</p>
+                            <p>다만, 회원 탈퇴 시 크레딧은 자동 소멸되므로 탈퇴 전 꼭 확인해주세요.</p>
                         </div>
                     </div>
-                    <div class="text-list-item">
-                        <div class="list-item">
-                            <ul class="list-item-span2">
-                                <li>질문 1회당 1크레딧 차감</li>
-                            </ul>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>결제 후 크레딧은 언제 충전되나요?</h3>
+                            <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <div class="faq-answer">
+                            <p>결제가 완료되면 크레딧이 즉시 충전되며, 계정에 바로 반영됩니다.<br>만약 결제 후에도 크레딧이 보이지 않는 경우, 아래 이메일로 문의해주세요.</p>
+                            <p>📩 ainfo.ai.kr@gmail.com</p>
                         </div>
                     </div>
-                    <div class="text-list-item">
-                        <div class="list-item">
-                            <ul class="list-item-span2">
-                                <li>보고서 1회당 50크레딧 차감</li>
-                            </ul>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>환불은 어떻게 처리되나요?</h3>
+                            <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
                         </div>
-                    </div>
-                    <div class="text-list-item">
-                        <div class="list-item">
-                            <ul class="list-item-span3">
-                                <li>맞춤형 보고서 생성 가능</li>
-                            </ul>
+                        <div class="faq-answer">
+                            <p>테스트 결제이므로 매일 자정에 자동으로 환불 처리됩니다. 별도의 환불 요청이 필요하지 않습니다.</p>
                         </div>
                     </div>
                 </div>
             </div>
-            <button id="portone-btn">결제하기</button>
-        </div>
-
-        <div class="panel-image-content-reverse">
-            <div class="text-content-flow">
-                <div class="text-content-heading">
-                    <div class="heading">크레딧이란?</div>
-                    <div class="subheading">AInfo의 결제수단</div>
-                </div>
-                <div class="text">
-                    <div class="text2">
-                    📢 챗봇에게 질문할 때마다 1크레딧이 차감됩니다.<br>📝 보고서 생성 1회에 50크레딧이 차감됩니다.
-                    </div>
-                </div>
-                <div class="text">
-                    <div class="text2">
-                    ❌ 상업적인 목적은 없으며, 결제기능 구현을 위한 최소금액 1000원으로 설정되었습니다
-                    
-                    ❌ 테스트 결제수단이라 매일 자정에 자동으로 환불 처리됩니다.
-                    </div>
-                </div>
-                <div class="img1">
-                    <img src="/assets/images/환불1.jpg" alt="환불 이미지">
-                    <img src="/assets/images/환불2.jpg" alt="환불 이미지">
-                </div>
-            </div>
-        </div>
-
+        </section>
     </main>
     <!-- 푸터는 components.js에서 삽입됨 -->
+
+    <script>
+        // FAQ 토글 기능
+        document.addEventListener('DOMContentLoaded', function() {
+            const faqItems = document.querySelectorAll('.faq-item');
+            
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                
+                question.addEventListener('click', () => {
+                    item.classList.toggle('active');
+                });
+            });
+        });
+    </script>
 </body>
 </html>

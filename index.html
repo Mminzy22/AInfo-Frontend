@@ -23,84 +23,199 @@
 <body>
   <!-- 헤더는 components.js에 의해 삽입 -->
 
-  <main class="main-container">
-    <!-- 왼쪽 섹션 - 챗봇 -->
-    <div class="left-section">
-      <div class="top-button-container">
-        <button class="goto-button goto-button-light" onclick="location.href='pages/chatbot.html'">바로가기</button>
-      </div>      
-
-      <div class="left-content">
-        <p class="policy-count">14,000개 이상의 정책이 준비되어 있습니다.</p>
-        
-        <div class="custom-text">
-          <span>나에게 꼭 맞는 </span>
-          <span class="highlight-green">맞춤형</span>
-        </div>
-        
-        <h1 class="main-title">공공서비스 챗봇</h1>
-        
-        <div class="speech-bubbles-container">
-          <div class="speech-bubble left">
-            <p>구직자 대상 지원 제도 같은 거 있어?</p>
-          </div>
-          <div class="speech-bubble right">
-            <p>월세 부담 너무 큰데 지원 제도 있을까?</p>
-          </div>
-          <div class="speech-bubble left">
-            <p>결혼 준비 중인데 받을 수 있는 혜택 있나?</p>
-          </div>
-          <div class="speech-bubble right">
-            <p>창업 생각 중인데 도움받을 수 있는 서비스 알려줘</p>
+  <main class="main-content">
+    <!-- 히어로 섹션 -->
+    <section class="hero-section">
+      <div class="hero-container">
+        <div class="hero-text">
+          <h1 class="hero-title">
+            <span class="hero-title-normal">나에게 꼭 맞는</span>
+            <span class="hero-title-highlight">맞춤형</span>
+            <span class="hero-title-main">공공서비스 챗봇</span>
+          </h1>
+          <p class="hero-subtitle">14,000개 이상의 정책이 준비되어 있습니다.</p>
+          <div class="hero-buttons">
+            <a href="pages/chatbot.html" class="hero-button primary-button">
+              <span>챗봇 시작하기</span>
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="button-icon">
+                <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
           </div>
         </div>
-      </div>
-    </div>
-
-    <!-- 오른쪽 섹션 - 보고서 -->
-    <div class="right-section">
-      <div class="top-button-container">
-        <button class="goto-button goto-button-dark" onclick="location.href='pages/payment.html'">바로가기</button>
-      </div>
-
-      <div class="right-content">
-        <p class="report-title-sub">AInfo에만 있는</p>
-        <p class="report-title-main">특별한 보고서</p>
-        
-        <div class="document-icon">
-          <div class="blue-clip"></div>
-          <div class="document-stack">
-            <div class="document back-document"></div>
-            <div class="document middle-document"></div>
-            <div class="document front-document">
-              <div class="document-lines">
-                <div class="doc-line"></div>
-                <div class="doc-line short"></div>
-                <div class="doc-line"></div>
-                <div class="doc-line shorter"></div>
+        <div class="hero-image">
+          <div class="chat-container">
+            <div class="chat-messages">
+              <div class="chat-message user">
+                <div class="message-bubble">취업 지원 받을 수 있는 제도 있어?</div>
+              </div>
+              <div class="chat-message bot">
+                <div class="bot-avatar">
+                  <img src="./assets/icons/bot_profile.png" alt="AI 봇" class="avatar-image">
+                </div>
+                <div class="message-bubble">
+                  네, 취업 지원 제도에 대해 안내해드리겠습니다.
+                  <br>1. 청년 면접수당 지원사업
+                  <br>2. 국민취업지원제도
+                  <br>3. 청년구직활동지원금
+                  <br>📝 특정 정책에 대한 자세한 정보가 궁금하다면 "자세히 알려줘!" 라고 말해주세요!
+                </div>
+              </div>
+              <div class="chat-message user">
+                <div class="message-bubble">월세 부담 너무 큰데 지원 제도 있을까?</div>
               </div>
             </div>
           </div>
         </div>
+      </div>
+    </section>
 
-        <div class="options-container">
-          <div class="option-item">
-            <div class="option-number"><span>1</span></div>
-            <span class="option-text">AI가 딱 골라준 내 맞춤 정책</span>
+    <!-- 특징 섹션 -->
+    <section class="features-section">
+      <div class="section-header">
+        <h2 class="section-title">AInfo에만 있는 <span class="highlight">특별한 보고서</span></h2>
+        <p class="section-subtitle">AI가 분석한 맞춤형 정책 보고서로 복잡한 공공서비스를 쉽게 이해하세요</p>
+      </div>
+      
+      <div class="features-container">
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M9 3H5C3.89543 3 3 3.89543 3 5V9C3 10.1046 3.89543 11 5 11H9C10.1046 11 11 10.1046 11 9V5C11 3.89543 10.1046 3 9 3Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M9 13H5C3.89543 13 3 13.8954 3 15V19C3 20.1046 3.89543 21 5 21H9C10.1046 21 11 20.1046 11 19V15C11 13.8954 10.1046 13 9 13Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M19 3H15C13.8954 3 13 3.89543 13 5V9C13 10.1046 13.8954 11 15 11H19C20.1046 11 21 10.1046 21 9V5C21 3.89543 20.1046 3 19 3Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M13 17.5C13 15.567 14.567 14 16.5 14C18.433 14 20 15.567 20 17.5C20 19.433 18.433 21 16.5 21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M16.5 21C15.6716 21 15 20.3284 15 19.5C15 18.6716 15.6716 18 16.5 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
           </div>
-          <div class="option-item">
-            <div class="option-number"><span>2</span></div>
-            <span class="option-text">헷갈리는 정책, 한눈에 비교</span>
+          <h3 class="feature-title">AI가 딱 골라준 내 맞춤 정책</h3>
+          <p class="feature-description">개인 상황에 맞는 최적의 정책을 AI가 분석하여 추천해 드립니다.</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M16 3H8C6.89543 3 6 3.89543 6 5V19C6 20.1046 6.89543 21 8 21H16C17.1046 21 18 20.1046 18 19V5C18 3.89543 17.1046 3 16 3Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M12 18H12.01" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M10 6H14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
           </div>
-          <div class="option-item">
-            <div class="option-number"><span>3</span></div>
-            <span class="option-text">언제, 뭘 먼저 신청할지까지 전략 추천</span>
+          <h3 class="feature-title">헷갈리는 정책, 한눈에 비교</h3>
+          <p class="feature-description">유사한 정책들의 차이점과 장단점을 명확하게 비교 분석해 드립니다.</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 8V12L15 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M3.05078 11.0002C3.27441 7.55283 5.52078 4.62941 8.72078 3.54199C11.9208 2.45457 15.4208 3.39199 17.6541 6.00283C19.8874 8.61366 20.2208 12.2945 18.5208 15.2945C16.8208 18.2945 13.4874 19.9836 10.0541 19.5002C7.52078 19.1419 5.32078 17.7002 4.05078 15.6669C2.78078 13.6336 2.52078 11.2002 3.05078 9.00024" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
           </div>
+          <h3 class="feature-title">언제, 뭘 먼저 신청할지까지 전략 추천</h3>
+          <p class="feature-description">신청 기간과 우선순위를 고려한 최적의 신청 전략을 제공합니다.</p>
         </div>
       </div>
-    </div>
+      
+      <div class="features-cta">
+        <a href="pages/payment.html" class="cta-button">
+          <span>보고서 서비스 이용하기</span>
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="button-icon">
+            <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+    </section>
+
+    <!-- 사용 방법 섹션 -->
+    <section class="how-it-works-section">
+      <div class="section-header">
+        <h2 class="section-title">쉽고 빠르게 <span class="highlight">정책 찾기</span></h2>
+        <p class="section-subtitle">복잡한 공공서비스, AInfo와 함께라면 쉽게 찾을 수 있습니다</p>
+      </div>
+      
+      <div class="steps-container">
+        <div class="step-card">
+          <div class="step-number">1</div>
+          <h3 class="step-title">질문하기</h3>
+          <p class="step-description">챗봇에게 필요한 정책이나 서비스에 대해 자연스럽게 질문하세요.</p>
+        </div>
+        
+        <div class="step-connector"></div>
+        
+        <div class="step-card">
+          <div class="step-number">2</div>
+          <h3 class="step-title">맞춤 정책 확인</h3>
+          <p class="step-description">AI가 분석한 맞춤형 정책 정보를 확인하세요.</p>
+        </div>
+        
+        <div class="step-connector"></div>
+        
+        <div class="step-card">
+          <div class="step-number">3</div>
+          <h3 class="step-title">상세 보고서 받기</h3>
+          <p class="step-description">필요한 경우 더 자세한 분석 보고서를 요청할 수 있습니다.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 예시 질문 섹션 -->
+    <section class="example-section">
+      <div class="section-header">
+        <h2 class="section-title">이런 질문을 <span class="highlight">해보세요</span></h2>
+        <p class="section-subtitle">AInfo 챗봇에게 물어볼 수 있는 다양한 질문 예시</p>
+      </div>
+      
+      <div class="examples-container">
+        <div class="example-card">
+          <div class="example-icon">💼</div>
+          <p class="example-text">"창업 생각 중인데 도움받을 수 있는 서비스 알려줘"</p>
+        </div>
+        
+        <div class="example-card">
+          <div class="example-icon">🏠</div>
+          <p class="example-text">"월세 부담 너무 큰데 지원 제도 있을까?"</p>
+        </div>
+        
+        <div class="example-card">
+          <div class="example-icon">💍</div>
+          <p class="example-text">"결혼 준비 중인데 받을 수 있는 혜택 있나?"</p>
+        </div>
+
+      </div>
+      
+      <div class="examples-cta">
+        <a href="pages/chatbot.html" class="cta-button secondary-button">
+          <span>지금 바로 질문하기</span>
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="button-icon">
+            <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+    </section>
   </main>
 
   <!-- 푸터는 components.js에 의해 삽입 -->
+
+  <script>
+    // 스크롤 애니메이션
+    document.addEventListener('DOMContentLoaded', function() {
+      const animateElements = document.querySelectorAll('.feature-card, .step-card, .example-card');
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('animate');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.1
+      });
+      
+      animateElements.forEach(element => {
+        observer.observe(element);
+      });
+    });
+  </script>
 </body>
 </html>
