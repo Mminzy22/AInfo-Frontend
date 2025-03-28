@@ -367,7 +367,9 @@ export async function sendPaymentData(paymentData) {
 export async function fetchCreditCount() {
   try {
     const response = await axiosInstance.get('/accounts/credit/');
-    return response.data.credit;  // 서버에서 {"credit": 12} 형식으로 반환됨
+    const credit = Number(response.data.credit); // int 지정
+    const formatted = credit.toLocaleString(); // 1,000 단위마다 콤마 찍기
+    return formatted; 
   } catch (error) {
     console.error('크레딧 조회 실패:', error.response?.data || error.message);
     throw new Error(error.response?.data?.detail || '크레딧 조회에 실패했습니다.');
