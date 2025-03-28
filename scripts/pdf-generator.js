@@ -54,6 +54,12 @@ class PDFGenerator {
           page-break-before: always;
           break-before: page;
         }
+        a {
+            color: #007bff;
+            text-decoration: underline;
+            word-break: break-word;
+            transition: color 0.2s ease;
+        }
       </style>
       <h1>${title}</h1>
       <p style="color:#666; font-size:11px;">생성일: ${new Date().toLocaleString()}</p>
