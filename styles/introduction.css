@@ -32,7 +32,7 @@ a {
   border-radius: 1rem;
   margin-bottom: 3rem;
   overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4px 12px rgb(0 0 0 / 5%);
 }
 
 .hero-section::before {
@@ -83,13 +83,13 @@ a {
   padding: 1.5rem;
   background-color: white;
   border-radius: 0.75rem;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 2px 8px rgb(0 0 0 / 5%);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .story-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 16px rgb(0 0 0 / 10%);
 }
 
 .story-icon {
@@ -149,7 +149,7 @@ a {
   padding: 1rem;
   background-color: white;
   border-radius: 0.5rem;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 2px 4px rgb(0 0 0 / 5%);
   transition: transform 0.2s ease;
 }
 
@@ -216,7 +216,7 @@ a {
   background-color: white;
   border-radius: 0.5rem;
   overflow: hidden;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 2px 4px rgb(0 0 0 / 5%);
   transition: transform 0.3s ease;
 }
 
@@ -289,7 +289,7 @@ a {
   border-radius: 50%;
   overflow: hidden;
   margin-bottom: 1rem;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgb(0 0 0 / 10%);
 }
 
 .member-image {
@@ -332,7 +332,7 @@ a {
 }
 
 .member-social-link:hover {
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color: rgb(255 255 255 / 20%);
 }
 
 .member-info {
@@ -352,7 +352,7 @@ a {
 }
 
 /* 반응형 스타일 */
-@media (max-width: 768px) {
+@media (width <= 768px) {
   .hero-title {
     font-size: 2rem;
   }
@@ -390,7 +390,7 @@ a {
   }
 }
 
-@media (max-width: 480px) {
+@media (width <= 480px) {
   .hero-section {
     padding: 3rem 1rem;
   }

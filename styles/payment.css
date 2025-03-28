@@ -5,12 +5,12 @@
     --primary-dark: #00b0a5;
     --secondary-color: #00c6b3;
     --background-color: #f8f9fa;
-    --surface-color: #ffffff;
+    --surface-color: #fff;
     --error-color: #b00020;
     --text-primary: #1e1e1e;
     --text-secondary: #757575;
     --border-color: #e0e0e0;
-    --shadow-color: rgba(0, 0, 0, 0.1);
+    --shadow-color: rgb(0 0 0 / 10%);
     --radius-sm: 4px;
     --radius-md: 8px;
     --radius-lg: 16px;
@@ -330,7 +330,7 @@
   }
   
   /* 반응형 스타일 */
-  @media (max-width: 768px) {
+  @media (width <= 768px) {
     .hero-content h1 {
       font-size: 2rem;
     }
@@ -355,7 +355,7 @@
     }
   }
   
-  @media (max-width: 480px) {
+  @media (width <= 480px) {
     .hero-content h1 {
       font-size: 1.8rem;
     }

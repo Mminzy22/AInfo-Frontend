@@ -4,18 +4,18 @@
   --primary-dark: #129c8b;
   --primary-light: #edf8f6;
   --secondary-color: #1e1e1e;
-  --text-color: #333333;
-  --text-light: #666666;
-  --background-color: #ffffff;
+  --text-color: #333;
+  --text-light: #666;
+  --background-color: #fff;
   --background-light: #f9f9f9;
   --border-color: #e0e0e0;
-  --shadow-color: rgba(0, 0, 0, 0.1);
+  --shadow-color: rgb(0 0 0 / 10%);
   --transition: all 0.3s ease;
 }
 
 .header {
   background-color: var(--background-color);
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 2px 10px rgb(0 0 0 / 5%);
   position: sticky;
   top: 0;
   z-index: 1000;
@@ -127,7 +127,7 @@
 /* 스크롤 시 헤더 스타일 변경 */
 .header.scrolled {
   padding: 12px 0;
-  background-color: rgba(255, 255, 255, 0.95);
+  background-color: rgb(255 255 255 / 95%);
   backdrop-filter: blur(10px);
 }
 
@@ -136,7 +136,7 @@
 }
 
 /* 반응형 디자인 */
-@media (max-width: 992px) {
+@media (width <= 992px) {
   .menu-toggle {
     display: flex;
   }
@@ -151,7 +151,7 @@
     flex-direction: column;
     align-items: flex-start;
     padding: 80px 30px 30px;
-    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+    box-shadow: -5px 0 15px rgb(0 0 0 / 10%);
     transition: var(--transition);
     z-index: 1000;
     gap: 16px;
@@ -201,7 +201,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgb(0 0 0 / 50%);
     z-index: 999;
     opacity: 0;
     visibility: hidden;
@@ -214,7 +214,7 @@
   }
 }
 
-@media (max-width: 480px) {
+@media (width <= 480px) {
   .header-container {
     padding: 0 16px;
   }

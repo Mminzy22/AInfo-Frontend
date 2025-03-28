@@ -4,12 +4,12 @@
   --primary-dark: #129c8b;
   --primary-light: #edf8f6;
   --secondary-color: #1e1e1e;
-  --text-color: #333333;
-  --text-light: #666666;
-  --background-color: #ffffff;
+  --text-color: #333;
+  --text-light: #666;
+  --background-color: #fff;
   --background-light: #f9f9f9;
   --border-color: #e0e0e0;
-  --shadow-color: rgba(0, 0, 0, 0.1);
+  --shadow-color: rgb(0 0 0 / 10%);
   --radius-sm: 8px;
   --radius-md: 12px;
   --radius-lg: 20px;
@@ -62,7 +62,7 @@ section {
   left: 0;
   width: 100%;
   height: 8px;
-  background-color: rgba(83, 178, 172, 0.2);
+  background-color: rgb(83 178 172 / 20%);
   z-index: -1;
 }
 
@@ -116,7 +116,7 @@ section {
   left: 0;
   width: 100%;
   height: 10px;
-  background-color: rgba(83, 178, 172, 0.2);
+  background-color: rgb(83 178 172 / 20%);
   z-index: -1;
 }
 
@@ -154,13 +154,13 @@ section {
 .primary-button {
   background-color: var(--primary-color);
   color: white;
-  box-shadow: 0 4px 12px rgba(83, 178, 172, 0.3);
+  box-shadow: 0 4px 12px rgb(83 178 172 / 30%);
 }
 
 .primary-button:hover {
   background-color: var(--primary-dark);
   transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(83, 178, 172, 0.4);
+  box-shadow: 0 6px 16px rgb(83 178 172 / 40%);
 }
 
 .secondary-button {
@@ -188,7 +188,7 @@ section {
 .chat-container {
   background-color: white;
   border-radius: var(--radius-md);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 10px 30px rgb(0 0 0 / 10%);
   overflow: hidden;
   padding: 20px;
   height: 400px;
@@ -289,7 +289,7 @@ section {
 
 .feature-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 10px 30px rgb(0 0 0 / 15%);
 }
 
 .feature-icon {
@@ -338,13 +338,13 @@ section {
   transition: var(--transition);
   background-color: var(--primary-color);
   color: white;
-  box-shadow: 0 4px 12px rgba(83, 178, 172, 0.3);
+  box-shadow: 0 4px 12px rgb(83 178 172 / 30%);
 }
 
 .cta-button:hover {
   background-color: var(--primary-dark);
   transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(83, 178, 172, 0.4);
+  box-shadow: 0 6px 16px rgb(83 178 172 / 40%);
 }
 
 /* 사용 방법 섹션 */
@@ -380,7 +380,7 @@ section {
 
 .step-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 10px 30px rgb(0 0 0 / 15%);
 }
 
 .step-number {
@@ -468,7 +468,7 @@ section {
 
 .example-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 10px 30px rgb(0 0 0 / 15%);
 }
 
 .example-icon {
@@ -487,7 +487,7 @@ section {
 }
 
 /* 반응형 디자인 */
-@media (max-width: 992px) {
+@media (width <= 992px) {
   .hero-container {
     flex-direction: column;
     padding: 0 20px; /* 모바일에서는 패딩 줄임 */
@@ -525,7 +525,7 @@ section {
   }
 }
 
-@media (max-width: 768px) {
+@media (width <= 768px) {
   .section-title {
     font-size: 28px;
   }
@@ -547,7 +547,7 @@ section {
   }
 }
 
-@media (max-width: 480px) {
+@media (width <= 480px) {
   section {
     padding: 60px 0;
   }
