@@ -1,18 +1,25 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <script type="module" src="../scripts/components.js"></script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AInfo 소개</title>
+
+  <!-- Axios 추가 -->
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
   <!-- 공통 스타일 -->
   <link rel="stylesheet" href="../styles/global.css">
   <link rel="stylesheet" href="../styles/header.css">
   <link rel="stylesheet" href="../styles/footer.css">
-
-  <!-- 개별 페이지 스타일 -->
   <link rel="stylesheet" href="../styles/introduction.css">
+
+  <!-- 페이지별 스크립트 -->
+  <script type="module" src="../scripts/introduction.js"></script>
+  <script type="module" src="../config/config.js"></script>
+  <script type="module" src="../scripts/api.js"></script>
+  <script type="module" src="../scripts/utils.js"></script>
+  <script type="module" src="../scripts/components.js"></script>
 </head>
 <body>
   <!-- 공통 헤더: components.js에서 동적 삽입됨 -->
@@ -228,10 +235,6 @@
     </section>
   </main>
 
-  <!-- 공통 컴포넌트 렌더링 -->
-  <!-- <script src="../scripts/components.js"></script> -->
 
-  <!-- 페이지별 스크립트 -->
-  <script src="../scripts/introduction.js"></script>
 </body>
 </html>
