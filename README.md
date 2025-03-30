@@ -160,7 +160,7 @@ AInfo는 맞춤형 공공서비스 추천 AI 챗봇입니다. Django Rest Framew
 │   │   └── feature_request.md
 │   └── workflows/
 │       ├── ci.yml → CI 관련 설정
-│ 			└── cd.yml → CD 관련 설정
+│ 		└── cd.yml → CD 관련 설정
 │
 ├── tests/ → 테스트 파일 (필요 시)
 │   └── test.js → 기본 테스트 스크립트
