@@ -1,4 +1,5 @@
-## 💡 아이디어, 기획
+![브로셔](https://file.notion.so/f/f/7b9c678b-2c04-4afd-962f-d60425a4ac46/136df966-10bb-44ab-805d-2264cb0075f4/AInfo.gif?table=block&id=1c3af76d-38e2-8055-ba90-de174ca93564&spaceId=7b9c678b-2c04-4afd-962f-d60425a4ac46&expirationTimestamp=1743379200000&signature=MEEC6NcPv55YFJ58FuVZ1y8xylCrxoLs7FWfcjofjp0&downloadName=AInfo.gif)
+
 
 ### *“정책은 있는데, 정보는 어디 있나요?”*
 
