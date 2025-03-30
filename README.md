@@ -41,10 +41,10 @@ AInfo는 맞춤형 공공서비스 추천 AI 챗봇입니다. Django Rest Framew
 
 ### 서비스 시연 영상
 
-[영상]
+[![유튜브 영상 썸네일](https://github.com/user-attachments/assets/909ab6a0-961d-4129-9de3-1bbd30aa6935)](https://www.youtube.com/watch?v=Y2IPx5YfEuc)
 
 ### 서비스 아키텍처
-
+![서비스 아키텍처](https://file.notion.so/f/f/7b9c678b-2c04-4afd-962f-d60425a4ac46/b89f056f-29f0-40ed-8609-72e21f2c79f6/ainfo.drawio.png?table=block&id=1c3af76d-38e2-8051-94ca-c9a5fbd5c5f7&spaceId=7b9c678b-2c04-4afd-962f-d60425a4ac46&expirationTimestamp=1743379200000&signature=o1NXj-I4sxeWbCuzsZGMzg_TiHR3mBQzc03X3GcQxv4&downloadName=ainfo.drawio.png)
 ---
 
 ### 🍟 팀원:
