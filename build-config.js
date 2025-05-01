@@ -1,6 +1,13 @@
 /* eslint-env node */
 
 const fs = require('fs');
+const path = require('path');
+
+// config 디렉토리 없으면 생성
+const configDir = path.join(__dirname, 'config');
+if (!fs.existsSync(configDir)) {
+  fs.mkdirSync(configDir);
+}
 
 const content = `window.appConfig = {
   API_BASE_URL: "${process.env.API_BASE_URL}",
@@ -21,4 +28,4 @@ window.axiosInstance = axios.create({
 });
 `;
 
-fs.writeFileSync('config/config.js', content);
+fs.writeFileSync(path.join(configDir, 'config.js'), content);
