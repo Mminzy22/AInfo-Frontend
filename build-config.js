@@ -1,4 +1,6 @@
-const fs = require("fs");
+/* eslint-env node */
+
+const fs = require('fs');
 
 const content = `window.appConfig = {
   API_BASE_URL: "${process.env.API_BASE_URL}",
@@ -19,4 +21,4 @@ window.axiosInstance = axios.create({
 });
 `;
 
-fs.writeFileSync("config/config.js", content);
+fs.writeFileSync('config/config.js', content);
