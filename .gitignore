@@ -15,9 +15,6 @@ dist/
 *.scssc
 *.map
 
-# 환경 변수 및 설정 파일
-config/config.js
-
 # IDE 및 시스템 파일
 .vscode/
 .idea/
