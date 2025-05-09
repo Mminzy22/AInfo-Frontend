@@ -7,8 +7,7 @@
     "lint:css": "stylelint \"**/*.css\"",
     "lint:js": "eslint \"**/*.js\"",
     "fix:js": "eslint --fix \"**/*.js\"",
-    "fix:css": "stylelint --fix \"**/*.css\"",
-    "vercel-build": "node build-config.js"
+    "fix:css": "stylelint --fix \"**/*.css\""
   },
   "repository": {
     "type": "git",
