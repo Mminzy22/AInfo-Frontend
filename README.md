@@ -96,7 +96,7 @@ AInfo는 맞춤형 공공서비스 추천 AI 챗봇입니다. Django Rest Framew
 - **프론트엔드:** HTML, CSS, JavaScript
 - **API 통신:** Axios
 - **실시간 웹소켓:** WebSocket
-- **배포:** AWS S3 + CloudFront
+- **배포:** AWS S3 + CloudFront → Vercel로 변경
 
 ---
 
